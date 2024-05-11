@@ -2,20 +2,25 @@
 // import type { GetStaticPaths } from "astro";
 import { type APIFakeStore } from "../types/api";
 import Layout from "../layouts/Layout.astro";
+import ProductBreadcrumb from "../components/ProductBreadcrumb.astro";
 
-export const prerender = false;
+// export const prerender = false;
 const { id } = Astro.params;
-const res = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`);
-const product = (await res.json()) as APIFakeStore;
+// const res = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`);
+// const product = (await res.json()) as APIFakeStore;
+import products from "../utils/shop.json";
+const product = products.at(1);
+
+// if (!product) Astro.response.status = 404;
 
 //! Numero finito y conocido
-/*
 export async function getStaticPaths() {
-  const res = await fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=30');
-  const products = (await res.json()) as APIFakeStore[];
+  // const res = await fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=30');
+  // const products = (await res.json()) as APIFakeStore[];
   return products.map((product) => ({
-    params: {id: product.id}
-  }))
+    params: { id: product.id },
+  }));
+  //#region static
   /*
   return [
     {params: { id: 10}},
@@ -49,34 +54,62 @@ export async function getStaticPaths() {
     {params: { id: 38}},
     {params: { id: 39}},
   ];
+  */
+  //#endregion
 }
-*/
 ---
 
-<Layout title={`${product.title}`}>
-  <section class="py-16 px-8">
-    <div
-      class="mx-auto container grid place-items-center grid-cols-1 md:grid-cols-2"
-    >
-      <img
-        src={product.images[0]}
-        alt="pink blazer"
-        class="rounded-md aspect-square size-96"
-      />
-      <div>
-        <h2 class="mb-4 text-3xl">{product.title}</h2>
-        <h5>${product.price}</h5>
-        <p class="!mt-4 text-base font-normal leading-[27px] !text-gray-500">
-          {product.description}
-        </p>
-        <div class="mb-4 flex w-full items-center gap-3 md:w-1/2">
-          <button
-            class="w-52 border border-blue-500 rounded-md bg-blue-900 h-10 mt-5"
-          >
-            Add to Cart
-          </button>
+<Layout title={`${product?.title}`}>
+  {
+    !product ? (
+      <p>this is not supossed to happen...</p>
+    ) : (
+      <section class="py-8 px-8 border mt-16">
+          <ProductBreadcrumb title={`${product.title}`} />
+        <div class="mx-auto container grid place-items-center grid-cols-1 md:grid-cols-2 border border-blue-600">
+          <div class="flex gap-4 border border-red-500">
+            <div
+              class:list={[
+                "grid grid-cols-4",
+                "gap-4",
+                "md:order-1",
+                "md:col-span-2",
+                "md:flex",
+                "md:flex-col",
+                "md:gap-6",
+                { "md:justify-between": product.images.length > 3 },
+              ]}
+            >
+              {product.images.map((image, index) => {
+                if (index > 0) {
+                  return (
+                    <div class="overflow-hidden rounded-md">
+                      <img class="size-40 aspect-square" loading="eager" src={image} />
+                    </div>
+                  );
+                }
+              })}
+            </div>
+            <img
+              src={product.images[0]}
+              alt="pink blazer"
+              class="rounded-md aspect-square size-96"
+            />
+          </div>
+          <div class="border border-emerald-500">
+            <h2 class="mb-4 text-3xl">{product.title}</h2>
+            <h5>${product.price}</h5>
+            <p class="!mt-4 text-base font-normal leading-[27px] !text-gray-500">
+              {product.description}
+            </p>
+            <div class="mb-4 flex w-full items-center gap-3 md:w-1/2">
+              <button class="w-52 border border-blue-500 rounded-md bg-blue-900 h-10 mt-5">
+                Add to Cart
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    )
+  }
 </Layout>
