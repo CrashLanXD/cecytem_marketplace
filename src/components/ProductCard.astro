@@ -11,7 +11,7 @@ const { id, title, price, images } = Astro.props;
 
 <a
   href={`/${id}`}
-  class="group overflow-hidden rounded-lg shadow hover:shadow-md border"
+  class="group overflow-hidden rounded-lg shadow hover:shadow-md border-neutral-800 dark:border-neutral-50 border-4"
 >
   <div class="relative">
     <img
@@ -25,7 +25,7 @@ const { id, title, price, images } = Astro.props;
       class="absolute inset-0 z-10 grid items-end justify-items-center opacity-0 transition-all group-hover:bg-black/10 group-hover:opacity-100"
     >
       <button
-        class="w-full gap-3 rounded rounded-t-md bg-gradient-to-r from-green-400 to-green-600 flex justify-center h-10 items-center"
+        class="w-full gap-3 rounded rounded-t-md bg-gradient-to-r from-neutral-700 to-neutral-800 flex justify-center h-10 items-center text-white dark:from-neutral-100 dark:to-neutral-200 dark:text-neutral-950 font-semibold"
       >
         <span>
           <svg
@@ -47,7 +47,7 @@ const { id, title, price, images } = Astro.props;
       </button>
     </div>
   </div>
-  <div class="flex justify-between py-3 px-5 text-zinc-700 gap-1">
+  <div class="flex justify-between py-3 px-5 text-zinc-700 dark:text-zinc-200 gap-1">
     <h3 class="group-hover:underline">{title}</h3>
     <p class="font-bold">
       <span>{`$${price}`}</span>
