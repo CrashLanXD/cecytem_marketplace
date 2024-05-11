@@ -5,9 +5,9 @@ export function Counter() {
 
   return (
     <>
-      <span class="text-2xl text-yellow-300">{counter}</span>
-      <button class="border px-4 py-2 text-2xl" onClick={() => setCounter(counter => counter + 1)}>+</button>
-      <button class="border px-4 py-2 text-2xl" onClick={() => setCounter(counter => counter - 1)}>-</button>
+      <span class="text-xl text-yellow-300">{counter}</span>
+      <button class="border px-2 py-2 text-xl" onClick={() => setCounter(counter => counter + 1)}>+</button>
+      <button class="border px-2 py-2 text-xl" onClick={() => setCounter(counter => counter - 1)}>-</button>
     </>
   );
 }
