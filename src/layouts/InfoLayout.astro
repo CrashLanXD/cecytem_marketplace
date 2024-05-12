@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
-import Header from "../components/Header.astro";
+import Header from "../components/HeaderInfo.astro";
+import Footer from "../components/FooterInfo.astro";
 interface Props {
   title: string;
 }
@@ -10,12 +11,11 @@ const description = "";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="author" content="Eduardo Sanchez Hernandez" />
-    <meta name="author" content="David Garcia Lopez" />
     <meta name="theme-color" content="#008c72" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -26,23 +26,6 @@ const description = "";
   <body class="bg-neutral-100 dark:bg-neutral-950">
     <Header />
     <slot />
-    <style is:global>
-      :root {
-        color-scheme: light dark;
-      }
-      html {
-        font-family: system-ui, sans-serif;
-        scroll-behavior: smooth;
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-      }
-    </style>
+    <Footer />
   </body>
 </html>

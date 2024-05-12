@@ -1,0 +1,79 @@
+---
+import InfoLayout from "../layouts/InfoLayout.astro";
+import TeamCard from "../components/TeamCard.astro";
+---
+
+<InfoLayout title="team">
+  <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+      <h2
+        class="mb-4 text-4xl tracking-tight font-extrabold text-neutral-900 dark:text-white"
+      >
+        Nuestro equipo
+      </h2>
+      <!-- <p class="font-light text-neutral-500 lg:mb-16 sm:text-xl dark:text-neutral-400"></p> -->
+    </div>
+    <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+      <TeamCard
+        title="Eduardo Sanchez"
+        role="Web developer | UI/UX Designer"
+        pfp="https://avatars.githubusercontent.com/u/133317864"
+        motto="If you want it all, why you halfway in?."
+        socialMedia={{
+          x: "https://x.com/CrashLanXD",
+          github: "https://github.com/CrashLanXD/",
+          facebook: "",
+          instagram: "",
+        }}
+      />
+      <TeamCard
+        title="Gamaliel"
+        role="UI/UX Designer"
+        pfp="https://avatars.githubusercontent.com/u/133317864"
+        motto="Hello, World!"
+        socialMedia={{
+          x: "",
+          github: "",
+          facebook: "https://www.facebook.com/gama.gb.96",
+          instagram: "https://www.instagram.com/gsvs_gm",
+        }}
+      />
+      <TeamCard
+        title="Diego"
+        role="Designer"
+        pfp="https://avatars.githubusercontent.com/u/133317864"
+        motto="Hello, World!"
+        socialMedia={{
+          x: "",
+          github: "",
+          facebook: "",
+          instagram: "",
+        }}
+      />
+      <TeamCard
+        title="Jocsan"
+        role="Designer"
+        pfp="https://avatars.githubusercontent.com/u/133317864"
+        motto="Hello, World!"
+        socialMedia={{
+          x: "",
+          github: "",
+          facebook: "",
+          instagram: "",
+        }}
+      />
+      <TeamCard
+        title="David"
+        role="collaborator"
+        pfp="https://avatars.githubusercontent.com/u/133317864"
+        motto="Hello, World!"
+        socialMedia={{
+          x: "",
+          github: "",
+          facebook: "",
+          instagram: "",
+        }}
+      />
+    </div>
+  </section>
+</InfoLayout>

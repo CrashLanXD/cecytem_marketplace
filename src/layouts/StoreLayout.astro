@@ -1,0 +1,49 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Header from "../components/HeaderStore.astro";
+import Footer from "../components/FooterStore.astro";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+const description = "";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Eduardo Sanchez Hernandez" />
+    <meta name="theme-color" content="#008c72" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body class="bg-neutral-100 dark:bg-neutral-950">
+    <Header />
+    <slot />
+    <Footer/>
+    <style is:global>
+      :root {
+        color-scheme: light dark;
+      }
+      html {
+        font-family: system-ui, sans-serif;
+        scroll-behavior: smooth;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </body>
+</html>
