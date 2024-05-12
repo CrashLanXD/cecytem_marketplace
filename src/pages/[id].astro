@@ -1,7 +1,7 @@
 ---
 // import type { GetStaticPaths } from "astro";
-import { type APIFakeStore } from "../types/api";
-import Layout from "../layouts/Layout.astro";
+// import { type APIFakeStore } from "../types/api";
+import Layout from "../layouts/StoreLayout.astro";
 import ProductBreadcrumb from "../components/ProductBreadcrumb.astro";
 
 // export const prerender = false;
@@ -9,107 +9,142 @@ const { id } = Astro.params;
 // const res = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`);
 // const product = (await res.json()) as APIFakeStore;
 import products from "../utils/shop.json";
-const product = products.at(1);
+const idx = id - 1;
+const product = products.at(idx);
 
-// if (!product) Astro.response.status = 404;
+if (!product) Astro.response.status = 404;
 
-//! Numero finito y conocido
 export async function getStaticPaths() {
   // const res = await fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=30');
   // const products = (await res.json()) as APIFakeStore[];
   return products.map((product) => ({
     params: { id: product.id },
   }));
-  //#region static
-  /*
-  return [
-    {params: { id: 10}},
-    {params: { id: 11}},
-    {params: { id: 12}},
-    {params: { id: 13}},
-    {params: { id: 14}},
-    {params: { id: 15}},
-    {params: { id: 16}},
-    {params: { id: 17}},
-    {params: { id: 18}},
-    {params: { id: 19}},
-    {params: { id: 20}},
-    {params: { id: 21}},
-    {params: { id: 22}},
-    {params: { id: 23}},
-    {params: { id: 24}},
-    {params: { id: 25}},
-    {params: { id: 26}},
-    {params: { id: 27}},
-    {params: { id: 28}},
-    {params: { id: 29}},
-    {params: { id: 30}},
-    {params: { id: 31}},
-    {params: { id: 32}},
-    {params: { id: 33}},
-    {params: { id: 34}},
-    {params: { id: 35}},
-    {params: { id: 36}},
-    {params: { id: 37}},
-    {params: { id: 38}},
-    {params: { id: 39}},
-  ];
-  */
-  //#endregion
 }
 ---
 
 <Layout title={`${product?.title}`}>
   {
     !product ? (
-      <p>this is not supossed to happen...</p>
+      <p class="w-full mt-40 text-center font-bold text-neutral-900 dark:text-neutral-100">
+        this shouldn't be happening...
+      </p>
     ) : (
-      <section class="py-8 px-8 border mt-16">
-          <ProductBreadcrumb title={`${product.title}`} />
-        <div class="mx-auto container grid place-items-center grid-cols-1 md:grid-cols-2 border border-blue-600">
-          <div class="flex gap-4 border border-red-500">
-            <div
-              class:list={[
-                "grid grid-cols-4",
-                "gap-4",
-                "md:order-1",
-                "md:col-span-2",
-                "md:flex",
-                "md:flex-col",
-                "md:gap-6",
-                { "md:justify-between": product.images.length > 3 },
-              ]}
-            >
-              {product.images.map((image, index) => {
-                if (index > 0) {
-                  return (
-                    <div class="overflow-hidden rounded-md">
-                      <img class="size-40 aspect-square" loading="eager" src={image} />
-                    </div>
-                  );
-                }
-              })}
-            </div>
+      <section class="py-8 px-8 mt-16">
+        <ProductBreadcrumb title={`${product.title}`} id={`#${product.id}`} />
+        <div class="mx-auto container grid place-items-center grid-cols-1 md:grid-cols-2">
+          <div class="flex gap-4">
             <img
               src={product.images[0]}
               alt="pink blazer"
               class="rounded-md aspect-square size-96"
             />
+            <div class="grid grid-cols-2 md:order-1 md:col-span-2 md:flex md:flex-col md:gap-2 justify-between">
+              {product.images.map((image, index) => {
+                if (index > 0) {
+                  return (
+                    <div class="overflow-hidden rounded-md">
+                      <img
+                        class="size-44 aspect-square"
+                        loading="eager"
+                        src={image}
+                      />
+                    </div>
+                  );
+                }
+              })}
+            </div>
           </div>
-          <div class="border border-emerald-500">
-            <h2 class="mb-4 text-3xl">{product.title}</h2>
-            <h5>${product.price}</h5>
-            <p class="!mt-4 text-base font-normal leading-[27px] !text-gray-500">
+          <div class="flex flex-col">
+            <h2 class="mt-4 md:mt-0 mb-4 w-full text-center text-3xl">{product.title}</h2>
+            <h5 class="w-full text-center text-xl font-bold">${product.price}</h5>
+            <p class="mt-4 text-base font-normal leading-[27px] text-neutral-400 mx-auto text-center text-pretty">
               {product.description}
             </p>
-            <div class="mb-4 flex w-full items-center gap-3 md:w-1/2">
-              <button class="w-52 border border-blue-500 rounded-md bg-blue-900 h-10 mt-5">
-                Add to Cart
-              </button>
-            </div>
+            <button class="add-to-cart mx-auto mt-8">Buy Now</button>
           </div>
         </div>
       </section>
     )
   }
 </Layout>
+
+<style>
+  .add-to-cart {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 15px;
+  }
+
+  button.add-to-cart {
+    font-weight: 600;
+    color: #2c2f33;
+    text-transform: uppercase;
+    padding: 8px 19px;
+    background: #f6f8fa;
+    border: 2px solid #ccd6dd;
+    border-radius: 0.75em;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition:
+      background 150ms cubic-bezier(0, 0, 0.58, 1),
+      -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition:
+      transform 150ms cubic-bezier(0, 0, 0.58, 1),
+      background 150ms cubic-bezier(0, 0, 0.58, 1),
+      -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  button.add-to-cart::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #e9ebee;
+    border-radius: inherit;
+    -webkit-box-shadow: 0 0 0 2px #ccd6dd;
+    box-shadow: 0 0 0 2px #ccd6dd;
+    -webkit-transform: translate3d(0, 0.75em, -1em);
+    transform: translate3d(0, 0.75em, -1em);
+    transition:
+      transform 150ms cubic-bezier(0, 0, 0.58, 1),
+      box-shadow 150ms cubic-bezier(0, 0, 0.58, 1),
+      -webkit-transform 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  button.add-to-cart:hover {
+    background: #dce0e3;
+    -webkit-transform: translate(0, 0.25em);
+    transform: translate(0, 0.25em);
+  }
+
+  button.add-to-cart:hover::before {
+    -webkit-box-shadow: 0 0 0 2px #ccd6dd;
+    box-shadow: 0 0 0 2px #ccd6dd;
+    -webkit-transform: translate3d(0, 0.5em, -1em);
+    transform: translate3d(0, 0.5em, -1em);
+  }
+
+  button.add-to-cart:active {
+    background: #dce0e3;
+    -webkit-transform: translate(0em, 0.75em);
+    transform: translate(0em, 0.75em);
+  }
+
+  button.add-to-cart:active::before {
+    -webkit-box-shadow: 0 0 0 2px #ccd6dd;
+    box-shadow: 0 0 0 2px #ccd6dd;
+    -webkit-transform: translate3d(0, 0, -1em);
+    transform: translate3d(0, 0, -1em);
+  }
+</style>
