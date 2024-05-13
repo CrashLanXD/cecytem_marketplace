@@ -1,10 +1,7 @@
 ---
 import ProductCard from "../components/ProductCard.astro";
-import { type APIFakeStore } from "../types/api";
 
 export const prerender = false;
-// const res = await fetch("https://api.escuelajs.co/api/v1/products?offset=0&limit=30");
-// const products = (await res.json()) as APIFakeStore[];
 import products from "../utils/shop.json";
 ---
 

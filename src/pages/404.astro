@@ -1,7 +1,5 @@
 ---
-import { Image } from "astro:assets";
 import NotFoundLayout from "../layouts/NotFoundLayout.astro";
-import ThisIsFine from "../../public/images/thisIsFine.webp";
 ---
 
 <NotFoundLayout title="404 Not Found">
@@ -17,11 +15,12 @@ import ThisIsFine from "../../public/images/thisIsFine.webp";
     </div>
   </header>
   <div class="h-auto mx-auto grid place-items-center text-center mt-32">
-    <Image
+    <img
       class="rounded-md w-72"
-      src={ThisIsFine}
+      src="images/thisIsFine.webp"
       alt="this is fine..."
       loading="eager"
+      decoding="async"
     />
     <h1
       class="text-3xl mt-9 leading-snug md:text-4xl text-neutral-900 dark:text-neutral-100"
