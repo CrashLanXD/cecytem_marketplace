@@ -1,107 +1,144 @@
-<header class="fixed top-0 z-10 h-20 items-center w-full">
-  <nav class="bg-green-700 px-4 lg:px-6 py-2.5 dark:bg-green-950">
-    <div class="flex flex-wrap justify-between items-center mx-auto w-full">
-      <a
-        href="https://github.com/CrashLanXD"
-        class="flex items-center"
-        rel="noopener"
+---
+import MaintenanceIcon from "./icons/MaintenanceIcon.astro";
+import CodeIcon from "./icons/CodeIcon.astro";
+import StoreIcon from "./icons/StoreIcon.astro";
+import TeamIcon from "./icons/TeamIcon.astro";
+import FlagIcon from "./icons/FlagIcon.astro";
+import MailIcon from "./icons/MailIcon.astro";
+---
+
+<nav
+  class="block px-8 py-4 w-full max-w-full bg-transparent text-neutral-900 dark:text-neutral-50"
+>
+  <div class="container mx-auto flex items-center justify-between">
+    <p
+      class="block antialiased font-sans leading-relaxed uppercase tracking-widest"
+    >
+      cecytem marketplace
+    </p>
+    <ul class="ml-10 hidden items-center gap-6 lg:flex">
+      <li>
+        <a
+          href="/"
+          class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+          ><FlagIcon class="size-5" />Home</a
+        >
+      </li>
+      <li>
+        <a
+          href="/team"
+          class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+          ><TeamIcon class="size-5" />
+          Team</a
+        >
+      </li>
+      <li>
+        <a
+          href="/store"
+          class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+          ><StoreIcon class="size-5" />Store</a
+        >
+      </li>
+      <li>
+        <a
+          href="/dev"
+          class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+          ><CodeIcon class="size-5" />Dev</a
+        >
+      </li>
+      <li>
+        <a
+          href="/contactUs"
+          class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+          ><MailIcon class="size-5" />contact</a
+        >
+      </li>
+    </ul>
+    <button
+      class="relative ml-auto inline-block h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-neutral-900 transition-all hover:bg-neutral-900/10 dark:text-neutral-100 dark:hover:bg-neutral-50/10 active:bg-neutral-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
+      type="button"
+      data-ripple-dark="true"
+      data-collapse-target="navbar"
+    >
+      <span
+        class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
       >
-        <span
-          class="self-center text-xl font-semibold whitespace-nowrap text-white"
-          >Marketplace</span
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+          class="h-6 w-6"
         >
-      </a>
-      <div class="flex items-center lg:order-2">
-        <button
-          data-collapse-toggle="mobile-menu-2"
-          id="toggle-menu"
-          type="button"
-          class="inline-flex items-center p-1 text-sm rounded-lg lg:hidden hover:bg-neutral-300 focus:outline-none focus:ring-2 focus:ring-green-500 text-neutral-800 dark:text-neutral-500 dark:hover:bg-green-800 dark:focus:ring-green-500"
-          aria-controls="mobile-menu-2"
-          aria-expanded="false"
-        >
-          <span class="sr-only">abrir menu</span>
-          <svg
-            class="w-6 h-6"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+      </span>
+    </button>
+  </div>
+  <div data-collapse="navbar" class="w-full hidden overflow-hidden">
+    <div data-collapse="navbar" class="block w-full overflow-hidden">
+      <ul class="flex flex-col gap-4">
+        <li>
+          <a
+            href="/"
+            class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+            ><FlagIcon class="size-5" />Home</a
           >
-            <path
-              fill-rule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </button>
-      </div>
-      <div
-        class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
-        id="mobile-menu-2"
-      >
-        <ul
-          class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0"
-        >
-          <li>
-            <a
-              href="initialPage"
-              class="block py-2 pr-4 pl-3 text-neutral-300 border-b border-neutral-100 rounded-md hover:bg-neutral-50 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-neutral-200 dark:hover:bg-green-900 dark:border-neutral-900"
-              aria-current="page">Inicio</a
-            >
-          </li>
-          <li>
-            <a
-              href="/store"
-              class="block py-2 pr-4 pl-3 text-neutral-300 border-b border-neutral-100 rounded-md hover:bg-neutral-50 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-neutral-200 dark:hover:bg-green-900 dark:border-neutral-900"
-              >Marketplace</a
-            >
-          </li>
-          <li>
-            <a
-              href="/programming"
-              class="block py-2 pr-4 pl-3 text-neutral-300 border-b border-neutral-100 rounded-md hover:bg-neutral-50 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-neutral-200 dark:hover:bg-green-900 dark:border-neutral-900"
-              >Programación</a
-            >
-          </li>
-          <li>
-            <a
-              href="/industrialMaintenance"
-              class="block py-2 pr-4 pl-3 text-neutral-300 border-b border-neutral-100 rounded-md hover:bg-neutral-50 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-neutral-200 dark:hover:bg-green-900 dark:border-neutral-900"
-              >Mantenimiento</a
-            >
-          </li>
-          <li>
-            <a
-              href="team"
-              class="block py-2 pr-4 pl-3 text-neutral-300 border-b border-neutral-100 rounded-md hover:bg-neutral-50 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-neutral-200 dark:hover:bg-green-900 dark:border-neutral-900"
-              >Equipo</a
-            >
-          </li>
-          <li>
-            <a
-              href="contact"
-              class="block py-2 pr-4 pl-3 text-neutral-300 border-b border-neutral-100 rounded-md hover:bg-neutral-50 lg:hover:bg-transparent lg:dark:hover:bg-transparent lg:border-0 lg:hover:text-white lg:p-0 dark:text-neutral-200 dark:hover:bg-green-900 dark:border-neutral-900"
-              >Contacto</a
-            >
-          </li>
-        </ul>
-      </div>
+        </li>
+        <li>
+          <a
+            href="/team"
+            class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+            ><TeamIcon class="size-5" />Team</a
+          >
+        </li>
+        <li>
+          <a
+            href="/store"
+            class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+            ><StoreIcon class="size-5" />Store</a
+          >
+        </li>
+        <li>
+          <a
+            href="/dev"
+            class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+            ><CodeIcon class="size-5" />Dev</a
+          >
+        </li>
+        <li>
+          <a
+            href="/contactUs"
+            class="antialiased font-sans text-base leading-relaxed flex items-center gap-2 font-medium"
+            ><MailIcon class="size-5" />contact</a
+          >
+        </li>
+      </ul>
     </div>
-  </nav>
-</header>
+  </div>
+</nav>
 
 <script>
-  const $toggleMenu = document.getElementById("toggle-menu");
-  const $mobileMenu = document.getElementById("mobile-menu-2");
-  $toggleMenu?.addEventListener("click", toggleMenu);
+  document.addEventListener("astro:page-load", () => {
+    const $toggleMenu = document.querySelector("[data-collapse-target='navbar']");
+    const $mobileMenu = document.querySelector("[data-collapse='navbar']");
+    $toggleMenu?.addEventListener("click", toggleMenu);
+    function toggleMenu() {
+      if ($toggleMenu && $mobileMenu) {
+        let ariaExpanded =
+          $toggleMenu.getAttribute("aria-expanded") === "true" || false;
+        ariaExpanded = !ariaExpanded;
 
-  function toggleMenu() {
-    if ($toggleMenu && $mobileMenu) {
-      let ariaExpanded =
-        $toggleMenu.getAttribute("aria-expanded") === "true" || false;
-      ariaExpanded = !ariaExpanded; // Cambiamos el estado del menú
-
-      $toggleMenu.setAttribute("aria-expanded", ariaExpanded.toString());
-      $mobileMenu.classList.toggle("hidden", !ariaExpanded);
+        $toggleMenu.setAttribute("aria-expanded", ariaExpanded.toString());
+        // Toggle 'hidden' class on $mobileMenu
+        $mobileMenu.classList.toggle("hidden", !ariaExpanded);
+        // Toggle 'block' class on $mobileMenu
+        $mobileMenu.classList.toggle("block", ariaExpanded);
+      }
     }
-  }
+  });
 </script>

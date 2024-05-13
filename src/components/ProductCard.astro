@@ -25,7 +25,7 @@ const { id, title, price, images } = Astro.props;
     <div
       class="absolute inset-0 z-10 grid items-end justify-items-center opacity-0 transition-all group-hover:bg-black/10 group-hover:opacity-100"
     >
-      <button
+      <span
         class="w-full gap-3 rounded-t-lg bg-gradient-to-r from-neutral-700 to-neutral-800 flex justify-center h-10 items-center text-white dark:from-neutral-100 dark:to-neutral-200 dark:text-neutral-950 font-semibold"
       >
         <span>
@@ -45,15 +45,13 @@ const { id, title, price, images } = Astro.props;
           </svg>
         </span>
         Shop now
-      </button>
+      </span>
     </div>
   </div>
   <div
-    class="flex justify-between py-3 px-5 text-zinc-700 dark:text-zinc-200 gap-1"
+    class="flex justify-between py-3 px-5 text-xl text-zinc-700 dark:text-zinc-200 gap-1"
   >
-    <h3 class="group-hover:underline">{title}</h3>
-    <p class="font-bold">
-      <span>{`$${price}`}</span>
-    </p>
+    <h5 class="group-hover:underline">{title}</h5>
+    <h5 class="font-bold">{`$${price}`}</h5>
   </div>
 </a>

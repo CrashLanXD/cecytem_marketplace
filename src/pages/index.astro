@@ -1,8 +1,44 @@
 ---
-import HeroInfo from "../components/HeroInfo.astro"
-import InfoLayout from "../layouts/InfoLayout.astro"
+import HeroInfo from "../components/HeroInfo.astro";
+import InfoLayout from "../layouts/InfoLayout.astro";
 ---
 
 <InfoLayout title="CECyTEM">
-  <HeroInfo/>
+  <HeroInfo client:visible />
+  <main
+    class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
+  >
+    <div class="font-light text-neutral-600 sm:text-lg dark:text-neutral-400">
+      <h2
+        class="mb-4 text-4xl tracking-tight font-extrabold text-neutral-900 dark:text-white"
+      >
+        Innovación y excelencia al alcance de tu mano.
+      </h2>
+      <p class="mb-4">
+        ¡Gracias por visitar nuestra página web! Aquí podrás conocer más sobre
+        lo que hacemos y los productos que fabricamos.
+      </p>
+      <p>
+        Estamos comprometidos a brindarte una experiencia excepcional desde el
+        primer momento en que nos elijas. Estaremos a tu lado para asegurarnos
+        de que disfrutes al máximo de nuestros productos.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mt-8">
+      <img
+        class="w-full rounded-lg"
+        src="../../public/images/office-long-2.png"
+        alt="office content 1"
+        loading="eager"
+        decoding="async"
+      />
+      <img
+        class="mt-4 w-full lg:mt-10 rounded-lg"
+        src="../../public/images/office-long-1.png"
+        alt="office content 2"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+  </main>
 </InfoLayout>

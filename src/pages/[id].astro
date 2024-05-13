@@ -27,7 +27,7 @@ export async function getStaticPaths() {
   {
     !product ? (
       <p class="w-full mt-40 text-center font-bold text-neutral-900 dark:text-neutral-100">
-        this shouldn't be happening...
+        you shouldn't see this...
       </p>
     ) : (
       <section class="py-8 px-8 mt-16">
@@ -56,9 +56,13 @@ export async function getStaticPaths() {
             </div>
           </div>
           <div class="flex flex-col">
-            <h2 class="mt-4 md:mt-0 mb-4 w-full text-center text-3xl">{product.title}</h2>
-            <h5 class="w-full text-center text-xl font-bold">${product.price}</h5>
-            <p class="mt-4 text-base font-normal leading-[27px] text-neutral-400 mx-auto text-center text-pretty">
+            <h2 class="mt-4 md:mt-0 mb-4 w-full text-center text-3xl">
+              {product.title}
+            </h2>
+            <h5 class="w-full text-center text-xl font-bold">
+              ${product.price}
+            </h5>
+            <p class="mt-4 text-base font-normal leading-[27px] text-neutral-700 dark:text-neutral-300 mx-auto text-center text-balance">
               {product.description}
             </p>
             <button class="add-to-cart mx-auto mt-8">Buy Now</button>

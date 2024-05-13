@@ -1,23 +1,49 @@
-<div class="mt-20 px-4 flex flex-col lg:flex-row items-start">
-  <div class="flex items-center mb-2 w-full">
-    <h1
-      class="text-2xl md:text-5xl font-bold tracking-tight text-[#121212] dark:text-white mr-auto md:ml-7 text-center md:text-start w-full"
-    >
-      CECyTEM
-    </h1>
-  </div>
-  <span
-    class="m-auto mb-2 text-xl text-black dark:text-white opacity-80 font-semibold md:text-2xl md:ml-7 md:text-start w-full flex float-end"
+<header
+  class="p-8 mx-auto container px-4 text-center place-items-stretch text-neutral-900 dark:text-neutral-100"
+>
+  <time
+    id="currentDate"
+    class="antialiased font-sans leading-relaxed text-inherit text-sm inline-flex font-thin rounded-lg border-2 border-neutral-50 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-800/40 py-1 lg:px-4 px-1 text-primary"
+  ></time>
+  <h1
+    class="block antialiased tracking-normal font-sans font-semibold mx-auto mb-6 mt-3 w-full leading-snug text-2xl lg:max-w-3xl lg:text-5xl"
   >
-    <time class="w-full text-end" id="currentDate" datetime=""></time>
-  </span>
-</div>
+    Prepárate para elevar tu experiencia con un nuevo estándar de
+    <span class="text-green-500 leading-snug">rendimiento</span> y
+    <span class="leading-snug text-green-500">funcionalidad</span>.
+  </h1>
+  <p
+    class="block antialiased font-sans font-normal leading-relaxed text-inherit mx-auto w-full text-neutral-500 dark:text-neutral-300 lg:text-lg text-base"
+  >
+    Es el momento de brillar, de destacar con colores vibrantes y ser
+    excepcional.
+  </p>
+</header>
 
 <script>
-  const $timeElement = document.getElementById("currentDate");
+  // Retrieve stored date from localStorage
+  const storedData = localStorage.getItem("currentDate");
+
+  // Event listener for page load
+  document.addEventListener("astro:page-load", () => {
+    const $timeElement = document.getElementById("currentDate");
+    if (storedData && $timeElement) {
+      // If stored date exists, display it
+      $timeElement.textContent = storedData;
+      localStorage.clear();
+    } else {
+      // Otherwise, generate and display the current date
+      if ($timeElement) {
+        $timeElement.textContent = getCurrentDate();
+      }
+    }
+  });
+
   function getCurrentDate() {
+    // Get current date
     let currentDate = new Date();
 
+    // Array of month names
     let monthNames = [
       "Enero",
       "Febrero",
@@ -33,6 +59,7 @@
       "Diciembre",
     ];
 
+    // Array of day names
     let dayNames = [
       "Domingo",
       "Lunes",
@@ -43,15 +70,17 @@
       "Sábado",
     ];
 
-    var day = dayNames[currentDate.getDay()];
-    var date = currentDate.getDate();
-    var month = monthNames[currentDate.getMonth()];
-    var year = currentDate.getFullYear();
+    // Get day, date, month, and year
+    let day = dayNames[currentDate.getDay()];
+    let date = currentDate.getDate();
+    let month = monthNames[currentDate.getMonth()];
+    let year = currentDate.getFullYear();
 
-    if ($timeElement) {
-      $timeElement.textContent = `${day} ${date} de ${month} del ${year}`;
-      $timeElement.setAttribute("datetime", currentDate.toISOString());
-    }
+    // Format the date
+    const formattedDate = `${day} ${date} de ${month} del ${year}`;
+
+    // Store the formatted date in localStorage
+    localStorage.setItem("currentDate", formattedDate);
+    return formattedDate;
   }
-  getCurrentDate();
 </script>

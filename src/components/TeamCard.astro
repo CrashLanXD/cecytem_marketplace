@@ -27,7 +27,9 @@ const { title, role, pfp, motto, socialMedia } = Astro.props;
   <img
     class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg aspect-square md:max-w-56"
     src={pfp}
-    alt={`${title} picture`}
+    alt={`${title}`}
+    decoding="async"
+    loading="lazy"
   />
 
   <div class="p-5">
