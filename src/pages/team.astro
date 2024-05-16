@@ -4,16 +4,40 @@ import TeamCard from "../components/TeamCard.astro";
 ---
 
 <InfoLayout title="team">
-  <section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-    <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
-      <h2
-        class="mb-4 text-4xl tracking-tight font-extrabold text-neutral-900 dark:text-white"
-      >
-        Nuestro equipo
-      </h2>
-      <!-- <p class="font-light text-neutral-500 lg:mb-16 sm:text-xl dark:text-neutral-400"></p> -->
-    </div>
-    <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+  <section
+    class="container p-4 mx-auto rounded-2xl bg-neutral-300 dark:bg-neutral-900 bg-opacity-85 lg:py-12 lg:px-6"
+  >
+    <header
+      class="grid grid-cols-1 md:grid-cols-2 auto-rows-auto gap-4 [&>div]:bg-neutral-200 [&>div]:dark:bg-neutral-800 [&>div]:rounded-xl [&>div]:px-7 [&>div]:p-5"
+    >
+      <div class="md:col-span-2 row-start-1">
+        <h2
+          class="text-3xl md:text-4xl tracking-wide font-extrabold text-neutral-900 dark:text-neutral-200 text-balance"
+        >
+          Compromiso con la Excelencia
+        </h2>
+        <p class="text-pretty">
+          Estamos dedicados a la excelencia e innovación, aplicando lo que
+          aprendemos para crear productos de alta calidad que reflejan nuestra
+          creatividad y dedicación.
+        </p>
+      </div>
+      <div class="row-start-2">
+        <p class="text-pretty">
+          Cada miembro del equipo es crucial para nuestro éxito. Desde el diseño
+          web hasta el mantenimiento de productos, trabajamos juntos para
+          ofrecerte la mejor experiencia.
+        </p>
+      </div>
+      <div class="row-start-3 md:row-start-2 flex justify-center items-center">
+        <h2
+          class="text-5xl text-center tracking-wide font-extrabold font-effect"
+        >
+          Nuestro equipo
+        </h2>
+      </div>
+    </header>
+    <main class="grid mt-4 gap-4 lg:mb-16 md:grid-cols-2">
       <TeamCard
         title="Eduardo Sanchez"
         role="Web developer | UI/UX Designer"
@@ -42,7 +66,7 @@ import TeamCard from "../components/TeamCard.astro";
         title="Diego"
         role="Designer"
         pfp="/images/team/diego.webp"
-        motto="Do fugiat adipisicing ut excepteur nisi."
+        motto="La verdadera grandeza radica en la capacidad de levantarse despues de cada caida."
         socialMedia={{
           x: "",
           github: "",
@@ -66,14 +90,14 @@ import TeamCard from "../components/TeamCard.astro";
         title="Jocsan"
         role="Collaborator"
         pfp="/images/team/jocsan.webp"
-        motto="Hello, World!"
+        motto="Lo que tú haces en un día, yo lo hago en 24 horas."
         socialMedia={{
           x: "",
           github: "",
           facebook: "",
-          instagram: "",
+          instagram: "https://www.instagram.com/jocsan.aguirre/",
         }}
       />
-    </div>
+    </main>
   </section>
 </InfoLayout>
