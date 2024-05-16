@@ -22,10 +22,10 @@ const { title, role, pfp, motto, socialMedia } = Astro.props;
 ---
 
 <div
-  class="items-center bg-neutral-50 rounded-lg shadow sm:flex dark:bg-neutral-800 dark:border-neutral-700"
+  class={`items-center bg-neutral-200 rounded-lg shadow sm:flex dark:bg-neutral-800 dark:border-neutral-700 ${title === 'Eduardo Sanchez' ? 'md:col-span-2' : '' }`}
 >
   <img
-    class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg aspect-square md:max-w-56"
+    class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg aspect-square md:max-w-56 min-w-44"
     src={pfp}
     alt={`${title}`}
     decoding="async"
