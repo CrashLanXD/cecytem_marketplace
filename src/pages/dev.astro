@@ -1,0 +1,87 @@
+---
+import InfoLayout from "../layouts/InfoLayout.astro";
+---
+
+<InfoLayout title="about">
+  <section
+    class="container max-w-screen-lg p-4 mx-auto rounded-2xl bg-neutral-300 dark:bg-neutral-900 bg-opacity-85 lg:py-12 lg:px-6 grid grid-cols-3 auto-rows-auto gap-4 [&>div]:bg-neutral-200 [&>div]:dark:bg-neutral-800 [&>div]:rounded-xl [&>div]:p-4"
+  >
+    <div class="col-span-3 md:col-span-2 flex items-center justify-center">
+      <h2
+        class="font-effect font-bold font-mono text-5xl sm:text-6xl md:text-7xl text-center"
+      >
+        Programación
+      </h2>
+    </div>
+    <div
+      class="col-span-1 font-bold text-4xl font-mono text-neutral-800 dark:text-neutral-300 hidden md:flex justify-center items-center"
+    >
+      <span class="text-end">Hello, World!</span>
+      <svg
+        class="relative size-28 top-9 -right-4"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+          d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path
+          d="M14 4l-4 16"></path></svg
+      >
+    </div>
+    <img
+      src="https://media.licdn.com/dms/image/D4E12AQHlgB-MNwJuvw/article-cover_image-shrink_720_1280/0/1694282866727?e=2147483647&v=beta&t=lDc8TiSgqc3TvGvgeMMUgGK2tQYHYtkmAiDDd8EIw8U"
+      alt="team work"
+      class="h-full object-cover rounded-xl col-span-3 md:col-span-1 md:row-span-2"
+    />
+    <div class="col-span-3 md:col-span-2">
+      <p class="text-xl text-pretty">
+        La carrera de Técnico en Programación brinda a los estudiantes las
+        habilidades necesarias para analizar, diseñar, desarrollar, instalar y
+        mantener software de aplicación, respondiendo a las necesidades y
+        requerimientos de los usuarios.
+      </p>
+    </div>
+    <div class="col-span-3 md:col-span-2">
+      <p class="text-xl text-pretty">
+        Estas competencias les permiten a los graduados integrarse al mundo
+        laboral o emprender proyectos independientes, adaptándose a las demandas
+        del mercado y contribuyendo al desarrollo de su entorno social.
+      </p>
+    </div>
+    <div class="col-span-3 flex items-center justify-center">
+      <h2
+        class="font-effect font-bold font-mono text-5xl sm:text-6xl md:text-7xl text-center"
+      >
+        Mantenimiento Industrial
+      </h2>
+    </div>
+    <div class="col-span-3 md:col-span-1 md:row-span-2">
+      <p class="text-xl text-pretty">
+        La carrera de Técnico en Mantenimiento Industrial prepara a los
+        estudiantes para realizar una variedad de actividades, desde brindar
+        mantenimiento a instalaciones eléctricas hasta fabricar estructuras
+        metálicas.
+      </p>
+    </div>
+    <div class="col-span-3 md:col-span-1 md:row-span-2">
+      <p class="text-xl text-pretty">
+        Con competencias en ajuste de banco, interpretación de planos y manejo
+        de herramientas y maquinaria especializada, los graduados están
+        preparados para enfrentar los desafíos del mundo laboral en áreas como
+        soldadura, control y automatización, refrigeración y aire acondicionado.
+      </p>
+    </div>
+    <img
+      src="https://dira.digital/wp-content/uploads/2022/01/Mantenimiento-Industrial-1.jpg"
+      alt="team work"
+      class="h-full object-cover object-left rounded-xl col-span-3 row-span-1 md:col-span-1 md:row-span-2"
+      loading="lazy"
+      decoding="async"
+    />
+  </section>
+</InfoLayout>
