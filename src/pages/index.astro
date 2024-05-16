@@ -1,18 +1,22 @@
 ---
 import HeroInfo from "../components/HeroInfo.astro";
+import Tecnologies from "../components/Technologies.astro";
 import InfoLayout from "../layouts/InfoLayout.astro";
 ---
 
 <InfoLayout title="CECyTEM">
   <HeroInfo />
+  <Tecnologies />
   <main
-    class="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6"
+    class="gap-16 items-center py-8 px-4 mx-auto rounded-2xl max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 bg-neutral-300 dark:bg-neutral-900 bg-opacity-85 backdrop-blur-sm"
   >
     <div class="font-light text-neutral-600 sm:text-lg dark:text-neutral-400">
       <h2
-        class="mb-4 text-4xl tracking-tight font-extrabold text-neutral-900 dark:text-white"
+        class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-neutral-900 dark:text-white"
       >
-        Innovación y excelencia al alcance de tu mano.
+        <span class="font-effect">Innovación</span> y <span class="font-effect"
+          >excelencia</span
+        > al alcance de tu mano.
       </h2>
       <p class="mb-4">
         ¡Gracias por visitar nuestra página web! Aquí podrás conocer más sobre
