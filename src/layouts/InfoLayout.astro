@@ -24,7 +24,7 @@ const description = "";
     <ViewTransitions />
   </head>
   <body class="bg-neutral-100 dark:bg-neutral-950">
-    <div class="min-h-screen w-full  absolute -z-10">
+    <div class="min-h-screen w-full absolute -z-20">
       <div
         class="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] dark:bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)]"
       >
@@ -33,5 +33,38 @@ const description = "";
     <Header />
     <slot />
     <Footer />
+    <style is:global>
+      @font-face {
+        font-family: InterVariable;
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: swap;
+        src: url("/fonts/InterVariable.woff2") format("woff2");
+      }
+      :root {
+        color-scheme: light dark;
+      }
+      html {
+        font-family: InterVariable, system-ui, sans-serif;
+        scroll-behavior: smooth;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .font-effect {
+        text-stroke-width: 1px;
+        text-stroke-color: light-dark(#333b3c, #efefec);
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: light-dark(#333b3c, #efefec);
+        color: transparent;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
   </body>
 </html>
