@@ -10,20 +10,26 @@ import MailIcon from "./icons/MailIcon.astro";
   class="block px-8 py-4 w-full max-w-full bg-transparent text-neutral-900 dark:text-neutral-50"
 >
   <div class="container mx-auto flex items-center justify-between">
-    <p
-      class="block antialiased leading-relaxed uppercase tracking-widest"
-    >
+    <p class="block antialiased leading-relaxed uppercase tracking-widest">
       cecytem marketplace
     </p>
-    <ul class="ml-10 hidden items-center gap-6 lg:flex">
-      <li>
+    <ul
+      class="ml-10 hidden items-center gap-6 lg:flex [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md"
+    >
+      <li
+        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
+        data-page=""
+      >
         <a
           href="/"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
           ><FlagIcon class="size-5" />Inicio</a
         >
       </li>
-      <li>
+      <li
+        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
+        data-page="team"
+      >
         <a
           href="/team"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
@@ -31,21 +37,30 @@ import MailIcon from "./icons/MailIcon.astro";
           Equipo</a
         >
       </li>
-      <li>
+      <li
+        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
+        data-page="store"
+      >
         <a
           href="/store"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
           ><StoreIcon class="size-5" />Tienda</a
         >
       </li>
-      <li>
+      <li
+        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
+        data-page="dev"
+      >
         <a
           href="/dev"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
           ><CodeIcon class="size-5" />Info</a
         >
       </li>
-      <li>
+      <li
+        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
+        data-page="contactUs"
+      >
         <a
           href="/contactUs"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
@@ -139,5 +154,14 @@ import MailIcon from "./icons/MailIcon.astro";
         $mobileMenu.classList.toggle("block", ariaExpanded);
       }
     }
+
+    const currentPath = window.location.pathname;
+    const navItems = document.querySelectorAll(".nav-item");
+    navItems.forEach((item) => {
+      const page = item.getAttribute("data-page");
+      const pagePath = `/${page}`;
+
+      if (currentPath === pagePath) item.classList.add("underline");
+    });
   });
 </script>
