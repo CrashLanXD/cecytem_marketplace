@@ -14,22 +14,17 @@ import MailIcon from "./icons/MailIcon.astro";
       cecytem marketplace
     </p>
     <ul
+      id="nav-menu"
       class="ml-10 hidden items-center gap-6 lg:flex [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md"
     >
-      <li
-        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
-        data-page=""
-      >
+      <li class="nav-item" data-page="">
         <a
           href="/"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
           ><FlagIcon class="size-5" />Inicio</a
         >
       </li>
-      <li
-        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
-        data-page="team"
-      >
+      <li class="nav-item" data-page="team">
         <a
           href="/team"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
@@ -37,30 +32,21 @@ import MailIcon from "./icons/MailIcon.astro";
           Equipo</a
         >
       </li>
-      <li
-        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
-        data-page="store"
-      >
+      <li class="nav-item" data-page="store">
         <a
           href="/store"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
           ><StoreIcon class="size-5" />Tienda</a
         >
       </li>
-      <li
-        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
-        data-page="dev"
-      >
+      <li class="nav-item" data-page="dev">
         <a
           href="/dev"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
           ><CodeIcon class="size-5" />Info</a
         >
       </li>
-      <li
-        class="nav-item hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10"
-        data-page="contactUs"
-      >
+      <li class="nav-item" data-page="contactUs">
         <a
           href="/contactUs"
           class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
@@ -93,7 +79,10 @@ import MailIcon from "./icons/MailIcon.astro";
       </span>
     </button>
   </div>
-  <div data-collapse="navbar" class="w-full hidden overflow-hidden">
+  <div
+    data-collapse="navbar"
+    class="w-full hidden overflow-hidden z-10 bg-neutral-100/60 p-5 rounded-xl backdrop-blur-lg absolute left-0 top-14"
+  >
     <div data-collapse="navbar" class="block w-full overflow-hidden">
       <ul class="flex flex-col gap-4">
         <li>
@@ -134,11 +123,44 @@ import MailIcon from "./icons/MailIcon.astro";
       </ul>
     </div>
   </div>
+
+  <div
+    id="nav-backdrop"
+    class="absolute inset-0 opacity-0 pointer-events-none transition-all duration-300 ease-in-out bg-neutral-950/50 dark:bg-neutral-300/50 backdrop-blur-lg rounded-lg translate-x-[var(--left)] translate-y-[16px] w-[var(--width)] h-[var(--height)]"
+  >
+  </div>
 </nav>
 
-<script>
+<script is:inline>
   document.addEventListener("astro:page-load", () => {
-    const $toggleMenu = document.querySelector("[data-collapse-target='navbar']");
+    addMobileMenu();
+    const $listItems = document.querySelectorAll("#nav-menu li");
+    const $navBackdrop = document.querySelector("#nav-backdrop");
+
+    $listItems.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+
+        $navBackdrop.style.setProperty("--left", `${left - 4}px`);
+        $navBackdrop.style.setProperty("--top", `${top}px`);
+        $navBackdrop.style.setProperty("--width", `${width + 8}px`);
+        $navBackdrop.style.setProperty("--height", `${height}px`);
+
+        $navBackdrop.style.opacity = "0.2";
+        $navBackdrop.style.visibility = "visible";
+      });
+
+      item.addEventListener("mouseleave", () => {
+        $navBackdrop.style.opacity = "0";
+        $navBackdrop.style.visibility = "hidden";
+      });
+    });
+  });
+
+  function addMobileMenu() {
+    const $toggleMenu = document.querySelector(
+      "[data-collapse-target='navbar']"
+    );
     const $mobileMenu = document.querySelector("[data-collapse='navbar']");
     $toggleMenu?.addEventListener("click", toggleMenu);
     function toggleMenu() {
@@ -148,9 +170,7 @@ import MailIcon from "./icons/MailIcon.astro";
         ariaExpanded = !ariaExpanded;
 
         $toggleMenu.setAttribute("aria-expanded", ariaExpanded.toString());
-        // Toggle 'hidden' class on $mobileMenu
         $mobileMenu.classList.toggle("hidden", !ariaExpanded);
-        // Toggle 'block' class on $mobileMenu
         $mobileMenu.classList.toggle("block", ariaExpanded);
       }
     }
@@ -163,5 +183,5 @@ import MailIcon from "./icons/MailIcon.astro";
 
       if (currentPath === pagePath) item.classList.add("underline");
     });
-  });
+  }
 </script>

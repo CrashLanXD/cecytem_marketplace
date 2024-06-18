@@ -8,41 +8,43 @@ import InfoLayout from "../layouts/InfoLayout.astro";
   <HeroInfo />
   <Tecnologies />
   <main
-    class="gap-16 items-center py-8 px-4 mx-auto rounded-2xl max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6 bg-neutral-300 dark:bg-neutral-900 bg-opacity-85 backdrop-blur-sm"
+    class="p-2 mx-auto max-w-screen-xl"
   >
-    <div class="font-light text-neutral-600 sm:text-lg dark:text-neutral-400">
-      <h2
-        class="mb-4 text-4xl md:text-5xl tracking-tight font-extrabold text-neutral-900 dark:text-white"
-      >
-        <span class="font-effect">Innovación</span> y <span class="font-effect"
-          >excelencia</span
-        > al alcance de tu mano.
-      </h2>
-      <p class="mb-4">
-        ¡Gracias por visitar nuestra página web! Aquí podrás conocer más sobre
-        lo que hacemos y los productos que fabricamos.
-      </p>
-      <p>
-        Estamos comprometidos a brindarte una experiencia excepcional desde el
-        primer momento en que nos elijas. Estaremos a tu lado para asegurarnos
-        de que disfrutes al máximo de nuestros productos.
-      </p>
-    </div>
-    <div class="grid grid-cols-2 gap-4 mt-8">
-      <img
-        class="w-full rounded-lg"
-        src="/images/office-long-2.png"
-        alt="People gathered around a table with laptops, collaborating on a project."
-        loading="eager"
-        decoding="async"
-      />
-      <img
-        class="mt-4 w-full lg:mt-10 rounded-lg"
-        src="/images/office-long-1.png"
-        alt="Office space with a desk and a lamp."
-        loading="eager"
-        decoding="async"
-      />
-    </div>
+    <section class="py-8 px-4 gap-16 items-center rounded-2xl lg:grid lg:grid-cols-2 lg:px-6 bg-neutral-300/50 dark:bg-neutral-900 bg-opacity-85 backdrop-blur-sm">
+      <div class="font-light text-neutral-600 sm:text-lg dark:text-neutral-400">
+        <h2
+          class="mb-4 text-4xl md:text-5xl text-pretty md:text-balance tracking-tight font-extrabold text-neutral-900 dark:text-white"
+        >
+          <span class="font-effect">Innovación</span> y <span
+            class="font-effect">excelencia</span
+          > al alcance de tu mano.
+        </h2>
+        <p class="mb-4">
+          ¡Gracias por visitar nuestra página web! Aquí podrás conocer más sobre
+          lo que hacemos y los productos que fabricamos.
+        </p>
+        <p>
+          Estamos comprometidos a brindarte una experiencia excepcional desde el
+          primer momento en que nos elijas. Estaremos a tu lado para asegurarnos
+          de que disfrutes al máximo de nuestros productos.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-4 mt-8">
+        <img
+          class="w-full rounded-lg"
+          src="/images/office-long-2.png"
+          alt="People gathered around a table with laptops, collaborating on a project."
+          loading="eager"
+          decoding="async"
+        />
+        <img
+          class="mt-4 w-full lg:mt-10 rounded-lg"
+          src="/images/office-long-1.png"
+          alt="Office space with a desk and a lamp."
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </section>
   </main>
 </InfoLayout>

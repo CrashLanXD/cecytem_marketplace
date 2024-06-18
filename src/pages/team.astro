@@ -5,7 +5,7 @@ import TeamCard from "../components/TeamCard.astro";
 
 <InfoLayout title="team">
   <section
-    class="container p-4 mx-auto rounded-2xl bg-neutral-300 dark:bg-neutral-900 bg-opacity-85 lg:py-12 lg:px-6"
+    class="container p-4 mx-auto rounded-2xl bg-neutral-300/30 dark:bg-neutral-900 bg-opacity-85 lg:py-12 lg:px-6"
   >
     <header
       class="grid grid-cols-1 md:grid-cols-2 auto-rows-auto gap-4 [&>div]:bg-neutral-200 [&>div]:dark:bg-neutral-800 [&>div]:rounded-xl [&>div]:px-7 [&>div]:p-5"
@@ -51,6 +51,18 @@ import TeamCard from "../components/TeamCard.astro";
         }}
       />
       <TeamCard
+      title="David"
+      role="Backend developer"
+      pfp="/images/team/david.webp"
+      motto="The best way to predict the future is to invent it"
+      socialMedia={{
+        x: "",
+        github: "https://github.com/dax-g",
+        facebook: "",
+        instagram: "https://www.instagram.com/__david.gg__/",
+      }}
+      />
+      <TeamCard
         title="Gamaliel"
         role="collaborator"
         pfp="/images/team/gama.webp"
@@ -64,25 +76,13 @@ import TeamCard from "../components/TeamCard.astro";
       />
       <TeamCard
         title="Diego"
-        role="designer"
+        role="collaborator"
         pfp="/images/team/diego.webp"
         motto="La verdadera grandeza radica en la capacidad de levantarse despues de cada caida."
         socialMedia={{
           x: "",
           github: "",
           facebook: "https://www.facebook.com/diego.isais.773",
-          instagram: "",
-        }}
-      />
-      <TeamCard
-        title="David"
-        role="collaborator"
-        pfp="/images/team/david.webp"
-        motto="The best way to predict the future is to invent it"
-        socialMedia={{
-          x: "",
-          github: "",
-          facebook: "",
           instagram: "",
         }}
       />

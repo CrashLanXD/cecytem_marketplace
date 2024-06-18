@@ -12,21 +12,22 @@ const { id, title, price, images } = Astro.props;
 <a
   id={`${id}`}
   href={`/${id}`}
-  class="group overflow-hidden rounded-lg shadow hover:shadow-md border-neutral-800 dark:border-neutral-50 border-4"
+  class="group overflow-hidden rounded-xl shadow hover:shadow-md bg-neutral-200/50 dark:bg-neutral-800/50"
 >
   <div class="relative">
     <img
       src={images[0]}
+      onerror="this.onerror=null; this.src='/image.svg'"
       alt={title}
-      loading="eager"
+      loading="lazy"
       decoding="async"
-      class="aspect-square"
+      class="!aspect-square size-full object-cover"
     />
     <div
       class="absolute inset-0 z-10 grid items-end justify-items-center opacity-0 transition-all group-hover:bg-black/10 group-hover:opacity-100"
     >
       <span
-        class="w-full gap-3 rounded-t-lg bg-gradient-to-r from-neutral-700 to-neutral-800 flex justify-center h-10 items-center text-white dark:from-neutral-100 dark:to-neutral-200 dark:text-neutral-950 font-semibold"
+        class="w-full gap-3 rounded-t-lg bg-gradient-to-r from-indigo-100 to-indigo-200 flex justify-center h-10 items-center text-indigo-950 dark:from-indigo-700 dark:to-indigo-800 dark:text-white font-semibold"
       >
         <span>
           <svg
@@ -49,7 +50,7 @@ const { id, title, price, images } = Astro.props;
     </div>
   </div>
   <div
-    class="flex justify-between py-3 px-5 text-xl text-zinc-700 dark:text-zinc-200 gap-1"
+    class="flex justify-between py-3 px-5 text-xl text-zinc-800 dark:text-zinc-200 gap-1"
   >
     <h5 class="group-hover:underline">{title}</h5>
     <h5 class="font-bold">{`$${price}`}</h5>

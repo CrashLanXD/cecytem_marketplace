@@ -1,7 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Header from "../components/HeaderStore.astro";
-import Footer from "../components/FooterStore.astro";
 interface Props {
   title: string;
 }
@@ -26,7 +25,6 @@ const description = "";
   <body class="bg-neutral-100 dark:bg-neutral-950">
     <Header />
     <slot />
-    <Footer />
     <style is:global>
       :root {
         color-scheme: light dark;
