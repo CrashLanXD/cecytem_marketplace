@@ -1,22 +1,16 @@
 ---
-// import type { GetStaticPaths } from "astro";
-// import { type APIFakeStore } from "../types/api";
 import Layout from "../layouts/StoreLayout.astro";
 import ProductBreadcrumb from "../components/ProductBreadcrumb.astro";
-
-// export const prerender = false;
-const { id } = Astro.params;
-// const res = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`);
-// const product = (await res.json()) as APIFakeStore;
 import products from "../utils/shop.json";
+import Gallery from "../components/Gallery.astro";
+
+const { id } = Astro.params;
 const idx = id - 1;
 const product = products.at(idx);
 
 if (!product) Astro.response.status = 404;
 
 export async function getStaticPaths() {
-  // const res = await fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=30');
-  // const products = (await res.json()) as APIFakeStore[];
   return products.map((product) => ({
     params: { id: product.id },
   }));
@@ -33,40 +27,18 @@ export async function getStaticPaths() {
       <section class="py-8 px-8 mt-16">
         <ProductBreadcrumb title={`${product.title}`} id={`#${product.id}`} />
         <div class="mx-auto container grid place-items-center grid-cols-1 md:grid-cols-2">
-          <div class="flex gap-4">
-            <img
-              src={product.images[0]}
-              alt="pink blazer"
-              class="rounded-md aspect-square size-96 object-cover"
-            />
-            <div class="grid grid-cols-2 md:order-1 md:col-span-2 md:flex md:flex-col md:gap-2 justify-between">
-              {product.images.map((image, index) => {
-                if (index > 0) {
-                  return (
-                    <div class="overflow-hidden rounded-md">
-                      <img
-                        class={`size-44 aspect-square object-cover ${index > 1 ? "object-right-bottom" : "object-left-top"}`}
-                        loading="eager"
-                        src={image}
-                        onerror="this.onerror=null; this.src='/image.svg'"
-                      />
-                    </div>
-                  );
-                }
-              })}
-            </div>
-          </div>
+          <Gallery name={product.title} images={product.images} />
           <div class="flex flex-col">
             <h2 class="mt-4 md:mt-0 mb-4 w-full text-3xl text-pretty">
               {product.title}
             </h2>
-            <h5 class="w-full text-xl font-bold">
-              ${product.price}
-            </h5>
+            <h5 class="w-full text-xl font-bold">${product.price}</h5>
             <p class="mt-4 text-base font-normal leading-[27px] text-neutral-700 dark:text-neutral-300 mx-auto text-balance">
               {product.description}
             </p>
-            <button id="buyButton" class="add-to-cart mt-8 md:w-fit">Comprar</button>
+            <button id="buyButton" class="add-to-cart mt-8 md:w-fit">
+              Comprar
+            </button>
           </div>
         </div>
       </section>
@@ -77,7 +49,9 @@ export async function getStaticPaths() {
 <script is:inline>
   const $buyButton = document.getElementById("buyButton");
   $buyButton.addEventListener("click", (e) => {
-    alert("¡Hola! 👋, aquí termina la funcionalidad del sitio web. ¡Gracias por su visita!")
+    alert(
+      "¡Hola! 👋, aquí termina la funcionalidad del sitio web. ¡Gracias por su visita!"
+    );
   });
 </script>
 
@@ -85,7 +59,6 @@ export async function getStaticPaths() {
   .add-to-cart {
     position: relative;
     display: inline-block;
-    cursor: pointer;
     outline: none;
     border: 0;
     vertical-align: middle;

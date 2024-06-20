@@ -1,0 +1,153 @@
+---
+import { Image } from "astro:assets";
+import ArrowLeft from "./icons/ArrowLeft.astro";
+const { name, images } = Astro.props;
+---
+
+<section>
+  <div
+    id="product-gallery"
+    class="relative grid grid-rows-1 grid-cols-1 lg:grid-rows-2 lg:grid-cols-3 gap-8 place-items-center"
+  >
+    {
+      Array.from({ length: images.length }).map((_, idx) => (
+        <button
+          id={`img-${idx}`}
+          class={`gallery-button aspect-square hover:scale-105 transition-transform hover:brightness-125 ${idx === 0 ? "row-span-2 col-span-2 size-80 lg:size-96" : "hidden lg:block row-span-1 col-span-1 size-44"}`}
+        >
+          <figure>
+            <picture>
+              <Image
+                loading="eager"
+                class={`rounded-md aspect-square object-cover size-full`}
+                alt={`Galeria de fotos de ${name}`}
+                src={images[idx]}
+                onerror="this.onerror=null; this.src='/image.svg'"
+                width={"400"}
+                height={"400"}
+              />
+            </picture>
+          </figure>
+        </button>
+      ))
+    }
+    <span class="absolute md:hidden bottom-2 right-0 text-sm text-white rounded-lg bg-black/60 px-2">1 / {images.length}</span>
+  </div>
+  <dialog
+    id="lightbox"
+    class="fixed opacity-0 hidden flex w-dvw h-dvh inset-0 z-50 bg-black bg-opacity-55 transition-opacity items-center justify-center gap-8 text-white"
+  >
+    <button
+      id="close-lightbox"
+      class="fixed flex items-center justify-center text-5xl right-8 top-8 rounded aspect-square bg-black/60 p-4 transition hover:scale-110 hover:bg-indigo-100 dark:hover:bg-indigo-800 hover:text-black"
+      >&times;</button
+    >
+    <button
+      id="btn-prev"
+      class="hidden md:block group transition-transform hover:scale-125"
+    >
+      <ArrowLeft class="size-16 opacity-85 group-hover:opacity-100" />
+    </button>
+    <div
+      id="lightbox-image-container"
+      class="md:h-[92%] mx-2 flex justify-center"
+    >
+      {
+        Array.from({ length: images.length }).map((_, idx) => (
+          <img
+            loading="lazy"
+            decoding="async"
+            class={`h-full rounded-lg object-contain object-center ${idx > 0 ? "hidden" : "block"}`}
+            alt={`Imagen de la galeria de fotos de ${name}`}
+            src={images[idx]}
+          />
+        ))
+      }
+    </div>
+    <button
+      id="btn-next"
+      class="hidden md:block group transition-transform hover:scale-125"
+    >
+      <ArrowLeft
+        class="size-16 rotate-180 opacity-85 group-hover:opacity-100"
+      />
+    </button>
+  </dialog>
+</section>
+
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const galleryButtons = document.querySelectorAll(".gallery-button");
+    const lightbox = document.querySelector("#lightbox");
+    const closeLightboxButton = document.querySelector("#close-lightbox");
+    const lightboxImages = document.querySelectorAll(
+      "#lightbox-image-container img"
+    );
+    const lightboxImageContainer = document.querySelector(
+      "#lightbox-image-container"
+    );
+    const lightboxPrevButton = document.querySelector("#btn-prev");
+    const lightboxNextButton = document.querySelector("#btn-next");
+
+    let currentImageIndex = 0;
+    const totalImages = lightboxImages.length;
+
+    const close = () => {
+      lightbox.classList.remove("opacity-100");
+      setTimeout(() => lightbox.classList.add("hidden"), 100);
+    };
+
+    const open = () => {
+      lightbox.classList.remove("hidden");
+      setTimeout(() => lightbox.classList.add("opacity-100"), 100);
+      showImage(currentImageIndex);
+    };
+
+    const showImage = (index) => {
+      lightboxImages.forEach((img, i) => {
+        img.classList.toggle("hidden", i !== index);
+      });
+    };
+
+    galleryButtons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const buttonId = e.currentTarget.id;
+        currentImageIndex = parseInt(buttonId.replace("img-", ""), 10);
+        open();
+      });
+    });
+
+    closeLightboxButton.addEventListener("click", () => {
+      close();
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        close();
+      }
+    });
+
+    lightboxPrevButton.addEventListener("click", () => {
+      currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+      showImage(currentImageIndex);
+    });
+
+    lightboxNextButton.addEventListener("click", () => {
+      currentImageIndex = (currentImageIndex + 1) % totalImages;
+      showImage(currentImageIndex);
+    });
+
+    const isSmallScreen = () => window.innerWidth < 768; // screen-md
+
+    lightboxImageContainer.addEventListener("click", (e) => {
+      if (!isSmallScreen()) return;
+      const { left, width } = lightboxImageContainer.getBoundingClientRect();
+      currentImageIndex =
+        (currentImageIndex +
+          (e.clientX - left < width / 2 ? -1 : 1) +
+          totalImages) %
+        totalImages;
+      showImage(currentImageIndex);
+    });
+  });
+</script>
