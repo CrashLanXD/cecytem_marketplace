@@ -31,7 +31,10 @@ const { name, images } = Astro.props;
         </button>
       ))
     }
-    <span class="absolute lg:hidden bottom-2 right-2 text-sm text-white rounded-lg bg-black/60 opacity-85 px-2">1 / {images.length}</span>
+    <span
+      class="absolute lg:hidden bottom-2 right-2 text-sm text-white rounded-lg bg-black/60 opacity-85 px-2"
+      >1 / {images.length}</span
+    >
   </div>
   <dialog
     id="lightbox"
@@ -42,15 +45,19 @@ const { name, images } = Astro.props;
       class="fixed flex items-center justify-center text-5xl right-8 top-8 rounded aspect-square bg-black/60 p-4 transition hover:scale-110 hover:bg-indigo-100 dark:hover:bg-indigo-800 hover:text-black"
       >&times;</button
     >
-    <button
-      id="btn-prev"
-      class="hidden md:block group transition-transform hover:scale-125"
-    >
-      <ArrowLeft class="size-16 opacity-85 group-hover:opacity-100" />
-    </button>
+    {
+      images.length > 1 && (
+        <button
+          id="btn-prev"
+          class="hidden md:block group transition-transform hover:scale-125"
+        >
+          <ArrowLeft class="size-16 opacity-85 group-hover:opacity-100" />
+        </button>
+      )
+    }
     <div
       id="lightbox-image-container"
-      class="max-h-[92dvh] mx-2 flex justify-center"
+      class="max-h-[92dvh] max-w-screen-sm 2xl:max-w-full mx-2 flex justify-center"
     >
       {
         Array.from({ length: images.length }).map((_, idx) => (
@@ -64,14 +71,16 @@ const { name, images } = Astro.props;
         ))
       }
     </div>
-    <button
-      id="btn-next"
-      class="hidden md:block group transition-transform hover:scale-125"
-    >
-      <ArrowLeft
-        class="size-16 rotate-180 opacity-85 group-hover:opacity-100"
-      />
-    </button>
+    {
+      images.length > 1 && (
+        <button
+          id="btn-next"
+          class="hidden md:block group transition-transform hover:scale-125"
+        >
+          <ArrowLeft class="size-16 rotate-180 opacity-85 group-hover:opacity-100" />
+        </button>
+      )
+    }
   </dialog>
 </section>
 
@@ -99,7 +108,7 @@ const { name, images } = Astro.props;
 
     const open = () => {
       lightbox.classList.remove("hidden");
-      lightbox.classList.add("flex")
+      lightbox.classList.add("flex");
       setTimeout(() => lightbox.classList.add("opacity-100"), 100);
       showImage(currentImageIndex);
     };
@@ -128,12 +137,12 @@ const { name, images } = Astro.props;
       }
     });
 
-    lightboxPrevButton.addEventListener("click", () => {
+    lightboxPrevButton?.addEventListener("click", () => {
       currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
       showImage(currentImageIndex);
     });
 
-    lightboxNextButton.addEventListener("click", () => {
+    lightboxNextButton?.addEventListener("click", () => {
       currentImageIndex = (currentImageIndex + 1) % totalImages;
       showImage(currentImageIndex);
     });
