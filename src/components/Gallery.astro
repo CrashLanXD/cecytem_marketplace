@@ -31,11 +31,11 @@ const { name, images } = Astro.props;
         </button>
       ))
     }
-    <span class="absolute md:hidden bottom-2 right-0 text-sm text-white rounded-lg bg-black/60 px-2">1 / {images.length}</span>
+    <span class="absolute lg:hidden bottom-2 right-2 text-sm text-white rounded-lg bg-black/60 opacity-85 px-2">1 / {images.length}</span>
   </div>
   <dialog
     id="lightbox"
-    class="fixed opacity-0 hidden flex w-dvw h-dvh inset-0 z-50 bg-black bg-opacity-55 transition-opacity items-center justify-center gap-8 text-white"
+    class="fixed opacity-0 hidden w-dvw h-dvh inset-0 z-50 bg-black bg-opacity-55 transition-opacity items-center justify-center gap-8 text-white"
   >
     <button
       id="close-lightbox"
@@ -50,14 +50,14 @@ const { name, images } = Astro.props;
     </button>
     <div
       id="lightbox-image-container"
-      class="md:h-[92%] mx-2 flex justify-center"
+      class="max-h-[92dvh] mx-2 flex justify-center"
     >
       {
         Array.from({ length: images.length }).map((_, idx) => (
           <img
             loading="lazy"
             decoding="async"
-            class={`h-full rounded-lg object-contain object-center ${idx > 0 ? "hidden" : "block"}`}
+            class={`rounded-md object-contain ${idx > 0 ? "hidden" : "block"}`}
             alt={`Imagen de la galeria de fotos de ${name}`}
             src={images[idx]}
           />
@@ -99,6 +99,7 @@ const { name, images } = Astro.props;
 
     const open = () => {
       lightbox.classList.remove("hidden");
+      lightbox.classList.add("flex")
       setTimeout(() => lightbox.classList.add("opacity-100"), 100);
       showImage(currentImageIndex);
     };
