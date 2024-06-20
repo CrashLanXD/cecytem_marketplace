@@ -7,7 +7,11 @@ const { name, images } = Astro.props;
 <section>
   <div
     id="product-gallery"
-    class="relative grid grid-rows-1 grid-cols-1 lg:grid-rows-2 lg:grid-cols-3 gap-8 place-items-center"
+    class={`relative ${
+      images.length > 1
+        ? "grid grid-rows-1 grid-cols-1 lg:grid-rows-2 lg:grid-cols-3 gap-8 place-items-center"
+        : "flex justify-center"
+    }`}
   >
     {
       Array.from({ length: images.length }).map((_, idx) => (
