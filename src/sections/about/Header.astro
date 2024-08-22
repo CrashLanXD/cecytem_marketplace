@@ -1,0 +1,212 @@
+---
+import CodeIcon from "@/components/icons/CodeIcon.astro";
+import StoreIcon from "@/components/icons/StoreIcon.astro";
+import TeamIcon from "@/components/icons/TeamIcon.astro";
+import FlagIcon from "@/components/icons/FlagIcon.astro";
+import MailIcon from "@/components/icons/MailIcon.astro";
+
+import PlusIcon from "@/icons/PlusIcon.astro";
+import MenuIcon from "@/icons/MenuIcon.astro";
+
+const links = [
+  { href: "/", name: "Inicio", icon: FlagIcon },
+  { href: "/team", name: "Equipo", icon: TeamIcon },
+  { href: "/store", name: "Tienda", icon: StoreIcon },
+  { href: "/dev", name: "Código", icon: CodeIcon },
+  { href: "/contact", name: "Contacto", icon: MailIcon },
+];
+---
+
+<nav
+  class="block px-8 py-4 w-full max-w-full bg-transparent text-neutral-900 dark:text-neutral-50"
+>
+  <div class="container mx-auto flex items-center justify-between">
+    <p class="block antialiased leading-relaxed uppercase tracking-widest">
+      cecytem marketplace
+    </p>
+    <ul
+      id="nav-menu"
+      class="ml-10 hidden items-center gap-6 lg:flex [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md"
+    >
+      {
+        links.map(({ href, name, icon: IconComponent }) => (
+          <li class="nav-item" data-page={href.toLowerCase()}>
+            <a
+              href={href}
+              class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
+            >
+              <IconComponent class="size-5" /> {name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <button
+      class:list={[
+        "relative ml-auto lg:hidden",
+        "inline-flex items-center justify-center",
+        "size-10 rounded-lg transition-all",
+        "text-neutral-900 dark:text-neutral-100",
+        "hover:bg-neutral-900/10 dark:hover:bg-neutral-50/10",
+        "active:scale-95 hover:scale-105",
+      ]}
+      id="showBtn"
+    >
+      <MenuIcon class="size-6" />
+    </button>
+  </div>
+
+  <dialog
+    id="mobileMenu"
+    class:list={[
+      "backdrop:bg-neutral-950/20 backdrop:backdrop-blur-sm",
+      "bg-transparent size-full",
+      "grid place-items-center",
+    ]}
+  >
+    <button
+      class:list={[
+        "absolute top-0 right-3",
+        "inline-flex items-center justify-center",
+        "size-10 rounded-lg select-none transition-all",
+        "text-neutral-900 dark:text-neutral-100",
+        "bg-neutral-900/10 dark:bg-neutral-50/10",
+        "active:scale-95 hover:scale-105",
+      ]}
+      type="button"
+      id="closeBtn"
+      data-ripple-dark="true"
+      data-collapse-target="navbar"
+    >
+      <PlusIcon class="size-6 rotate-45" />
+    </button>
+    <ul
+      data-collapse="navbar"
+      class:list={[
+        "w-full flex flex-col gap-4",
+        "backdrop-blur-lg rounded-xl p-5",
+        "bg-neutral-100/60 dark:bg-neutral-800/60",
+      ]}
+    >
+      {
+        links.map(({ href, name, icon: IconComponent }) => (
+          <li>
+            <a
+              href={href}
+              class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
+            >
+              <IconComponent class="size-5" /> {name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </dialog>
+</nav>
+
+<div
+  id="nav-backdrop"
+  class:list={[
+    "absolute inset-0",
+    "opacity-0 pointer-events-none",
+    "transition-all duration-300 ease-in-out",
+    "bg-neutral-950/50 dark:bg-neutral-300/50",
+    "backdrop-blur-lg rounded-lg",
+    "translate-x-[var(--left)] translate-y-[16px] w-[var(--width)] h-[var(--height)]",
+  ]}
+>
+</div>
+
+<style>
+  :root {
+    --duration: 300ms;
+    --timing-function: ease-in-out;
+  }
+
+  #mobileMenu {
+    transition:
+      scale var(--duration) ease,
+      display var(--duration) var(--timing-function) allow-discrete;
+    scale: 0;
+
+    &[open] {
+      scale: 1;
+      transition:
+        scale var(--duration) var(--timing-function),
+        opacity var(--duration) ease,
+        transform var(--duration) ease;
+
+      transform: translate(0px, 0px);
+
+      @starting-style {
+        scale: 0;
+        transform: translate(0px, 100px);
+      }
+    }
+  }
+</style>
+
+<script>
+  import { $, $$ } from "@/lib/dom-selector";
+
+  function main() {
+    addHoverEffect();
+    addMobileMenu();
+  }
+
+  function addMobileMenu() {
+    const showBtn = $("#showBtn") as HTMLButtonElement;
+    const closeBtn = $("#closeBtn") as HTMLButtonElement;
+    const dialog = $("#mobileMenu") as HTMLDialogElement;
+
+    showBtn.addEventListener("click", () => {
+      dialog.showModal();
+    });
+
+    closeBtn.addEventListener("click", () => {
+      dialog.close();
+    });
+
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) {
+        dialog.close();
+      }
+    });
+  }
+
+  function addHoverEffect() {
+    const $listItems = $$("#nav-menu li");
+    const $navBackdrop = $("#nav-backdrop");
+
+    if (!($listItems && $navBackdrop)) return;
+
+    $listItems.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+
+        $navBackdrop.style.setProperty("--left", `${left - 4}px`);
+        $navBackdrop.style.setProperty("--top", `${top}px`);
+        $navBackdrop.style.setProperty("--width", `${width + 8}px`);
+        $navBackdrop.style.setProperty("--height", `${height}px`);
+
+        $navBackdrop.style.opacity = "0.2";
+        $navBackdrop.style.visibility = "visible";
+      });
+
+      item.addEventListener("mouseleave", () => {
+        $navBackdrop.style.opacity = "0";
+        $navBackdrop.style.visibility = "hidden";
+      });
+    });
+
+    // add underline to current page
+    const currentPath = window.location.pathname;
+    const navItems = $$(".nav-item");
+    navItems.forEach((item) => {
+      const path = item.getAttribute("data-page");
+      if (currentPath === path) item.classList.add("underline");
+    });
+  }
+
+  document.addEventListener("astro:page-load", main);
+</script>
