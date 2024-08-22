@@ -1,8 +1,7 @@
 ---
-import ProductCard from "../components/ProductCard.astro";
+import { PRODUCTS } from "@/constants/products";
 
-export const prerender = false;
-import products from "../utils/shop.json";
+import ProductCard from "@/components/ProductCard.astro";
 ---
 
 <section>
@@ -13,11 +12,7 @@ import products from "../utils/shop.json";
       nuestros productos
     </h2>
     <div class="grid gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gridXL">
-      {
-        products.map(({ id, title, price, images }) => (
-          <ProductCard id={id} title={title} price={price} images={images} />
-        ))
-      }
+      {PRODUCTS.map((product) => <ProductCard product={product} />)}
     </div>
   </div>
 </section>
