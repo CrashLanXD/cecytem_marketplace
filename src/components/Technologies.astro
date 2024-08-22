@@ -156,47 +156,54 @@
   >
 </div>
 
-<script type="module" is:inline>
-  const div = document.getElementById("icons");
-  const svgs = Array.from(div.querySelectorAll("svg"));
+<script>
+  import { $ } from "@/lib/dom-selector";
 
-  let dimensions = updateDimensions();
+  function main() {
+    const div = $("#icons");
+    if (!div) return;
 
-  function updateDimensions() {
-    return {
-      width: div.clientWidth,
-      height: div.clientHeight,
-    };
+    const svgs = Array.from(div.querySelectorAll("svg"));
+    let dimensions = updateDimensions();
+
+    function updateDimensions() {
+      return {
+        width: div!.clientWidth,
+        height: div!.clientHeight,
+      };
+    }
+
+    function animateBackgroundIcons() {
+      const { width, height } = dimensions;
+      const availableSvgs = svgs.filter((svg) => !(svg as any).isAnimating);
+      const svgToAnimate =
+        availableSvgs[Math.floor(Math.random() * availableSvgs.length)];
+      if (!svgToAnimate) return;
+
+      svgToAnimate.addEventListener(
+        "animationend",
+        () => {
+          svgToAnimate.classList.remove("moving-background");
+          (svgToAnimate as any).isAnimating = false;
+        },
+        { once: true }
+      );
+
+      svgToAnimate.style.top = `${~~(Math.random() * (height + 150))}px`;
+      svgToAnimate.style.left = `${~~(Math.random() * (width - 80))}px`;
+      svgToAnimate.classList.add("moving-background");
+      (svgToAnimate as any).isAnimating = true;
+    }
+
+    window.addEventListener("resize", () => {
+      dimensions = updateDimensions();
+    });
+
+    setInterval(animateBackgroundIcons, 1500);
+    requestAnimationFrame(animateBackgroundIcons);
   }
 
-  function animateBackgroundIcons() {
-    const { width, height } = dimensions;
-    const availableSvgs = svgs.filter((svg) => !svg.isAnimating);
-    const svgToAnimate =
-      availableSvgs[Math.floor(Math.random() * availableSvgs.length)];
-    if (!svgToAnimate) return;
-
-    svgToAnimate.addEventListener(
-      "animationend",
-      () => {
-        svgToAnimate.classList.remove("moving-background");
-        svgToAnimate.isAnimating = false;
-      },
-      { once: true }
-    );
-
-    svgToAnimate.style.top = `${~~(Math.random() * height + 150)}px`;
-    svgToAnimate.style.left = `${~~(Math.random() * (width - 80))}px`;
-    svgToAnimate.classList.add("moving-background");
-    svgToAnimate.isAnimating = true;
-  }
-
-  addEventListener("resize", () => {
-    dimensions = updateDimensions();
-  });
-
-  setInterval(animateBackgroundIcons, 1500);
-  requestAnimationFrame(animateBackgroundIcons);
+  main();
 </script>
 
 <style>

@@ -1,7 +1,15 @@
 ---
 import { Image } from "astro:assets";
+import type { Product } from "@/types/Product";
+
 import ArrowLeft from "./icons/ArrowLeft.astro";
-const { name, images } = Astro.props;
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const { images, title, id, width, height } = product;
 ---
 
 <section>
@@ -22,13 +30,13 @@ const { name, images } = Astro.props;
           <figure>
             <picture>
               <Image
+                transition:name={idx === 0 ? `product-${id}` : ""}
+                src={images[idx]}
+                alt={`Galeria de fotos de ${title}`}
                 loading="eager"
                 class={`rounded-md aspect-square object-cover size-full`}
-                alt={`Galeria de fotos de ${name}`}
-                src={images[idx]}
-                onerror="this.onerror=null; this.src='/image.svg'"
-                width={"400"}
-                height={"400"}
+                width={width ?? 400}
+                height={height ?? 600}
               />
             </picture>
           </figure>
@@ -36,132 +44,167 @@ const { name, images } = Astro.props;
       ))
     }
     <span
-      class="absolute lg:hidden bottom-2 right-2 text-sm text-white rounded-lg bg-black/60 opacity-85 px-2"
+      class="absolute md:hidden bottom-2 right-2 text-sm text-white rounded-lg bg-black/60 opacity-85 px-2"
       >1 / {images.length}</span
     >
   </div>
   <dialog
-    id="lightbox"
-    class="fixed opacity-0 hidden w-dvw h-dvh inset-0 z-50 bg-black bg-opacity-55 transition-opacity items-center justify-center gap-8 text-white"
+    id="galleryDialog"
+    class:list={[
+      "backdrop:bg-black/50 backdrop:backdrop-blur-sm",
+      "bg-transparent size-full",
+      "gap-8 text-white overflow-hidden",
+    ]}
   >
-    <button
-      id="close-lightbox"
-      class="fixed flex items-center justify-center text-5xl right-8 top-8 rounded aspect-square bg-black/60 p-4 transition hover:scale-110 hover:bg-indigo-100 dark:hover:bg-indigo-800 hover:text-black"
-      >&times;</button
-    >
-    {
-      images.length > 1 && (
-        <button
-          id="btn-prev"
-          class="hidden md:block group transition-transform hover:scale-125"
-        >
-          <ArrowLeft class="size-16 opacity-85 group-hover:opacity-100" />
-        </button>
-      )
-    }
     <div
-      id="lightbox-image-container"
-      class="max-h-[92dvh] max-w-screen-sm 2xl:max-w-full mx-2 flex justify-center"
+      class="size-full flex flex-col gap-y-5 gap-x-8 md:flex-row items-center justify-center"
     >
+      <button
+        id="closeBtn"
+        class:list={[
+          "absolute top-8 right-8",
+          "flex items-center justify-center",
+          "text-5xl p-4 rounded aspect-square",
+          "bg-black/60 transition",
+          "hover:scale-110 hover:text-black hover:bg-indigo-100 dark:hover:bg-indigo-800",
+        ]}>&times;</button
+      >
       {
-        Array.from({ length: images.length }).map((_, idx) => (
-          <img
-            loading="lazy"
-            decoding="async"
-            class={`rounded-md object-contain ${idx > 0 ? "hidden" : "block"}`}
-            alt={`Imagen de la galeria de fotos de ${name}`}
-            src={images[idx]}
-          />
-        ))
+        images.length > 1 && (
+          <button
+            id="btnPrev"
+            class:list={[
+              "block group transition-transform hover:scale-125",
+              "order-2 md:order-none",
+            ]}
+          >
+            <ArrowLeft class="size-16 opacity-85 group-hover:opacity-100" />
+          </button>
+        )
+      }
+      <div
+        id="imageContainer"
+        class:list={[
+          "max-h-[92dvh] max-w-screen-sm 2xl:max-w-full",
+          "flex justify-center",
+        ]}
+      >
+        {
+          Array.from({ length: images.length }).map((_, idx) => (
+            <Image
+              src={images[idx]}
+              alt={`Imagen de la galeria de fotos de ${title}`}
+              width={width ?? 400}
+              height={height ?? 600}
+              class={"object-contain rounded-md order-1 md:order-none"}
+            />
+          ))
+        }
+      </div>
+      {
+        images.length > 1 && (
+          <button
+            id="btnNext"
+            class:list={[
+              "block group transition-transform hover:scale-125",
+              "order-3 md:order-none",
+            ]}
+          >
+            <ArrowLeft class="size-16 rotate-180 opacity-85 group-hover:opacity-100" />
+          </button>
+        )
       }
     </div>
-    {
-      images.length > 1 && (
-        <button
-          id="btn-next"
-          class="hidden md:block group transition-transform hover:scale-125"
-        >
-          <ArrowLeft class="size-16 rotate-180 opacity-85 group-hover:opacity-100" />
-        </button>
-      )
-    }
   </dialog>
 </section>
 
-<script is:inline>
-  document.addEventListener("astro:page-load", () => {
-    const galleryButtons = document.querySelectorAll(".gallery-button");
-    const lightbox = document.querySelector("#lightbox");
-    const closeLightboxButton = document.querySelector("#close-lightbox");
-    const lightboxImages = document.querySelectorAll(
-      "#lightbox-image-container img"
-    );
-    const lightboxImageContainer = document.querySelector(
-      "#lightbox-image-container"
-    );
-    const lightboxPrevButton = document.querySelector("#btn-prev");
-    const lightboxNextButton = document.querySelector("#btn-next");
+<style>
+  :root {
+    --duration: 150ms;
+  }
 
-    let currentImageIndex = 0;
-    const totalImages = lightboxImages.length;
+  #galleryDialog {
+    transition:
+      opacity var(--duration) ease,
+      display var(--duration) ease allow-discrete;
+    opacity: 0;
 
-    const close = () => {
-      lightbox.classList.remove("opacity-100");
-      setTimeout(() => lightbox.classList.add("hidden"), 100);
-    };
+    &[open] {
+      opacity: 1;
+      transition: opacity var(--duration) ease;
 
-    const open = () => {
-      lightbox.classList.remove("hidden");
-      lightbox.classList.add("flex");
-      setTimeout(() => lightbox.classList.add("opacity-100"), 100);
-      showImage(currentImageIndex);
-    };
-
-    const showImage = (index) => {
-      lightboxImages.forEach((img, i) => {
-        img.classList.toggle("hidden", i !== index);
-      });
-    };
-
-    galleryButtons.forEach((button) => {
-      button.addEventListener("click", (e) => {
-        const buttonId = e.currentTarget.id;
-        currentImageIndex = parseInt(buttonId.replace("img-", ""), 10);
-        open();
-      });
-    });
-
-    closeLightboxButton.addEventListener("click", () => {
-      close();
-    });
-
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) {
-        close();
+      @starting-style {
+        opacity: 0;
       }
+    }
+  }
+</style>
+
+<script>
+  import { $, $$ } from "@/lib/dom-selector";
+
+  document.addEventListener("astro:page-load", () => {
+    const dialog = $("#galleryDialog") as HTMLDialogElement;
+    const closeBtn = $("#closeBtn") as HTMLButtonElement;
+    const prevBtn = $("#btnPrev");
+    const nextBtn = $("#btnNext");
+
+    const galleryButtons = $$(".gallery-button");
+    const images = $$("#imageContainer img");
+
+    let currentImgIdx = 0;
+
+    function open() {
+      dialog.showModal();
+    }
+
+    function close() {
+      dialog.close();
+    }
+
+    function main() {
+      galleryButtons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          const buttonId = (e.currentTarget as HTMLElement).id;
+          currentImgIdx = parseInt(buttonId.replace("img-", ""), 10);
+          open();
+          showImage(currentImgIdx);
+        });
+      });
+
+      closeBtn.addEventListener("click", close);
+
+      dialog.addEventListener("click", (e) => {
+        if (e.target === dialog) close();
+      });
+
+      prevBtn?.addEventListener("click", showPrevImg);
+      nextBtn?.addEventListener("click", showNextImg);
+    }
+
+    function showImage(index: number) {
+      images.forEach((img, idx) => {
+        img.classList.toggle("hidden", idx !== index);
+      });
+    }
+
+    function showPrevImg() {
+      currentImgIdx = (currentImgIdx - 1 + images.length) % images.length;
+      showImage(currentImgIdx);
+    }
+
+    function showNextImg() {
+      currentImgIdx = (currentImgIdx + 1) % images.length;
+      showImage(currentImgIdx);
+    }
+
+    document.addEventListener("keydown", (e) => {
+      const { key } = e;
+      if (!dialog.open) return;
+      if (key === "ArrowRight") showNextImg();
+      if (key === "ArrowLeft") showPrevImg();
     });
 
-    lightboxPrevButton?.addEventListener("click", () => {
-      currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
-      showImage(currentImageIndex);
-    });
-
-    lightboxNextButton?.addEventListener("click", () => {
-      currentImageIndex = (currentImageIndex + 1) % totalImages;
-      showImage(currentImageIndex);
-    });
-
-    const isSmallScreen = () => window.innerWidth < 768; // screen-md
-
-    lightboxImageContainer.addEventListener("click", (e) => {
-      if (!isSmallScreen()) return;
-      const { left, width } = lightboxImageContainer.getBoundingClientRect();
-      currentImageIndex =
-        (currentImageIndex +
-          (e.clientX - left < width / 2 ? -1 : 1) +
-          totalImages) %
-        totalImages;
-      showImage(currentImageIndex);
-    });
+    main();
   });
 </script>

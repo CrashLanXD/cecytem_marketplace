@@ -1,27 +1,30 @@
 ---
+import { Image } from "astro:assets";
+
+import { type Product } from "@/types/Product";
+
 interface Props {
-  id: number;
-  title: string;
-  price: number;
-  images: string[];
+  product: Product;
 }
 
-const { id, title, price, images } = Astro.props;
+const { product } = Astro.props;
+const { id, title, price, images, width, height } = product;
 ---
 
 <a
   id={`${id}`}
-  href={`/${id}`}
+  href={`/products/${id}`}
   class="group overflow-hidden rounded-xl shadow hover:shadow-md bg-neutral-200/50 dark:bg-neutral-800/50"
 >
   <div class="relative">
-    <img
+    <Image
+      transition:name={`product-${id}`}
       src={images[0]}
-      onerror="this.onerror=null; this.src='/image.svg'"
       alt={title}
-      loading="lazy"
-      decoding="async"
-      class="!aspect-square size-full object-cover"
+      loading="eager"
+      class="aspect-square size-full object-cover"
+      width={width ?? 400}
+      height={height ?? 600}
     />
     <div
       class="absolute inset-0 z-10 grid items-end justify-items-center opacity-0 transition-all group-hover:bg-black/10 group-hover:opacity-100"

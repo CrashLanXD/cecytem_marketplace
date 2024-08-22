@@ -1,11 +1,13 @@
 ---
-import HeroInfo from "../components/HeroInfo.astro";
-import Tecnologies from "../components/Technologies.astro";
-import InfoLayout from "../layouts/InfoLayout.astro";
+import { Image } from "astro:assets";
+
+import Layout from "@/layouts/InfoLayout.astro";
+import Hero from "@/sections/about/Hero.astro";
+import Tecnologies from "@/components/Technologies.astro";
 ---
 
-<InfoLayout title="CECyTEM">
-  <HeroInfo />
+<Layout title="CECyTEM">
+  <Hero />
   <Tecnologies />
   <main
     class="p-2 mx-auto max-w-screen-xl"
@@ -30,21 +32,23 @@ import InfoLayout from "../layouts/InfoLayout.astro";
         </p>
       </div>
       <div class="grid grid-cols-2 gap-4 mt-8">
-        <img
+        <Image
           class="w-full rounded-lg"
           src="/images/office-long-2.png"
           alt="People gathered around a table with laptops, collaborating on a project."
           loading="eager"
-          decoding="async"
+          width={592}
+          height={822}
         />
-        <img
+        <Image
           class="mt-4 w-full lg:mt-10 rounded-lg"
           src="/images/office-long-1.png"
           alt="Office space with a desk and a lamp."
           loading="eager"
-          decoding="async"
+          width={592}
+          height={822}
         />
       </div>
     </section>
   </main>
-</InfoLayout>
+</Layout>
