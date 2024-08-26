@@ -1,11 +1,12 @@
 ---
-import NotFoundLayout from "../layouts/NotFoundLayout.astro";
+import { Image } from "astro:assets";
+import NotFoundLayout from "@/layouts/NotFoundLayout.astro";
 ---
 
 <NotFoundLayout title="404 Not Found">
   <header class="w-full fixed top-0 z-20 h-16 bg-transparent">
     <div class="flex justify-between py-3 px-6 h-full">
-      <a href="./" class="justify-center items-center flex">
+      <a href="/" class="justify-center items-center flex">
         <h2
           class="text-xl font-semibold tracking-widest uppercase h-fit text-neutral-900 dark:text-neutral-50"
         >
@@ -15,12 +16,13 @@ import NotFoundLayout from "../layouts/NotFoundLayout.astro";
     </div>
   </header>
   <div class="h-auto mx-auto grid place-items-center text-center mt-32">
-    <img
+    <Image
       class="rounded-md w-72"
-      src="images/thisIsFine.webp"
+      src="/images/thisIsFine.webp"
       alt="this is fine..."
       loading="eager"
-      decoding="async"
+      width={480}
+      height={270}
     />
     <h1
       class="text-3xl mt-9 leading-snug md:text-4xl text-neutral-900 dark:text-neutral-100"
