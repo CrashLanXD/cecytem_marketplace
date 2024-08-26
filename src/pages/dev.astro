@@ -1,5 +1,7 @@
 ---
-import InfoLayout from "../layouts/InfoLayout.astro";
+import InfoLayout from "@/layouts/InfoLayout.astro";
+
+import { Image } from "astro:assets";
 ---
 
 <InfoLayout title="about">
@@ -33,12 +35,13 @@ import InfoLayout from "../layouts/InfoLayout.astro";
           d="M14 4l-4 16"></path></svg
       >
     </div>
-    <img
-      src="images/programming.webp"
+    <Image
+      src="/images/programming.webp"
       alt="An individual working on a computer, programming with code visible on the monitor."
       class="h-full object-cover rounded-xl col-span-3 md:col-span-1 md:row-span-2"
       loading="eager"
-      decoding="async"
+      width={1280}
+      height={640}
     />
     <div class="col-span-3 md:col-span-2">
       <p class="text-xl text-pretty">
@@ -78,12 +81,13 @@ import InfoLayout from "../layouts/InfoLayout.astro";
         soldadura, control y automatización, refrigeración y aire acondicionado.
       </p>
     </div>
-    <img
+    <Image
       src="/images/industrial_maintenance.webp"
       alt="An industrious worker in blue overalls operating machinery in a workshop."
       class="h-full object-cover object-left rounded-xl col-span-3 row-span-1 md:col-span-1 md:row-span-2"
       loading="lazy"
-      decoding="async"
+      width={1900}
+      height={1600}
     />
   </section>
 </InfoLayout>
