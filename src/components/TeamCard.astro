@@ -5,11 +5,16 @@ import InstagramIcon from "./icons/InstagramIcon.astro";
 import FacebookIcon from "./icons/FacebookIcon.astro";
 import SocialItem from "./SocialItem.astro";
 
+import { Image } from "astro:assets";
+
 interface Props {
   title: string;
   role: string;
   pfp: string;
   motto: string;
+  imgWidth?: number;
+  imgHeight?: number;
+  imgLoading?: "lazy" | "eager";
   socialMedia: {
     x: string;
     github: string;
@@ -18,18 +23,19 @@ interface Props {
   };
 }
 
-const { title, role, pfp, motto, socialMedia } = Astro.props;
+const { title, role, pfp, motto, socialMedia, imgWidth, imgHeight, imgLoading } = Astro.props;
 ---
 
 <div
   class={`items-center bg-neutral-200 rounded-lg shadow sm:flex dark:bg-neutral-800 dark:border-neutral-700 ${title === 'Eduardo Sanchez' ? 'md:col-span-2' : '' }`}
 >
-  <img
+  <Image
     class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg aspect-square md:max-w-56 min-w-44"
     src={pfp}
     alt={`${title}`}
-    decoding="async"
-    loading="lazy"
+    loading={imgLoading}
+    width={imgWidth ?? 200}
+    height={imgHeight ?? 200}
   />
 
   <div class="p-5">
