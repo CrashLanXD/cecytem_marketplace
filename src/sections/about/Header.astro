@@ -55,54 +55,55 @@ const links = [
       <MenuIcon class="size-6" />
     </button>
   </div>
+</nav>
 
-  <dialog
-    id="mobileMenu"
+<dialog
+  id="mobileMenu"
+  class:list={[
+    "bg-transparent size-full origin-bottom",
+    "grid place-items-center overflow-x-hidden",
+  ]}
+>
+  <button
     class:list={[
-      "backdrop:bg-neutral-950/20 backdrop:backdrop-blur-sm",
-      "bg-transparent size-full",
-      "grid place-items-center",
+      "absolute z-20 right-2 top-2 inline-flex items-center justify-center",
+      "transition-all rounded-xl outline-none focus:outline-green-500",
+      "text-neutral-900 dark:text-neutral-100",
+      "active:scale-95 hover:scale-105",
+    ]}
+    type="button"
+    id="closeBtn"
+    data-ripple-dark="true"
+    data-collapse-target="navbar"
+  >
+    <PlusIcon style="stroke-width: 2;" class="size-12 rotate-45" />
+  </button>
+  <ul
+    data-collapse="navbar"
+    class:list={[
+      "absolute inset-0",
+      "w-full h-full flex flex-col justify-center",
+      "rounded-xl p-6",
+      "bg-transparent",
     ]}
   >
-    <button
-      class:list={[
-        "absolute top-0 right-3",
-        "inline-flex items-center justify-center",
-        "size-10 rounded-lg select-none transition-all",
-        "text-neutral-900 dark:text-neutral-100",
-        "bg-neutral-900/10 dark:bg-neutral-50/10",
-        "active:scale-95 hover:scale-105",
-      ]}
-      type="button"
-      id="closeBtn"
-      data-ripple-dark="true"
-      data-collapse-target="navbar"
-    >
-      <PlusIcon class="size-6 rotate-45" />
-    </button>
-    <ul
-      data-collapse="navbar"
-      class:list={[
-        "w-full flex flex-col gap-4",
-        "backdrop-blur-lg rounded-xl p-5",
-        "bg-neutral-100/60 dark:bg-neutral-800/60",
-      ]}
-    >
-      {
-        links.map(({ href, name, icon: IconComponent }) => (
-          <li>
-            <a
-              href={href}
-              class="antialiased text-base leading-relaxed flex items-center gap-2 font-medium"
-            >
-              <IconComponent class="size-5" /> {name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </dialog>
-</nav>
+    {
+      links.map(({ href, name, icon: IconComponent }, idx) => (
+        <li class="li" style={`--duration:${1100 + (idx + 1) * 200}ms;`}>
+          <a
+            href={href}
+            class="group text-5xl inline-flex items-center gap-2 py-4 font-medium transition-transform"
+          >
+            <IconComponent class="size-12 select-none" />
+            <span class="inline-block group-active:scale-90">
+              {name}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</dialog>
 
 <div
   id="nav-backdrop"
@@ -128,20 +129,41 @@ const links = [
       scale var(--duration) ease,
       display var(--duration) var(--timing-function) allow-discrete;
     scale: 0;
+    translate: 0px -200px;
+
+    .li {
+      opacity: 0;
+      translate: 0px 60px;
+      transition-property: translate, opacity;
+      transition-duration: 300ms;
+    }
 
     &[open] {
-      scale: 1;
       transition:
         scale var(--duration) var(--timing-function),
-        opacity var(--duration) ease,
-        transform var(--duration) ease;
+        translate var(--duration) ease;
+      scale: 1;
+      translate: 0px 0px;
 
-      transform: translate(0px, 0px);
+      .li {
+        transition-duration: var(--duration);
+        opacity: 1;
+        translate: 0px 0px;
+      }
 
       @starting-style {
         scale: 0;
-        transform: translate(0px, 100px);
+        translate: 0px -200px;
+
+        .li {
+          opacity: 0;
+          translate: 0px 20px;
+        }
       }
+    }
+
+    &::backdrop {
+      @apply bg-gradient-to-r from-neutral-100 to-neutral-300 dark:from-neutral-900 dark:to-neutral-950;
     }
   }
 </style>
@@ -165,12 +187,6 @@ const links = [
 
     closeBtn.addEventListener("click", () => {
       dialog.close();
-    });
-
-    dialog.addEventListener("click", (e) => {
-      if (e.target === dialog) {
-        dialog.close();
-      }
     });
   }
 
