@@ -1,57 +1,104 @@
 ---
 import InfoLayout from "@/layouts/InfoLayout.astro";
+
+const description = "En nuestra página de contacto, puedes enviarnos tus preguntas, comentarios o solicitudes de información sobre nuestros productos y servicios. Nuestro equipo está aquí para ayudarte con cualquier consulta y asegurarse de que tengas la mejor experiencia posible. Completa el formulario y nos pondremos en contacto contigo pronto."
 ---
 
-<InfoLayout title="Contáctanos">
-  <section class="rounded-2xl max-w-screen-lg mx-auto bg-neutral-300/50 dark:bg-neutral-900 bg-opacity-85">
-    <div class="py-8 mt-10 md:mt-3 lg:py-16 px-4 mx-auto max-w-screen-md">
-      <h2
-        class="mb-4 text-4xl tracking-tight font-extrabold text-center text-neutral-900 dark:text-white"
+<InfoLayout title="Contáctanos" description={description}>
+  <main class="max-w-screen-xl mx-auto px-6 py-4">
+    <section
+      class:list={["flex flex-col lg:flex-row", "gap-y-6 gap-x-8", "mt-16"]}
+    >
+      <div
+        class="flex flex-col justify-between w-full lg:w-2/6 gap-y-4 items-start"
       >
-        Contáctanos
-      </h2>
-      <p
-        class="mb-8 lg:mb-12 font-light text-center text-neutral-700 dark:text-neutral-400 sm:text-xl"
-      >
-        ¿Tienes algún problema? ¿Quieres enviarnos comentarios? ¿Necesitas
-        detalles sobre nuestro plan de negocios? Háznoslo saber. Estamos aquí
-        para ayudarte en todo lo que necesites.
-      </p>
+        <h2
+          class:list={[
+            "text-gradient",
+            "text-balance text-4xl lg:text-5xl max-w-screen-sm",
+          ]}
+        >
+          Ponte en contacto con nosotros.
+        </h2>
+        <p class="text-xl mb-10 text-neutral-700 dark:text-neutral-400 w-full">
+          ¿Tienes algún problema? ¿Quieres enviarnos comentarios? ¿Necesitas
+          detalles sobre nuestro plan de negocios? Háznoslo saber. Estamos aquí
+          para ayudarte en todo lo que necesites.
+        </p>
+      </div>
       <form
         action="https://formspree.io/f/mayrkjna"
-        method="POST"
-        class="space-y-8"
+        method="post"
+        class:list={[
+          "bg-white/40 dark:bg-black/40 backdrop-blur-md flex flex-col rounded-3xl relative",
+          "w-full lg:w-4/6 py-8 px-6 lg:px-11 gap-y-11 overflow-x-hidden",
+          "border border-black/15 dark:border-white/15",
+        ]}
       >
+        <div
+          aria-hidden="true"
+          class:list={[
+            "absolute z-10 left-0 lg:left-1/2 top-[-20%]",
+            "h-[358px] w-[516px]",
+            "rotate-45 lg:rotate-[-19deg]",
+            "blur-3xl rounded-full",
+            "opacity-5 lg:opacity-10 dark:opacity-5",
+            "bg-gradient-to-r from-green-500 to-emerald-400",
+            "dark:from-green-400 dark:to-yellow-200",
+          ]}
+        >
+        </div>
         <label
-          class="block mb-2 text-sm font-medium text-neutral-900 dark:text-neutral-300"
+          class="block mb-2 text-base font-medium text-neutral-900 dark:text-neutral-200"
         >
           Tu correo electrónico
           <input
             type="email"
             name="email"
-            class="shadow-sm mt-2 bg-neutral-100 border border-neutral-300 text-neutral-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500 dark:shadow-sm-light"
+            class:list={[
+              "block w-full rounded-2xl mt-2 p-2.5 outline-none",
+              "shadow-md dark:shadow-sm-light",
+              "border border-neutral-300 dark:border-neutral-600",
+              "text-neutral-900 dark:text-white dark:placeholder-neutral-400 text-sm",
+              "focus:ring-green-500 focus:border-green-500",
+              "bg-neutral-100 dark:bg-neutral-900",
+            ]}
             placeholder="nombre@gmail.com"
             required
           />
         </label>
 
         <label
-          class="sm:col-span-2 block mb-2 text-sm font-medium text-neutral-900 dark:text-neutral-400"
+          class="block mb-2 text-base font-medium text-neutral-900 dark:text-neutral-200"
           >Tu mensaje
           <textarea
             name="message"
-            rows="6"
-            class="block mt-2 p-2.5 w-full text-sm text-neutral-900 bg-neutral-100 rounded-lg shadow-sm border border-neutral-300 focus:ring-green-500 focus:border-green-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder-neutral-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
-            placeholder="Déjanos un comentario..."></textarea>
+            class:list={[
+              "block w-full rounded-2xl mt-2 p-2.5 outline-none",
+              "shadow-md dark:shadow-sm-light",
+              "border border-neutral-300 dark:border-neutral-600",
+              "text-neutral-900 dark:text-white dark:placeholder-neutral-400 text-sm",
+              "focus:ring-green-500 focus:border-green-500",
+              "bg-neutral-100 dark:bg-neutral-900",
+              "min-h-24 max-h-80 resize-y [field-sizing:content] [scrollbar-width:thin]",
+            ]}
+            placeholder="Déjanos un comentario..."
+            required></textarea>
         </label>
 
         <button
           type="submit"
-          class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-green-700 sm:w-fit hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          class:list={[
+            "py-3 px-5 text-sm font-medium text-center sm:w-fit",
+            "rounded-2xl outline-none",
+            "text-white bg-green-700 hover:bg-green-800",
+            "hover:scale-105 active:scale-95 transition-all",
+            "focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800",
+          ]}
         >
           Enviar mensaje
         </button>
       </form>
-    </div>
-  </section>
+    </section>
+  </main>
 </InfoLayout>
