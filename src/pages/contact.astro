@@ -1,7 +1,8 @@
 ---
 import InfoLayout from "@/layouts/InfoLayout.astro";
 
-const description = "En nuestra página de contacto, puedes enviarnos tus preguntas, comentarios o solicitudes de información sobre nuestros productos y servicios. Nuestro equipo está aquí para ayudarte con cualquier consulta y asegurarse de que tengas la mejor experiencia posible. Completa el formulario y nos pondremos en contacto contigo pronto."
+const description =
+  "En nuestra página de contacto, puedes enviarnos tus preguntas, comentarios o solicitudes de información sobre nuestros productos y servicios. Nuestro equipo está aquí para ayudarte con cualquier consulta y asegurarse de que tengas la mejor experiencia posible. Completa el formulario y nos pondremos en contacto contigo pronto.";
 ---
 
 <InfoLayout title="Contáctanos" description={description}>
@@ -45,6 +46,7 @@ const description = "En nuestra página de contacto, puedes enviarnos tus pregun
             "opacity-5 lg:opacity-10 dark:opacity-5",
             "bg-gradient-to-r from-green-500 to-emerald-400",
             "dark:from-green-400 dark:to-yellow-200",
+            "select-none pointer-events-none touch-none",
           ]}
         >
         </div>
