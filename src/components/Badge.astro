@@ -1,0 +1,41 @@
+<span
+  class:list={[
+    "border-animation",
+    "mx-auto mb-2 w-fit p-px",
+    "rounded-full relative",
+    "overflow-hidden",
+  ]}
+>
+  <div
+    class:list={[
+      "relative z-10 rounded-full",
+      "bg-neutral-100 dark:bg-neutral-900",
+      "flex gap-2 px-4 py-1.5",
+      "border border-black/15 dark:border-white/15",
+    ]}
+  >
+    <span {...Astro.props} class="text-xs opacity-70 md:text-base capitalize"><slot /></span>
+  </div>
+</span>
+
+<style>
+  .border-animation::before {
+    @apply absolute z-0 h-80 w-5 bg-gradient-to-r from-neutral-950 to-black/20 dark:from-neutral-50 dark:to-white/20;
+    content: "";
+    inset: 50% 0 0 50%;
+    transform-origin: top center;
+    animation: border-animation 10s infinite linear;
+  }
+
+  @keyframes border-animation {
+    0% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import Badge from "@/components/Badge.astro";
+---
+
+<Badge id="currentDate">Bienvenido ;)</Badge>
+
+<script>
+  import { $ } from "@/lib/dom-selector";
+
+  function loadDate() {
+    const $timeElement = $("#currentDate");
+
+    if (!$timeElement) return;
+
+    const currentDate = getCurrentDate();
+    $timeElement.textContent = currentDate;
+  }
+
+  function getCurrentDate() {
+    const currentDate = new Date();
+    return new Intl.DateTimeFormat("es-MX", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }).format(currentDate);
+  }
+
+  document.addEventListener("astro:page-load", loadDate);
+</script>
