@@ -1,0 +1,33 @@
+---
+import GitHubIcon from "@/icons/GitHubIcon.astro";
+import SocialItem from "@/components//SocialItem.astro";
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="px-8 mt-14 relative bottom-1">
+  <div
+    class="container mx-auto flex flex-col md:flex-row items-center justify-between text-neutral-500"
+  >
+    <div
+      class="flex flex-col items-center justify-center pb-2 text-base font-light leading-relaxed"
+    >
+      <p
+        class="block antialiased text-base font-light leading-relaxed my-1"
+      >
+        Copyright ©
+        {currentYear}
+        ⊂└メᕤ
+      </p>
+      <ul>
+        <li>
+          <SocialItem href="https://github.com/crashLanXD">
+            <GitHubIcon class="size-5" />
+          </SocialItem>
+        </li>
+      </ul>
+    </div>
+    <p class="text-sm md:font-normal text-center text-balance">
+      Calle Santos Degollados s/n La Magdalena Atlicpac La Paz Estado de Mexico
+    </p>
+  </div>
+</footer>
