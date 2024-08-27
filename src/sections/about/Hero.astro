@@ -1,86 +1,38 @@
+---
+import DateBadge from "@/components/DateBadge.astro";
+---
+
 <header
   class:list={[
     "container mx-auto p-8 px-4",
     "text-center place-items-stretch",
     "text-neutral-900 dark:text-neutral-100",
+    "flex flex-col",
   ]}
 >
-  <time
-    id="currentDate"
-    class:list={[
-      "antialiased leading-relaxed text-inherit text-sm",
-      "inline-flex font-light dark:font-thin",
-      "rounded-lg border-2 border-neutral-50 dark:border-neutral-800",
-      "bg-neutral-50 dark:bg-neutral-800/40",
-      "py-1 px-4 h-9",
-    ]}>Bienvenido ;)</time>
+  <DateBadge />
   <h1
-    class:list={[
-      "block antialiased tracking-normal font-semibold",
-      "mx-auto mb-6 mt-3 w-full leading-snug",
-      "text-2xl lg:max-w-3xl lg:text-5xl",
-    ]}
-  >
-    Elevamos tu Experiencia con <span class="text-green-500 leading-snug"
-      >Creatividad</span
-    > y <span class="leading-snug text-green-500">Tecnología</span>.
+  class:list={[
+    "mb-4 max-w-screen-lg mx-auto",
+    "text-balance capitalize",
+    "text-5xl lg:text-6xl",
+    "bg-clip-text text-transparent bg-gradient-to-b",
+    "from-neutral-900 via-green-800 to-green-500",
+    "dark:from-white dark:to-green-500/90"
+  ]}>
+    Descubre nuestra creatividad y
+    apoya el talento con productos hechos con dedicación.
   </h1>
-  <p
-    class:list={[
-      "block antialiased font-normal leading-relaxed",
-      "text-inherit mx-auto w-full",
-      "text-neutral-500 dark:text-neutral-300",
-      "lg:text-lg text-base",
-    ]}
-  >
-    Es el momento de brillar, de destacar con colores vibrantes y ser
-    excepcional.
-  </p>
   <a
     href="/store"
     class:list={[
       "flex px-6 my-3 py-1 mx-auto",
       "text-xl min-w-fit w-24 h-14",
       "items-center justify-center font-bold",
-      "transition-all text-center rounded-xl",
+      "transition-all text-center rounded-2xl",
       "backdrop-blur-md bg-neutral-200/80 dark:bg-neutral-800/80",
       "hover:text-2xl",
     ]}
     >Explorar la tienda 👽
   </a>
 </header>
-
-<script>
-  import { $ } from "@/lib/dom-selector";
-
-  function loadDate() {
-    const $timeElement = $("#currentDate");
-    if (!$timeElement) return;
-
-    const currentDate = getCurrentDate();
-    $timeElement.textContent = currentDate;
-
-    localStorage.setItem("currentDate", currentDate);
-  }
-
-  function getCurrentDate() {
-    const currentDate = new Date();
-    const monthNames = [
-      "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-    ];
-    const dayNames = [
-      "Domingo", "Lunes", "Martes", "Miércoles",
-      "Jueves", "Viernes", "Sábado"
-    ];
-
-    const day = dayNames[currentDate.getDay()];
-    const date = currentDate.getDate();
-    const month = monthNames[currentDate.getMonth()];
-    const year = currentDate.getFullYear();
-
-    return `${day} ${date} de ${month} del ${year}`;
-  }
-
-  document.addEventListener("astro:page-load", loadDate);
-</script>
