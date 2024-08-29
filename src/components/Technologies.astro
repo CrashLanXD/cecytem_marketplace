@@ -203,7 +203,7 @@
     requestAnimationFrame(animateBackgroundIcons);
   }
 
-  main();
+  document.addEventListener("astro:page-load", main);
 </script>
 
 <style>
