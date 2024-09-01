@@ -1,5 +1,6 @@
 ---
 import InfoLayout from "@/layouts/InfoLayout.astro";
+import Typography from "@/components/Typography.astro";
 
 const description =
   "En nuestra página de contacto, puedes enviarnos tus preguntas, comentarios o solicitudes de información sobre nuestros productos y servicios. Nuestro equipo está aquí para ayudarte con cualquier consulta y asegurarse de que tengas la mejor experiencia posible. Completa el formulario y nos pondremos en contacto contigo pronto.";
@@ -13,14 +14,9 @@ const description =
       <div
         class="flex flex-col justify-between w-full lg:w-2/6 gap-y-4 items-start"
       >
-        <h2
-          class:list={[
-            "text-gradient",
-            "text-balance text-4xl lg:text-5xl max-w-screen-sm",
-          ]}
-        >
+        <Typography as="h2" variant="figtree-title">
           Ponte en contacto con nosotros.
-        </h2>
+        </Typography>
         <p class="text-xl mb-10 text-neutral-700 dark:text-neutral-400 w-full">
           ¿Tienes algún problema? ¿Quieres enviarnos comentarios? ¿Necesitas
           detalles sobre nuestro plan de negocios? Háznoslo saber. Estamos aquí
