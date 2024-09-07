@@ -152,6 +152,8 @@ const { images, title, id, width, height } = product;
     const galleryButtons = $$(".gallery-button");
     const images = $$("#imageContainer img");
 
+    if (!dialog && !closeBtn && !prevBtn && !nextBtn) return;
+
     let currentImgIdx = 0;
 
     function open() {
