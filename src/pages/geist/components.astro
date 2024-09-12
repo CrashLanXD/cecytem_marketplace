@@ -17,42 +17,76 @@ const product = PRODUCTS[0];
 
 <Layout title="geist" description="Geist Design System">
   <main class="container max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
-    <section id="introduction" class="mb-10">
+    <section>
       <h2
-        class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+        class="text-5xl font-bold tracking-tight text-gray-900 dark:text-white"
       >
-        Geist Design System
+        Componenst
       </h2>
-      <p class="mt-4 text-gray-500 dark:text-gray-400">
-        cecytem design system for building consistent web experiences.
+      <p class="text-xl mt-4 text-gray-500 dark:text-gray-400">
+        Components are the basic building blocks of the design system.
       </p>
     </section>
 
-    <section id="components" class="flex flex-col gap-10">
-      <Action as="button">action</Action>
-      <ASCIISlideshow />
-      <Badge>badge</Badge>
-      <DateBadge>date badge</DateBadge>
-      <ProductBreadcrumb title="product bread crumb" id="components" />
-      <div class="w-72">
-        <ProductCard product={product} />
+    <hr class="my-10 border-neutral-800 dark:border-neutral-700" />
+
+    <section id="components" class="flex flex-col gap-10 max-w-screen-md mx-auto">
+      <div class="flex flex-col lg:flex-row gap-x-4 gap-y-3 items-center text-center lg:text-left justify-center lg:justify-between">
+        <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-32 max-w-32 h-full">
+          Action
+        </h3>
+        <Action as="button">action button</Action>
+        <Action as="a" href="/geist/components">action link</Action>
       </div>
-      <SocialItem href="https://github/crashlanxd">social item</SocialItem>
-      <TeamCard
-        title="team card"
-        role="role"
-        pfp="https://avatars.githubusercontent.com/u/133317864"
-        motto="motto"
-        socialMedia={{
-          x: "https://github/crashlanxd",
-          github: "https://github/crashlanxd",
-          facebook: "https://github/crashlanxd",
-          instagram: "https://github/crashlanxd",
-        }}
-      />
-      <Typography as="h2" color={"neutral"} variant={"h2"}
-        >typography</Typography
-      >
+      <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
+        <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">
+          ASCII animation
+        </h3>
+        <ASCIISlideshow />
+      </div>
+      <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
+        <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Badge</h3>
+        <Badge>badge</Badge>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
+        <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Date badge</h3>
+        <DateBadge>date badge</DateBadge>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
+        <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Breadcrumb</h3>
+        <ProductBreadcrumb title="product bread crumb" id="components" />
+      </div>
+      <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
+        <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Product Card</h3>
+        <div class="w-72">
+          <ProductCard product={product} />
+        </div>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
+        <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Social Item</h3>
+        <SocialItem href="https://github/crashlanxd">social item</SocialItem>
+      </div>
+      <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
+        <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Team Card</h3>
+        <TeamCard
+          title="team card"
+          role="role"
+          pfp="https://avatars.githubusercontent.com/u/133317864"
+          motto="motto"
+          socialMedia={{
+            x: "https://github/crashlanxd",
+            github: "https://github/crashlanxd",
+            facebook: "https://github/crashlanxd",
+            instagram: "https://github/crashlanxd",
+          }}
+        />
+      </div>
+      <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
+        <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Typography</h3>
+        <Typography as="h2" class="pb-2" variant={"figtree-title"}
+          >typography figtree-title</Typography
+        >
+      </div>
     </section>
   </main>
 </Layout>

@@ -1,0 +1,60 @@
+---
+import Layout from "@/layouts/InfoLayout.astro";
+---
+
+<Layout title="geist" description="Geist Design System">
+  <main class="container max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+    <h2 class="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+      Geist Design System
+    </h2>
+    <p class="text-xl mt-4 text-gray-500 dark:text-gray-400">
+      cecytem design system for building consistent web experiences.
+    </p>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 mt-10">
+      <a href="/geist/components" class="grid-item">
+        <div class="image from-lime-500 to-green-300"></div>
+        <div class="info">
+          <h3>Components</h3>
+          <p>Building blocks of the design system.</p>
+        </div>
+      </a>
+      <a href="/geist/colors" class="grid-item">
+        <div class="image from-blue-500 to-indigo-400"></div>
+        <div class="info">
+          <h3>Colors</h3>
+          <p>A high contrast color palette for interfaces.</p>
+        </div>
+      </a>
+      <a href="/geist/icons" class="grid-item">
+        <div class="image from-amber-500 to-yellow-300"></div>
+        <div class="info">
+          <h3>Icons</h3>
+          <p>Icons for common actions and objects.</p>
+        </div>
+      </a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .grid-item {
+    @apply flex flex-col p-4 gap-y-3 min-h-40 border border-neutral-400 dark:border-neutral-500 hover:brightness-105 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors;
+
+    & .image {
+      @apply min-h-28 min-w-full rounded-md bg-gradient-to-r;
+    }
+
+    & .info {
+      @apply flex flex-col gap-y-1 h-1/3 w-full;
+
+      & h3 {
+        @apply text-xl text-neutral-900 dark:text-neutral-100;
+      }
+
+      & p {
+        @apply text-base text-neutral-400;
+      }
+    }
+  }
+</style>
