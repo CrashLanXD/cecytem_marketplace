@@ -1,0 +1,58 @@
+---
+import Layout from "@/layouts/InfoLayout.astro";
+
+import Action from "@/components/Action.astro";
+import ASCIISlideshow from "@/components/ASCIISlideshow.astro";
+import Badge from "@/components/Badge.astro";
+import DateBadge from "@/components/DateBadge.astro";
+import ProductBreadcrumb from "@/components/ProductBreadcrumb.astro";
+import ProductCard from "@/components/ProductCard.astro";
+import SocialItem from "@/components/SocialItem.astro";
+import TeamCard from "@/components/TeamCard.astro";
+import Typography from "@/components/Typography.astro";
+
+import { PRODUCTS } from "@/constants/products";
+const product = PRODUCTS[0];
+---
+
+<Layout title="geist" description="Geist Design System">
+  <main class="container max-w-6xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+    <section id="introduction" class="mb-10">
+      <h2
+        class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        Geist Design System
+      </h2>
+      <p class="mt-4 text-gray-500 dark:text-gray-400">
+        cecytem design system for building consistent web experiences.
+      </p>
+    </section>
+
+    <section id="components" class="flex flex-col gap-10">
+      <Action as="button">action</Action>
+      <ASCIISlideshow />
+      <Badge>badge</Badge>
+      <DateBadge>date badge</DateBadge>
+      <ProductBreadcrumb title="product bread crumb" id="components" />
+      <div class="w-72">
+        <ProductCard product={product} />
+      </div>
+      <SocialItem href="https://github/crashlanxd">social item</SocialItem>
+      <TeamCard
+        title="team card"
+        role="role"
+        pfp="https://avatars.githubusercontent.com/u/133317864"
+        motto="motto"
+        socialMedia={{
+          x: "https://github/crashlanxd",
+          github: "https://github/crashlanxd",
+          facebook: "https://github/crashlanxd",
+          instagram: "https://github/crashlanxd",
+        }}
+      />
+      <Typography as="h2" color={"neutral"} variant={"h2"}
+        >typography</Typography
+      >
+    </section>
+  </main>
+</Layout>
