@@ -2,6 +2,7 @@
 import { PRODUCTS } from "@/constants/products";
 
 import ProductCard from "@/components/ProductCard.astro";
+import SearchBar from "@/components/SearchBar.astro";
 ---
 
 <section>
@@ -11,9 +12,41 @@ import ProductCard from "@/components/ProductCard.astro";
     >
       nuestros productos
     </h2>
+    <SearchBar />
     <div class="grid gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gridXL">
       {PRODUCTS.map((product) => <ProductCard product={product} />)}
     </div>
+
+    <article
+      id="noResultsMessage"
+      class:list={[
+        "min-h-80 mt-20 relative items-center rounded-lg",
+        "col-span-1 sm:col-span-2 lg:col-span-3 2xl:col-span-4",
+        "text-neutral-600 dark:text-neutral-200",
+        "hidden",
+      ]}
+    >
+      <span
+        class="flex justify-center flex-col h-full items-center font-semibold text-center text-xl"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="size-16 mb-2"
+          viewBox="0 0 24 24"
+          ><path d="M0 0h24v24H0z" stroke="none"></path><path
+            d="M14.986 3.51A9 9 0 1 0 16.5 19.794c2.489-1.437 4.181-3.978 4.5-6.794M10 10h.01M14 8h.01"
+          ></path><path
+            d="M12 15c1-1.333 2-2 3-2M20 9v.01M20 6a2.003 2.003 0 0 0 .914-3.782 1.98 1.98 0 0 0-2.414.483"
+          ></path></svg
+        >
+        No pude encontrar lo que buscabas :[
+      </span>
+    </article>
   </div>
 </section>
 
