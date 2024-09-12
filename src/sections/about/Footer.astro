@@ -1,33 +1,84 @@
 ---
-import GitHubIcon from "@/icons/GitHubIcon.astro";
-import SocialItem from "@/components//SocialItem.astro";
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="px-8 mt-14 relative bottom-1">
-  <div
-    class="container mx-auto flex flex-col md:flex-row items-center justify-between text-neutral-500"
-  >
-    <div
-      class="flex flex-col items-center justify-center pb-2 text-base font-light leading-relaxed"
-    >
-      <p
-        class="block antialiased text-base font-light leading-relaxed my-1"
-      >
-        Copyright ©
-        {currentYear}
-        ⊂└メᕤ
-      </p>
-      <ul>
-        <li>
-          <SocialItem href="https://github.com/crashLanXD">
-            <GitHubIcon class="size-5" />
-          </SocialItem>
-        </li>
-      </ul>
+<footer class="pt-28 pb-5 lg:pb-14">
+  <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+    <div class="md:flex md:justify-between">
+      <div class="section-footer">
+        <h2 class="title-footer">Inicio</h2>
+        <ul class="list-footer">
+          <li class="list-footer-item"><a href="/">Inicio</a></li>
+        </ul>
+      </div>
+
+      <div class="section-footer">
+        <h2 class="title-footer">Sobre Nosotros</h2>
+        <ul class="list-footer">
+          <li class="list-footer-item"><a href="/team">Nuestro Equipo</a></li>
+          <li class="list-footer-item"><a href="/dev">Carrera</a></li>
+        </ul>
+      </div>
+
+      <div class="section-footer">
+        <h2 class="title-footer">Tienda</h2>
+        <ul class="list-footer">
+          <li class="list-footer-item"><a href="/store">Comprar</a></li>
+        </ul>
+      </div>
+
+      <div class="section-footer">
+        <h2 class="title-footer">Recursos</h2>
+        <ul class="list-footer">
+          <li class="list-footer-item">
+            <a href="/geist/introduction">Guía de Diseño</a>
+          </li>
+          <li class="list-footer-item">
+            <a
+              href="https://github.com/crashlanxd"
+              target="_blank"
+              rel="noopener noreferrer">GitHub</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-footer">
+        <h2 class="title-footer">Servicios</h2>
+        <ul class="list-footer">
+          <li class="list-footer-item"><a href="/contact">Contacto</a></li>
+          <li class="list-footer-item"><a href="/404">Página 404</a></li>
+        </ul>
+      </div>
     </div>
-    <p class="text-sm md:font-normal text-center text-balance">
-      Calle Santos Degollados s/n La Magdalena Atlicpac La Paz Estado de Mexico
-    </p>
+    <hr
+      class="mb-7 mt-14 md:mt-20 border-neutral-800 dark:border-neutral-700"
+    />
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <div class="text-sm text-neutral-500 dark:text-neutral-400">
+        © {currentYear} ⊂└メᕤ. Todos los derechos reservados.
+      </div>
+      <div class="mt-4 sm:mt-0">
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          Calle Santos Degollados s/n La Magdalena Atlicpac La Paz Estado de
+          México
+        </p>
+      </div>
+    </div>
   </div>
 </footer>
+
+<style>
+  .section-footer {
+    @apply mb-6 md:mb-2;
+  }
+  .title-footer {
+    @apply text-base mb-2 font-normal text-neutral-500;
+  }
+  .list-footer {
+    @apply mt-4 space-y-2 text-neutral-700 dark:text-neutral-300;
+  }
+  .list-footer-item {
+    @apply hover:text-neutral-950 dark:hover:text-neutral-400 transition-colors;
+  }
+</style>
