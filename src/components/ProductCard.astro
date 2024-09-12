@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-
 import { type Product } from "@/types/Product";
 
 interface Props {
@@ -11,17 +10,14 @@ const { product } = Astro.props;
 const { id, title, price, images, width, height } = product;
 ---
 
-<a
-  id={`${id}`}
-  href={`/products/${id}`}
+<div
   class="group overflow-hidden rounded-xl shadow hover:shadow-md bg-neutral-200/50 dark:bg-neutral-800/50"
 >
-  <div class="relative">
+  <a id={`${id}`} href={`/store/${id}`} class="relative block">
     <Image
       transition:name={`product-${id}`}
       src={images[0]}
       alt={title}
-      loading="eager"
       class="aspect-square size-full object-cover"
       width={width ?? 400}
       height={height ?? 600}
@@ -51,11 +47,11 @@ const { id, title, price, images, width, height } = product;
         Ver más
       </span>
     </div>
-  </div>
+  </a>
   <div
     class="flex justify-between py-3 px-5 text-xl text-zinc-800 dark:text-zinc-200 gap-1"
   >
     <h5 class="group-hover:underline">{title}</h5>
     <h5 class="font-bold">{`$${price}`}</h5>
   </div>
-</a>
+</div>
