@@ -1,5 +1,6 @@
 ---
 import DateBadge from "@/components/DateBadge.astro";
+import Action from "@/components/Action.astro";
 ---
 
 <header
@@ -12,27 +13,18 @@ import DateBadge from "@/components/DateBadge.astro";
 >
   <DateBadge />
   <h1
-  class:list={[
-    "mb-4 max-w-screen-lg mx-auto",
-    "text-balance capitalize font-figtree font-medium",
-    "text-5xl lg:text-6xl",
-    "bg-clip-text text-transparent bg-gradient-to-b",
-    "from-neutral-900 via-green-800 to-green-500",
-    "dark:from-white dark:to-green-500/90"
-  ]}>
-    Descubre nuestra creatividad y
-    apoya el talento con productos hechos con dedicación.
-  </h1>
-  <a
-    href="/store"
     class:list={[
-      "flex px-6 my-3 py-1 mx-auto",
-      "text-xl min-w-fit w-24 h-14",
-      "items-center justify-center font-bold",
-      "transition-all text-center rounded-2xl",
-      "backdrop-blur-md bg-neutral-200/80 dark:bg-neutral-800/80",
-      "hover:text-2xl",
+      "mb-4 max-w-screen-lg mx-auto",
+      "text-balance capitalize font-figtree font-medium",
+      "text-5xl lg:text-6xl text-center",
+      "bg-clip-text text-transparent bg-gradient-to-b",
+      "from-neutral-900 via-green-800 to-green-500",
+      "dark:from-white dark:to-green-500/90",
+      "animate-bounce mt-9"
     ]}
-    >Explorar la tienda 👽
-  </a>
+  >
+    Descubre nuestra creatividad y apoya el talento con productos hechos con
+    dedicación.
+  </h1>
+  <Action href="/store" as="a">Explorar la tienda 👽 </Action>
 </header>

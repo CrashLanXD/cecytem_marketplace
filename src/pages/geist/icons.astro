@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/InfoLayout.astro";
+import ArrowLeft from "@/components/icons/ArrowLeft.astro"
+import CodeIcon from "@/components/icons/CodeIcon.astro"
+import FacebookIcon from "@/components/icons/FacebookIcon.astro"
+import FlagIcon from "@/components/icons/FlagIcon.astro"
+import GitHubIcon from "@/components/icons/GitHubIcon.astro"
+import InstagramIcon from "@/components/icons/InstagramIcon.astro"
+import MailIcon from "@/components/icons/MailIcon.astro"
+import MaintenanceIcon from "@/components/icons/MaintenanceIcon.astro"
+import StoreIcon from "@/components/icons/StoreIcon.astro"
+import TeamIcon from "@/components/icons/TeamIcon.astro"
+import XIcon from "@/components/icons/XIcon.astro"
+import { Code } from "astro:components";
+---
+
+<Layout title="geist" description="Geist Design System">
+  <main class="mx-auto container max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <h1 class="text-2xl font-bold mb-4">Icon Overview</h1>
+    <p class="mb-6">
+      Below are the icons used throughout the page. Each icon's name corresponds to its file name.
+    </p>
+
+    <ul class="list-disc pl-5 space-y-4">
+      <li class="flex items-center">
+        <ArrowLeft class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">ArrowLeft</span> - <code>ArrowLeft.astro</code>
+      </li>
+      <li class="flex items-center">
+        <CodeIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">CodeIcon</span> - <code>CodeIcon.astro</code>
+      </li>
+      <li class="flex items-center">
+        <FacebookIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">FacebookIcon</span> - <code>FacebookIcon.astro</code>
+      </li>
+      <li class="flex items-center">
+        <FlagIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">FlagIcon</span> - <code>FlagIcon.astro</code>
+      </li>
+      <li class="flex items-center">
+        <GitHubIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">GitHubIcon</span> - <code>GitHubIcon.astro</code>
+      </li>
+      <li class="flex items-center">
+        <InstagramIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">InstagramIcon</span> - <code>InstagramIcon.astro</code>
+      </li>
+      <li class="flex items-center">
+        <MailIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">MailIcon</span> - <code>MailIcon.astro</code>
+      </li>
+      <li class="flex items-center">
+        <MaintenanceIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">MaintenanceIcon</span> - <code>MaintenanceIcon.astro</code>
+      </li>
+      <li class="flex items-center">
+        <StoreIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">StoreIcon</span> - <code>StoreIcon.astro</code>
+      </li>
+      <li class="flex items-center">
+        <TeamIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">TeamIcon</span> - <code>TeamIcon.astro</code>
+      </li>
+      <li class="flex items-center">
+        <XIcon class="h-6 w-6 mr-2" />
+        <span class="font-semibold underline">XIcon</span> - <code>XIcon.astro</code>
+      </li>
+    </ul>
+  </main>
+</Layout>

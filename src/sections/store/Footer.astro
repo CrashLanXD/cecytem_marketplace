@@ -13,7 +13,7 @@
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 256 256"
-        class="size-12 p-1 fill-white bg-[#121212] rounded-full"
+        class="size-12 p-1 fill-white bg-[#121212] rounded-full rotate-3d"
       >
         <path
           fill=""
@@ -37,3 +37,18 @@
     </ul>
   </div>
 </footer>
+
+<style>
+  @keyframes rotate3d {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
+  .rotate-3d {
+    animation: rotate3d 3s linear infinite; /* 3 segundos, linear, y se repite infinitamente */
+  }
+</style>

@@ -33,6 +33,13 @@ import Layout from "@/layouts/InfoLayout.astro";
           <p>Icons for common actions and objects.</p>
         </div>
       </a>
+      <a href="/geist/do-not" class="grid-item">
+        <div class="image from-pink-500 to-purple-600"></div>
+        <div class="info">
+          <h3>Do Not...</h3>
+          <p>Does not do anything... Well, nothing useful.</p>
+        </div>
+      </a>
     </section>
   </main>
 </Layout>
@@ -42,7 +49,7 @@ import Layout from "@/layouts/InfoLayout.astro";
     @apply flex flex-col p-4 gap-y-3 min-h-40 border border-neutral-400 dark:border-neutral-500 hover:brightness-105 hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors;
 
     & .image {
-      @apply min-h-28 min-w-full rounded-md bg-gradient-to-r;
+      @apply min-h-28 min-w-full rounded-md bg-[linear-gradient(in_oklch_to_right,var(--tw-gradient-stops))];
     }
 
     & .info {

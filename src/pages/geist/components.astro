@@ -11,6 +11,8 @@ import SocialItem from "@/components/SocialItem.astro";
 import TeamCard from "@/components/TeamCard.astro";
 import Typography from "@/components/Typography.astro";
 
+import Cube from "@/components/Cube.astro";
+
 import { PRODUCTS } from "@/constants/products";
 const product = PRODUCTS[0];
 ---
@@ -66,6 +68,7 @@ const product = PRODUCTS[0];
         <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Social Item</h3>
         <SocialItem href="https://github/crashlanxd">social item</SocialItem>
       </div>
+      <Cube />
       <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
         <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Team Card</h3>
         <TeamCard
