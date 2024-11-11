@@ -27,7 +27,7 @@ import Layout from "@/layouts/InfoLayout.astro";
             There are 10 color scales in the system.
           </p>
         </div>
-        <div class="flex flex-col w-full gap-y-6 mt-10">
+        <div class="flex flex-col w-full gap-y-1 mt-10">
           <div class="color-card">
             <h3 class="color-card-title">gray</h3> 
             <div title="bg-gray-50" class="color-card-item bg-gray-50" />
@@ -159,6 +159,32 @@ import Layout from "@/layouts/InfoLayout.astro";
           <div title="bg-indigo-900" class="color-card-item bg-indigo-900" />
           <div title="bg-indigo-950" class="color-card-item bg-indigo-950" />
         </div>
+        <div class="color-card">
+          <h3 class="color-card-title">indigo</h3> 
+          <div title="bg-purple-50" class="color-card-item bg-purple-50" />
+          <div title="bg-purple-100" class="color-card-item bg-purple-100" />
+          <div title="bg-purple-200" class="color-card-item bg-purple-200" />
+          <div title="bg-purple-300" class="color-card-item bg-purple-300" />
+          <div title="bg-purple-400" class="color-card-item bg-purple-400" />
+          <div title="bg-purple-500" class="color-card-item bg-purple-500" />
+          <div title="bg-purple-600" class="color-card-item bg-purple-600" />
+          <div title="bg-purple-800" class="color-card-item bg-purple-800" />
+          <div title="bg-purple-900" class="color-card-item bg-purple-900" />
+          <div title="bg-purple-950" class="color-card-item bg-purple-950" />
+        </div>
+        <div class="color-card">
+          <h3 class="color-card-title">indigo</h3> 
+          <div title="bg-pink-50" class="color-card-item bg-pink-50" />
+          <div title="bg-pink-100" class="color-card-item bg-pink-100" />
+          <div title="bg-pink-200" class="color-card-item bg-pink-200" />
+          <div title="bg-pink-300" class="color-card-item bg-pink-300" />
+          <div title="bg-pink-400" class="color-card-item bg-pink-400" />
+          <div title="bg-pink-500" class="color-card-item bg-pink-500" />
+          <div title="bg-pink-600" class="color-card-item bg-pink-600" />
+          <div title="bg-pink-800" class="color-card-item bg-pink-800" />
+          <div title="bg-pink-900" class="color-card-item bg-pink-900" />
+          <div title="bg-pink-950" class="color-card-item bg-pink-950" />
+        </div>
       </div>
     </section>
 
@@ -169,10 +195,10 @@ import Layout from "@/layouts/InfoLayout.astro";
 
 <style>
   .color-card {
-    @apply flex justify-between w-full h-12 gap-1 md:gap-4;
+    @apply flex justify-between w-full h-14 gap-1 md:gap-2;
   }
   .color-card-item {
-    @apply size-full rounded-md border border-white/50;
+    @apply size-full aspect-square rounded-sm border border-white/30;
   }
   .color-card-title {
     @apply h-full inline-flex items-center text-xl min-w-20;

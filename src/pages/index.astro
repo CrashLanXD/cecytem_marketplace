@@ -15,6 +15,7 @@ const description =
   <main class="p-2 mx-auto max-w-screen-xl">
     <section
       class:list={[
+        "section",
         "relative overflow-x-hidden rounded-2xl",
         "items-center lg:grid grid-cols-2",
         "py-8 px-4 gap-16 lg:px-6",
@@ -59,7 +60,7 @@ const description =
       <div class="grid grid-cols-2 gap-4 mt-8">
         <Image
           class="w-full rounded-lg"
-          src="/images/office-long-2.png"
+          src="/images/office-long-2.webp"
           alt="People gathered around a table with laptops, collaborating on a project."
           loading="eager"
           width={592}
@@ -67,7 +68,7 @@ const description =
         />
         <Image
           class="mt-4 w-full lg:mt-10 rounded-lg"
-          src="/images/office-long-1.png"
+          src="/images/office-long-1.webp"
           alt="Office space with a desk and a lamp."
           loading="eager"
           width={592}
@@ -77,3 +78,78 @@ const description =
     </section>
   </main>
 </Layout>
+
+<style>
+  @property --rotate-x {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @property --rotate-y {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .section {
+    transform: perspective(1000px) rotateX(var(--rotate-x, 0deg))
+      rotateY(var(--rotate-y, 0deg)) !important;
+    transition:
+      --rotate-x 150ms ease-out,
+      --rotate-y 150ms ease-out;
+    transform-style: preserve-3d;
+    
+    animation: scroll-title both linear;
+    animation-timeline: scroll();
+    animation-duration: 1ms;
+    animation-range: entry 0% exit 10%;
+  }
+</style>
+
+<script>
+  import { $ } from "@/lib/dom-selector";
+  document.addEventListener("astro:page-load", () => {
+    const $element = $(".section");
+    if (!$element) return;
+
+    let w = $element?.clientWidth;
+    let h = $element?.clientHeight;
+
+
+    document.addEventListener("resize", () => {
+      w = $element?.clientWidth;
+      h = $element?.clientHeight;
+    });
+
+    const mouseMoveHandler = (x: number, y: number) => {
+      if (!w || !h) return;
+
+      const yRotation = ((x - w / 2) / w) * 40;
+      const xRotation = ((y - h / 2) / h) * 40;
+
+      $element.style.setProperty("--rotate-x", `${-xRotation}deg`);
+      $element.style.setProperty("--rotate-y", `${yRotation}deg`);
+    };
+
+    const resetProperties = () => {
+      $element.style.setProperty("--rotate-x", "0deg");
+      $element.style.setProperty("--rotate-y", "0deg");
+    };
+
+    $element.addEventListener("mousemove", (e) => {
+      const { layerX, layerY } = e;
+      mouseMoveHandler(layerX, layerY);
+    });
+    $element.addEventListener("touchmove", (e) => {
+      const touch = e.touches[0];
+      const rect = $element.getBoundingClientRect();
+      const touchX = touch.clientX - rect.left;
+      const touchY = touch.clientY - rect.top;
+      mouseMoveHandler(touchX, touchY);
+    })
+
+    $element.addEventListener("mouseout", resetProperties);
+    $element.addEventListener("touchend", resetProperties);
+  });
+</script>

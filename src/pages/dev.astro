@@ -35,14 +35,28 @@ import { Image } from "astro:assets";
           d="M14 4l-4 16"></path></svg
       >
     </div>
-    <Image
-      src="/images/programming.webp"
-      alt="An individual working on a computer, programming with code visible on the monitor."
-      class="h-full object-cover rounded-xl col-span-3 md:col-span-1 md:row-span-2"
-      loading="eager"
-      width={1280}
-      height={640}
-    />
+    <div
+      class:list={["rounded-xl col-span-3 md:col-span-1 md:row-span-2", "card"]}
+    >
+      <div class="inner">
+        <Image
+          src="/images/programming.webp"
+          alt="An individual working on a computer, programming with code visible on the monitor."
+          class="h-full object-cover"
+          loading="eager"
+          width={1280}
+          height={640}
+        />
+        <Image
+          src="/images/code_2.webp"
+          alt="An individual working on a computer, programming with code visible on the monitor."
+          class="h-full object-cover"
+          loading="eager"
+          width={1280}
+          height={640}
+        />
+      </div>
+    </div>
     <div class="col-span-3 md:col-span-2">
       <p class="text-xl text-pretty">
         La carrera de Técnico en Programación brinda a los estudiantes las
@@ -55,7 +69,7 @@ import { Image } from "astro:assets";
       <p class="text-xl text-pretty">
         Estas competencias les permiten a los graduados integrarse al mundo
         laboral o emprender proyectos independientes, adaptándose a las demandas
-        del mercado y contribuyendo al desarrollo de su entorno social.
+        del mercado y contribuyendo al desarrollo de su entorno social. <a href="/video" class="text-blue-500 hover:underline no-underline">¿QUIERES SABER MÁS?</a>
       </p>
     </div>
     <div class="col-span-3 flex items-center justify-center">
@@ -81,13 +95,61 @@ import { Image } from "astro:assets";
         soldadura, control y automatización, refrigeración y aire acondicionado.
       </p>
     </div>
-    <Image
-      src="/images/industrial_maintenance.webp"
-      alt="An industrious worker in blue overalls operating machinery in a workshop."
-      class="h-full object-cover object-left rounded-xl col-span-3 row-span-1 md:col-span-1 md:row-span-2"
-      loading="lazy"
-      width={1900}
-      height={1600}
-    />
+    <div
+      class:list={[
+        "rounded-xl col-span-3 row-span-1 md:col-span-1 md:row-span-2",
+        "card",
+      ]}
+    >
+      <div class="inner">
+        <Image
+          src="/images/industrial_maintenance.webp"
+          alt="An industrious worker in blue overalls operating machinery in a workshop."
+          class="h-full object-cover object-left"
+          width={1900}
+          height={1600}
+        />
+        <Image
+          src="/images/maintenance_2.webp"
+          alt="An individual working on a computer, programming with code visible on the monitor."
+          class="h-full object-cover"
+          width={1280}
+          height={640}
+        />
+      </div>
+    </div>
   </section>
 </InfoLayout>
+
+<style>
+  .card {
+    perspective: 1000px;
+
+    .inner {
+      @apply size-full;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 600ms;
+      backface-visibility: hidden;
+    }
+
+    &:hover .inner {
+      transform: rotateY(180deg);
+    }
+
+    img {
+      @apply absolute rounded-xl;
+      backface-visibility: hidden;
+      max-width: 100%;
+      max-height: 100%;
+      overflow: hidden;
+    }
+
+    img:first-child {
+    }
+
+    img:last-child {
+      transform: rotateY(180deg);
+    }
+  }
+</style>

@@ -20,3 +20,62 @@ const { as: Tag, class: className, ...props } = Astro.props;
 >
   <span class="inline-block"><slot /></span>
 </Tag>
+
+<!-- 
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
+
+const { as: Tag, class: className, ...props } = Astro.props;
+---
+
+<Tag
+  class:list={[
+    "rounded-2xl p-1 relative w-fit mx-auto action hover:scale-105 active:scale-95 transition-transform",
+    className
+  ]}
+  {...props}
+>
+  <div class="blob"></div>
+  <div class="inner"><slot /></div>
+</Tag>
+
+<style>
+  .action {
+    background: radial-gradient(circle 80px at 80% -10%, #ffffff, #181b18);
+  }
+  .action::after {
+    @apply content-[''] absolute top-0 right-0 -z-10;
+    width: 65%;
+    height: 60%;
+    border-radius: 120px;
+    box-shadow: 0 0 20px #ffffff38;
+  }
+  .blob {
+    @apply absolute w-16 h-full rounded-2xl bottom-0 left-0;
+    background: radial-gradient(
+      circle 60px at 0% 100%,
+      #84cc16,
+      #4ade80,
+      transparent
+    );
+    box-shadow: -10px 10px 30px #0051ff2d;
+  }
+  .inner {
+    @apply px-6 py-3 rounded-xl z-10 relative;
+    color: #fff;
+    background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
+  }
+  .inner::before {
+    @apply content-[''] size-full left-0 top-0 rounded-xl absolute;
+    background: radial-gradient(
+      circle 60px at 0% 100%,
+      #40ff001a,
+      #00ff2611,
+      transparent
+    );
+  }
+</style>
+
+-->

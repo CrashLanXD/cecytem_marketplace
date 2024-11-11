@@ -1,0 +1,99 @@
+---
+import Layout from "@/layouts/InfoLayout.astro";
+
+import ArrowLeft from "@/icons/ArrowLeft.astro";
+import CodeIcon from "@/icons/CodeIcon.astro";
+import FacebookIcon from "@/icons/FacebookIcon.astro";
+import FlagIcon from "@/icons/FlagIcon.astro";
+import GitHubIcon from "@/icons/GitHubIcon.astro";
+import InstagramIcon from "@/icons/InstagramIcon.astro";
+import MailIcon from "@/icons/MailIcon.astro";
+import MaintenanceIcon from "@/icons/MaintenanceIcon.astro";
+import MenuIcon from "@/icons/MenuIcon.astro";
+import PlusIcon from "@/icons/PlusIcon.astro";
+import SearchIcon from "@/icons/SearchIcon.astro";
+import StoreIcon from "@/icons/StoreIcon.astro";
+import TeamIcon from "@/icons/TeamIcon.astro";
+import XIcon from "@/icons/XIcon.astro";
+---
+
+<Layout title="geist" description="Geist Design System">
+  <main class="mx-auto container max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    <h1 class="text-2xl font-bold mb-4">Icon Overview</h1>
+    <p class="mb-6">
+      Below are the icons used throughout the page. Each icon's name corresponds
+      to its file name.
+    </p>
+
+    <ul class="list-disc pl-5 space-y-4">
+      <li>
+        <ArrowLeft />
+        <span>ArrowLeft</span> - <code>ArrowLeft.astro</code>
+      </li>
+      <li>
+        <CodeIcon />
+        <span>CodeIcon</span> - <code>CodeIcon.astro</code>
+      </li>
+      <li>
+        <FacebookIcon />
+        <span>FacebookIcon</span> - <code>FacebookIcon.astro</code>
+      </li>
+      <li>
+        <FlagIcon />
+        <span>FlagIcon</span> - <code>FlagIcon.astro</code>
+      </li>
+      <li>
+        <GitHubIcon />
+        <span>GitHubIcon</span> - <code>GitHubIcon.astro</code>
+      </li>
+      <li>
+        <InstagramIcon />
+        <span>InstagramIcon</span> - <code>InstagramIcon.astro</code>
+      </li>
+      <li>
+        <MailIcon />
+        <span>MailIcon</span> - <code>MailIcon.astro</code>
+      </li>
+      <li>
+        <MaintenanceIcon />
+        <span>MaintenanceIcon</span> - <code>MaintenanceIcon.astro</code>
+      </li>
+      <li>
+        <MenuIcon />
+        <span>MenuIcon</span> - <code>MenuIcon.astro</code>
+      </li>
+      <li>
+        <PlusIcon />
+        <span>PlusIcon</span> - <code>PlusIcon.astro</code>
+      </li>
+      <li>
+        <SearchIcon />
+        <span>SearchIcon</span> - <code>SearchIcon.astro</code>
+      </li>
+      <li>
+        <StoreIcon />
+        <span>StoreIcon</span> - <code>StoreIcon.astro</code>
+      </li>
+      <li>
+        <TeamIcon />
+        <span>TeamIcon</span> - <code>TeamIcon.astro</code>
+      </li>
+      <li>
+        <XIcon />
+        <span>XIcon</span> - <code>XIcon.astro</code>
+      </li>
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  li {
+    @apply flex items-center whitespace-pre;
+    svg {
+      @apply size-6 mr-2;
+    }
+    span {
+      @apply font-semibold underline;
+    }
+  }
+</style>

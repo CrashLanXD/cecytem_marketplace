@@ -1,0 +1,287 @@
+---
+import { Image } from "astro:assets";
+
+import Layout from "@/layouts/InfoLayout.astro";
+import Carousel from "@/components/do-not/Carousel.astro";
+
+import { PRODUCTS } from "@/constants/products";
+import { TEAM_MEMBERS } from "@/constants/team-members";
+---
+
+<Layout title="geist" description="Geist Design System">
+  <main class="mx-auto container max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+    { /* Disable animations */}
+    <div
+      class="flex items-center my-2 ps-4 border border-gray-200 rounded dark:border-gray-700"
+    >
+      <input
+        checked
+        id="disable-animation"
+        type="checkbox"
+        value=""
+        name="disable-animation"
+        class="size-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+      />
+      <label
+        for="disable-animation"
+        class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+        >Deshabilitar animaciones</label
+      >
+    </div>
+
+    { /* Title */}
+    <h2
+      class:list={[
+        "mb-4 max-w-screen-lg mx-auto",
+        "text-balance capitalize font-figtree font-medium",
+        "text-5xl lg:text-6xl text-center",
+        "bg-clip-text text-transparent bg-gradient-to-b",
+        "from-neutral-900 via-green-800 to-green-500",
+        "dark:from-white dark:to-green-500/90",
+        "animate-bounce mt-14",
+      ]}
+    >
+      Descubre nuestra creatividad y apoya el talento con productos hechos con
+      dedicación.
+    </h2>
+
+    { /* Video */}
+    <section
+      class="mx-auto max-w-screen-xl flex flex-col items-center justify-center"
+    >
+      <h2
+        class="text-5xl font-bold tracking-tight text-gray-900 dark:text-white"
+      >
+        productos de soldadura
+      </h2>
+      <p class="text-xl mt-4 text-gray-500 dark:text-gray-400">
+        En el video que estás a punto de ver, se presentan diversos productos de
+        soldadura que estamos explorando. Estos artículos podrían estar
+        disponibles para la venta en nuestra página en el futuro. Mantente
+        atento a nuestras actualizaciones para no perderte la oportunidad de
+        adquirir estos increíbles productos.
+      </p>
+      <iframe
+        class="!aspect-video w-full max-w-7xl h-auto mx-auto mt-2"
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/-Z42PYsGOgA?si=ghaWcKPPKkLKZ06V&autoplay=1&mute=1"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </section>
+
+    { /* Products */}
+    <section
+      class="grid gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-16 gridXL"
+    >
+      {
+        PRODUCTS.map(
+          ({ id, title, price, images, width, height, description }) => {
+            return (
+              <a id={`${id}`} href={`/store/${id}`} class="card">
+                <div class="inner rounded">
+                  <div class="front">
+                    <Image
+                      transition:name={`product-${id}`}
+                      src={images[0]}
+                      alt={title}
+                      class="aspect-square size-full object-cover rounded-full animate-spin [animation-duration:100s]"
+                      width={width ?? 400}
+                      height={height ?? 600}
+                    />
+                  </div>
+                  <div class="back bg-neutral-200 dark:bg-neutral-900 flex flex-col items-center justify-center px-2 rounded-md">
+                    <h5 class="text-xl font-bold">{title}</h5>
+                    <p class="text-sm">${price}</p>
+                    <p class="text-sm">{description}</p>
+                  </div>
+                </div>
+              </a>
+            );
+          }
+        )
+      }
+    </section>
+
+    { /* 3D Cube */}
+    <section
+      class="py-36 grid place-items-center justify-center items-center w-full"
+    >
+      <div class="container mx-auto">
+        <div class="cube">
+          <div class="front">
+            <p class="w-full px-2">
+              La programación es el proceso de crear instrucciones que una
+              computadora puede seguir para realizar tareas específicas. Se
+              utiliza para desarrollar software, aplicaciones y sistemas que
+              facilitan diversas actividades en la vida cotidiana.
+            </p>
+          </div>
+          <div class="back">
+            <p class="w-full px-2">
+              La programación es fundamental en el mundo digital actual. Permite
+              automatizar procesos, resolver problemas complejos y crear
+              soluciones innovadoras en áreas como la tecnología, la ciencia y
+              el arte, impulsando el avance de la sociedad.
+            </p>
+          </div>
+          <div class="right">
+            <Image
+              src="/images/programming.webp"
+              alt="An individual working on a computer, programming with code visible on the monitor."
+              class="h-full object-cover"
+              width={1280}
+              height={640}
+            />
+          </div>
+          <div class="left">
+            <Image
+              src="/images/code_2.webp"
+              alt="An individual working on a computer, programming with code visible on the monitor."
+              class="h-full object-cover"
+              width={1280}
+              height={640}
+            />
+          </div>
+          <div class="top"></div>
+          <div class="bottom"></div>
+        </div>
+      </div>
+    </section>
+
+    { /* Team Members */}
+    <section class="my-20">
+      <Carousel
+        quantity={TEAM_MEMBERS.length}
+        className="h-72 w-56 hover:![animation-play-state:paused]"
+        padding="py-28"
+        speed="15s"
+        z="16rem"
+      >
+        {
+          TEAM_MEMBERS.map(({ pfp, imgWidth, imgHeight, name }, idx) => (
+            <div style={`--position: ${idx + 1}`}>
+              <Image src={pfp} width={imgWidth} height={imgHeight} alt={name} />
+            </div>
+          ))
+        }
+      </Carousel>
+    </section>
+
+    { /* Just Don't */}
+    <section
+      class="mt-80 grid place-items-center justify-center items-center w-full"
+    >
+      <h6 class="text-7xl md:text-8xl lg:text-9xl font-bold just-dont">
+        Just Don't
+      </h6>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  :root:has(#disable-animation:checked) {
+    .card {
+      --duration: 0ms !important;
+    }
+    .animate-spin,
+    .animate-bounce,
+    .cube,
+    .slider {
+      animation-play-state: paused !important;
+    }
+  }
+
+  .card {
+    @apply w-full aspect-square;
+    perspective: 1000px;
+    --duration: 600ms;
+    .inner {
+      @apply size-full relative text-center;
+      transform-style: preserve-3d;
+      transition: transform var(--duration);
+      .front,
+      .back {
+        @apply size-full absolute items-center;
+        backface-visibility: hidden;
+      }
+      .front {
+        @apply overflow-hidden;
+      }
+      .back {
+        transform: rotateY(180deg);
+      }
+    }
+    &:hover .inner {
+      transform: rotateY(180deg);
+    }
+  }
+
+  .container {
+    perspective: 500px;
+  }
+
+  @property --anim-deg {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .cube {
+    @apply relative hover:[animation-play-state:paused] [transform-style:preserve-3d];
+    --size: 300px;
+    --z: calc(var(--size) / 2);
+    --anim-deg: 0deg;
+    width: var(--size);
+    height: var(--size);
+    animation: rotate-cube var(--s, 15s) infinite linear;
+
+    .front {
+      --y: 0deg;
+    }
+    .back {
+      --y: 180deg;
+    }
+    .left {
+      --y: 90deg;
+    }
+    .right {
+      --y: -90deg;
+    }
+    .top {
+      --x: 90deg;
+    }
+    .bottom {
+      --x: -90deg;
+    }
+
+    > * {
+      @apply content-center absolute size-full text-center;
+      transform: rotateY(var(--y, 0deg)) rotateX(var(--x, 0deg))
+        translateZ(var(--z));
+      backface-visibility: visible;
+      @apply bg-neutral-200 dark:bg-neutral-900 bg-opacity-95 text-sm;
+    }
+  }
+
+  @keyframes rotate-cube {
+    from {
+      transform: rotateX(0deg) rotateY(0deg);
+    }
+    to {
+      transform: rotateX(var(--anim-deg)) rotateY(360deg);
+    }
+  }
+
+  .just-dont {
+    transform: skewX(-20deg);
+    --shadow: light-dark(rgb(180, 22, 183), rgb(86, 184, 184));
+    text-shadow:
+      0 0 10px var(--shadow),
+      0 0 20px var(--shadow),
+      0 0 30px var(--shadow);
+  }
+</style>

@@ -11,7 +11,9 @@ import SocialItem from "@/components/SocialItem.astro";
 import TeamCard from "@/components/TeamCard.astro";
 import Typography from "@/components/Typography.astro";
 
+import { TEAM_MEMBERS } from "@/constants/team-members";
 import { PRODUCTS } from "@/constants/products";
+const clxd = TEAM_MEMBERS[0];
 const product = PRODUCTS[0];
 ---
 
@@ -69,16 +71,13 @@ const product = PRODUCTS[0];
       <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
         <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Team Card</h3>
         <TeamCard
-          title="team card"
-          role="role"
-          pfp="https://avatars.githubusercontent.com/u/133317864"
-          motto="motto"
-          socialMedia={{
-            x: "https://github/crashlanxd",
-            github: "https://github/crashlanxd",
-            facebook: "https://github/crashlanxd",
-            instagram: "https://github/crashlanxd",
-          }}
+          title={clxd.name}
+          role={clxd.role}
+          pfp={clxd.pfp}
+          motto={clxd.motto}
+          imgWidth={clxd.imgWidth}
+          imgHeight={clxd.imgHeight}
+          socialMedia={clxd.socialMedia}
         />
       </div>
       <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">

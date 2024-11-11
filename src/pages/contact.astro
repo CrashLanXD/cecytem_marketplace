@@ -25,6 +25,7 @@ const description =
       </div>
       <form
         action="https://formspree.io/f/mayrkjna"
+        id="contactForm"
         method="post"
         class:list={[
           "bg-white/40 dark:bg-black/40 backdrop-blur-md flex flex-col rounded-3xl relative",
@@ -49,9 +50,31 @@ const description =
         <label
           class="block mb-2 text-base font-medium text-neutral-900 dark:text-neutral-200"
         >
+          Tu nombre
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class:list={[
+              "block w-full rounded-2xl mt-2 p-2.5 outline-none",
+              "shadow-md dark:shadow-sm-light",
+              "border border-neutral-300 dark:border-neutral-600",
+              "text-neutral-900 dark:text-white dark:placeholder-neutral-400 text-sm",
+              "focus:ring-green-500 focus:border-green-500",
+              "bg-neutral-100 dark:bg-neutral-900",
+            ]}
+            placeholder="Jonh Doe"
+            required
+          />
+        </label>
+
+        <label
+          class="block mb-2 text-base font-medium text-neutral-900 dark:text-neutral-200"
+        >
           Tu correo electrónico
           <input
             type="email"
+            id="email"
             name="email"
             class:list={[
               "block w-full rounded-2xl mt-2 p-2.5 outline-none",
@@ -71,6 +94,7 @@ const description =
           >Tu mensaje
           <textarea
             name="message"
+            id="message"
             class:list={[
               "block w-full rounded-2xl mt-2 p-2.5 outline-none",
               "shadow-md dark:shadow-sm-light",
@@ -100,3 +124,41 @@ const description =
     </section>
   </main>
 </InfoLayout>
+
+<!-- <script>
+  import { $ } from "@/lib/dom-selector";
+
+  document.addEventListener("astro:page-load", () => {
+    const form = $("#contactForm") as HTMLFormElement;
+    form!.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        // @ts-ignore
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+      };
+
+      try {
+        const response = await fetch("http://localhost/NOT_DEV/contact.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(formData),
+        });
+
+        const result = await response.json();
+        alert(result.message || "Error en el servidor");
+        if (result.status === "success") {
+          form.submit();
+          form.reset();
+        }
+      } catch (error) {
+        alert("Error al enviar el formulario");
+        console.error(error);
+      }
+    });
+  });
+</script> -->
