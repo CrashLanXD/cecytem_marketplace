@@ -1,9 +1,9 @@
 ---
-import mysql from "mysql2/promise";
 import Layout from "@/layouts/InfoLayout.astro";
 import Typography from "@/components/Typography.astro";
 
-/*
+/** /
+import mysql from "mysql2/promise";
 const db = await mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
@@ -21,7 +21,7 @@ try {
 } catch (error) {
   console.error("Error al obtener los datos:", error);
 }
-*/
+/**/
 
 // Hello, World!
 ---
@@ -35,10 +35,13 @@ try {
     >
       Datos de la base de datos
     </Typography>
-    <!-- <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10"> -->
+    <!-- -- >
+    <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+    <!-- -->
     <div class="py-12 grid place-items-center gap-x-6 gap-y-10">
     <p class="text-center mx-auto text-6xl w-full">Oh no! Algo salió mal. Puedes intentarlo mas tarde.</p>
-      <!-- {
+      <!-- -- >
+      {
         data.map((item: any) => (
           <article class="block max-w-sm p-6 bg-white border border-neutral-200 rounded-lg shadow dark:bg-neutral-800 dark:border-neutral-700 mx-auto">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-neutral-900 dark:text-white">
@@ -50,7 +53,8 @@ try {
             </p>
           </article>
         ))
-      } -->
+      }
+      <!-- -->
     </div>
   </main>
 </Layout>

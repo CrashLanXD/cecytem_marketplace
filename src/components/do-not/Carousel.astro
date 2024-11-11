@@ -1,0 +1,56 @@
+---
+interface Props {
+  quantity: number;
+  className?: string;
+  padding?: string;
+  speed?: string;
+  z?: string;
+}
+
+const { quantity, className, padding, speed, z } = Astro.props;
+---
+
+<div
+  class:list={[
+    "carousel overflow-hidden relative",
+    "w-full min-h-fit content-center",
+    padding,
+  ]}
+>
+  <div
+    class:list={["slider mx-auto", className]}
+    style={`--quantity: ${quantity}; --z: ${z}; --speed: ${speed}`}
+  >
+    <slot />
+  </div>
+</div>
+
+<style>
+  .carousel {
+    .slider {
+      --z: 12rem;
+      transform-style: preserve-3d;
+      transform: perspective(1000px);
+      animation: carousel var(--speed, 20s) linear infinite;
+      > * {
+        @apply absolute inset-0;
+        transform: rotateY(
+            calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+          )
+          translateZ(var(--z, 12rem));
+        > * {
+          @apply size-full rounded-lg object-cover;
+        }
+      }
+    }
+  }
+
+  @keyframes carousel {
+    from {
+      transform: perspective(1000px) rotateY(0deg);
+    }
+    to {
+      transform: perspective(1000px) rotateY(360deg);
+    }
+  }
+</style>

@@ -1,6 +1,8 @@
 ---
 import InfoLayout from "@/layouts/InfoLayout.astro";
 import TeamCard from "@/components/TeamCard.astro";
+
+import { TEAM_MEMBERS } from "@/constants/team-members";
 ---
 
 <InfoLayout title="team">
@@ -38,79 +40,20 @@ import TeamCard from "@/components/TeamCard.astro";
       </div>
     </header>
     <main class="grid mt-4 gap-4 lg:mb-16 md:grid-cols-2">
-      <TeamCard
-        title="Eduardo Sanchez"
-        role="Web developer | UI/UX Designer"
-        pfp="/images/team/clxd.webp"
-        motto="If you want it all, why you halfway in?."
-        imgLoading="eager"
-        imgWidth={636}
-        imgHeight={636}
-        socialMedia={{
-          x: "https://x.com/CrashLanXD",
-          github: "https://github.com/CrashLanXD/",
-          facebook: "",
-          instagram: "",
-        }}
-      />
-      <TeamCard
-      title="David"
-      role="Backend developer"
-      pfp="/images/team/david.webp"
-      motto="The best way to predict the future is to invent it"
-      imgLoading="eager"
-      imgWidth={460}
-        imgHeight={460}
-      socialMedia={{
-        x: "",
-        github: "https://github.com/dax-g",
-        facebook: "",
-        instagram: "https://www.instagram.com/__david.gg__/",
-      }}
-      />
-      <TeamCard
-        title="Gamaliel"
-        role="collaborator"
-        pfp="/images/team/gama.webp"
-        motto="Irure labore ea exercitation deserunt duis pariatur cillum ea Lorem."
-        imgLoading="eager"
-        imgWidth={309}
-        imgHeight={309}
-        socialMedia={{
-          x: "",
-          github: "",
-          facebook: "",
-          instagram: "https://www.instagram.com/gsvs_gm",
-        }}
-      />
-      <TeamCard
-        title="Diego"
-        role="collaborator"
-        pfp="/images/team/diego.webp"
-        motto="La verdadera grandeza radica en la capacidad de levantarse despues de cada caida."
-        imgWidth={785}
-        imgHeight={785}
-        socialMedia={{
-          x: "",
-          github: "",
-          facebook: "https://www.facebook.com/diego.isais.773",
-          instagram: "",
-        }}
-      />
-      <TeamCard
-        title="Jocsan"
-        role="Collaborator"
-        pfp="/images/team/jocsan.webp"
-        motto="Lo que tú haces en un día, yo lo hago en 24 horas."
-        imgWidth={318}
-        imgHeight={318}
-        socialMedia={{
-          x: "",
-          github: "",
-          facebook: "",
-          instagram: "https://www.instagram.com/jocsan.aguirre/",
-        }}
-      />
+      {
+        TEAM_MEMBERS.map(({ name, role, pfp, motto, imgWidth, imgHeight, socialMedia }, idx) => (
+          <TeamCard
+            title={name}
+            role={role}
+            pfp={pfp}
+            motto={motto}
+            imgLoading={idx < 3 ? "eager" : "lazy"}
+            imgWidth={imgWidth}
+            imgHeight={imgHeight}
+            socialMedia={socialMedia}
+          />
+        ))
+      }
     </main>
   </section>
 </InfoLayout>
