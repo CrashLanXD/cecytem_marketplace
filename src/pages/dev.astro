@@ -1,155 +1,116 @@
 ---
 import InfoLayout from "@/layouts/InfoLayout.astro";
+import Typography from "@/components/Typography.astro";
 
 import { Image } from "astro:assets";
 ---
 
 <InfoLayout title="about">
-  <section
-    class="container max-w-screen-lg p-4 mx-auto rounded-2xl bg-neutral-300/30 dark:bg-neutral-900 bg-opacity-85 lg:py-12 lg:px-6 grid grid-cols-3 auto-rows-auto gap-4 [&>div]:bg-neutral-200 [&>div]:dark:bg-neutral-800 [&>div]:rounded-xl [&>div]:p-4"
+  <main
+    class="max-w-screen-lg mx-auto px-0 md:px-3 lg:px-6 py-4 flex flex-col gap-y-12"
   >
-    <div class="col-span-3 md:col-span-2 flex items-center justify-center">
-      <h2
-        class="font-effect font-bold font-mono text-5xl sm:text-6xl md:text-7xl text-center"
-      >
-        Programación
-      </h2>
-    </div>
-    <div
-      class="col-span-1 font-bold text-4xl font-mono text-neutral-800 dark:text-neutral-300 hidden md:flex justify-center items-center"
+    <Typography
+      as="h2"
+      variant="figtree-title"
+      maxWidth="w-full"
+      class="text-5xl lg:text-6xl w-full animate-fade-in-up animate-duration-slow text-center pt-2 pb-6 px-1"
+      >Carreras tecnicas para un futuro profesional</Typography
     >
-      <span class="text-end">Hello, World!</span>
-      <svg
-        class="relative size-28 top-9 -right-4"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-          d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path
-          d="M14 4l-4 16"></path></svg
-      >
-    </div>
-    <div
-      class:list={["rounded-xl col-span-3 md:col-span-1 md:row-span-2", "card"]}
-    >
-      <div class="inner">
-        <Image
-          src="/images/programming.webp"
-          alt="An individual working on a computer, programming with code visible on the monitor."
-          class="h-full object-cover"
-          loading="eager"
-          width={1280}
-          height={640}
-        />
-        <Image
-          src="/images/code_2.webp"
-          alt="An individual working on a computer, programming with code visible on the monitor."
-          class="h-full object-cover"
-          loading="eager"
-          width={1280}
-          height={640}
-        />
-      </div>
-    </div>
-    <div class="col-span-3 md:col-span-2">
-      <p class="text-xl text-pretty">
-        La carrera de Técnico en Programación brinda a los estudiantes las
-        habilidades necesarias para analizar, diseñar, desarrollar, instalar y
-        mantener software de aplicación, respondiendo a las necesidades y
-        requerimientos de los usuarios.
-      </p>
-    </div>
-    <div class="col-span-3 md:col-span-2">
-      <p class="text-xl text-pretty">
-        Estas competencias les permiten a los graduados integrarse al mundo
-        laboral o emprender proyectos independientes, adaptándose a las demandas
-        del mercado y contribuyendo al desarrollo de su entorno social. <a href="/video" class="text-blue-500 hover:underline no-underline">¿QUIERES SABER MÁS?</a>
-      </p>
-    </div>
-    <div class="col-span-3 flex items-center justify-center">
-      <h2
-        class="font-effect font-bold font-mono text-5xl sm:text-6xl md:text-7xl text-center"
-      >
-        Mantenimiento Industrial
-      </h2>
-    </div>
-    <div class="col-span-3 md:col-span-1 md:row-span-2">
-      <p class="text-xl text-pretty">
-        La carrera de Técnico en Mantenimiento Industrial prepara a los
-        estudiantes para realizar una variedad de actividades, desde brindar
-        mantenimiento a instalaciones eléctricas hasta fabricar estructuras
-        metálicas.
-      </p>
-    </div>
-    <div class="col-span-3 md:col-span-1 md:row-span-2">
-      <p class="text-xl text-pretty">
-        Con competencias en ajuste de banco, interpretación de planos y manejo
-        de herramientas y maquinaria especializada, los graduados están
-        preparados para enfrentar los desafíos del mundo laboral en áreas como
-        soldadura, control y automatización, refrigeración y aire acondicionado.
-      </p>
-    </div>
-    <div
+
+    <article
       class:list={[
-        "rounded-xl col-span-3 row-span-1 md:col-span-1 md:row-span-2",
-        "card",
+        "bg-white/40 dark:bg-black/40 backdrop-blur-md rounded-3xl",
+        "border border-black/15 dark:border-white/15",
+        "px-4 md:px-6 py-7 lg:mx-0 mx-auto gap-y-7",
+        "animate-fade-in-up animate-duration-slower animate-delay-200",
+        "prose prose-lg lg:prose-xl prose-neutral dark:prose-invert flex flex-col",
       ]}
     >
-      <div class="inner">
-        <Image
-          src="/images/industrial_maintenance.webp"
-          alt="An industrious worker in blue overalls operating machinery in a workshop."
-          class="h-full object-cover object-left"
-          width={1900}
-          height={1600}
-        />
-        <Image
-          src="/images/maintenance_2.webp"
-          alt="An individual working on a computer, programming with code visible on the monitor."
-          class="h-full object-cover"
-          width={1280}
-          height={640}
-        />
+      <div class="animate-fade-in-up animate-duration-slow">
+        <Typography
+          as="h2"
+          variant="figtree-title"
+          class="text-4xl lg:text-5xl pb-2 not-prose">Programación</Typography
+        >
       </div>
-    </div>
-  </section>
+      <Image
+        src="/images/programming.webp"
+        alt="An individual working on a computer, programming with code visible on the monitor."
+        class="object-cover rounded-2xl"
+        loading="eager"
+        width={1280}
+        height={640}
+      />
+      <p>
+        La carrera de <strong>Técnico en Programación</strong> se centra en desarrollar
+        competencias esenciales para la creación y mantenimiento de software. Los
+        estudiantes adquieren habilidades prácticas en el análisis de problemas y
+        el diseño de soluciones mediante programación, enfocándose en la construcción
+        de aplicaciones eficientes y funcionales.
+      </p>
+      <p>
+        El plan de estudios incluye formación en lenguajes de programación,
+        estructuras de datos, y principios de diseño de software, permitiendo a
+        los estudiantes resolver problemas y adaptar soluciones a distintas
+        necesidades. Además, esta carrera fomenta la capacidad de trabajar en
+        equipo y manejar proyectos desde la concepción hasta la implementación
+        final.
+      </p>
+      <p>
+        La formación en programación abre la puerta a diversas oportunidades
+        laborales en áreas como desarrollo web, aplicaciones móviles, y sistemas
+        de bases de datos. Los egresados pueden optar por integrarse en empresas
+        tecnológicas o emprender proyectos independientes, contribuyendo con sus
+        conocimientos al entorno digital en constante crecimiento.
+      </p>
+    </article>
+    <article
+      class:list={[
+        "bg-white/40 dark:bg-black/40 backdrop-blur-md rounded-3xl",
+        "border border-black/15 dark:border-white/15",
+        "px-4 md:px-6 py-7 lg:mx-0 mx-auto self-end",
+        "animate-fade-in-up animate-duration-slower animate-delay-200",
+        "prose prose-lg lg:prose-xl prose-neutral dark:prose-invert flex flex-col",
+      ]}
+    >
+      <div class="animate-fade-in-up animate-duration-slow">
+        <Typography
+          as="h2"
+          variant="figtree-title"
+          class="text-4xl lg:text-5xl pb-2 not-prose"
+          >Mantenimiento Industrial</Typography
+        >
+      </div>
+      <Image
+        src="/images/maintenance_2.webp"
+        alt="An individual working on a computer, programming with code visible on the monitor."
+        class="object-cover rounded-2xl"
+        width={1280}
+        height={640}
+      />
+      <p>
+        La carrera de <strong>Técnico en Mantenimiento Industrial</strong> prepara
+        a los estudiantes para llevar a cabo tareas clave en el funcionamiento y
+        la optimización de instalaciones y maquinaria industrial. Este programa abarca
+        desde las técnicas de ajuste de banco y lectura de planos hasta habilidades
+        avanzadas en soldadura, control y automatización.
+      </p>
+      <p>
+        Los estudiantes reciben formación en el uso de herramientas y maquinaria
+        especializada, adquiriendo competencias para diagnosticar y resolver
+        problemas en equipos mecánicos, eléctricos y electrónicos. Además, se
+        desarrollan destrezas en la fabricación y el ensamblaje de estructuras
+        metálicas, así como en el mantenimiento preventivo y correctivo de
+        sistemas industriales.
+      </p>
+      <p>
+        Esta carrera ofrece una base sólida para desempeñarse en sectores como
+        la manufactura, la energía, y la construcción, abriendo posibilidades
+        para trabajar en áreas como la refrigeración, el aire acondicionado y el
+        manejo de maquinaria pesada. Los egresados están capacitados para
+        mejorar la eficiencia de los procesos industriales, contribuyendo a la
+        innovación y sostenibilidad en el sector productivo.
+      </p>
+    </article>
+  </main>
 </InfoLayout>
-
-<style>
-  .card {
-    perspective: 1000px;
-
-    .inner {
-      @apply size-full;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 600ms;
-      backface-visibility: hidden;
-    }
-
-    &:hover .inner {
-      transform: rotateY(180deg);
-    }
-
-    img {
-      @apply absolute rounded-xl;
-      backface-visibility: hidden;
-      max-width: 100%;
-      max-height: 100%;
-      overflow: hidden;
-    }
-
-    img:first-child {
-    }
-
-    img:last-child {
-      transform: rotateY(180deg);
-    }
-  }
-</style>

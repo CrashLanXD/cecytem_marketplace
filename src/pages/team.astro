@@ -1,59 +1,38 @@
 ---
 import InfoLayout from "@/layouts/InfoLayout.astro";
 import TeamCard from "@/components/TeamCard.astro";
+import Typography from "@/components/Typography.astro";
 
 import { TEAM_MEMBERS } from "@/constants/team-members";
 ---
 
 <InfoLayout title="team">
-  <section
-    class="container p-4 mx-auto rounded-2xl bg-neutral-300/30 dark:bg-neutral-900 bg-opacity-85 lg:py-12 lg:px-6"
-  >
-    <header
-      class="grid grid-cols-1 md:grid-cols-2 auto-rows-auto gap-4 [&>div]:bg-neutral-200 [&>div]:dark:bg-neutral-800 [&>div]:rounded-xl [&>div]:px-7 [&>div]:p-5"
-    >
-      <div class="md:col-span-2 row-start-1">
-        <h2
-          class="text-3xl md:text-4xl tracking-wide font-extrabold text-neutral-900 dark:text-neutral-200 text-balance"
-        >
-          Compromiso con la Excelencia
-        </h2>
-        <p class="text-pretty">
-          Estamos dedicados a la excelencia e innovación, aplicando lo que
-          aprendemos para crear productos de alta calidad que reflejan nuestra
-          creatividad y dedicación.
-        </p>
+  <main class="max-w-screen-xl mx-auto px-6 py-4">
+    <section class="flex flex-col gap-y-6 gap-x-8 mt-16">
+      <div class="animate-fade-in-up animate-duration-slow">
+        <Typography
+          as="h2"
+          variant="figtree-title"
+          class="text-5xl lg:text-6xl"
+        >Nuestro equipo</Typography>
+        <p class="text-neutral-700 dark:text-neutral-300 max-w-lg text-balance">Estamos dedicados con la excelencia e innovación, aplicando lo que aprendemos para crear productos de alta calidad que reflejan nuestra creatividad y dedicación.</p>
       </div>
-      <div class="row-start-2">
-        <p class="text-pretty">
-          Cada miembro del equipo es crucial para nuestro éxito. Desde el diseño
-          web hasta el mantenimiento de productos, trabajamos juntos para
-          ofrecerte la mejor experiencia.
-        </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2 animate-fade-in-up animate-duration-slower animate-delay-250">
+        {
+          TEAM_MEMBERS.map(({ name, role, secondaryPfp, motto, imgWidth, imgHeight, socialMedia }, idx) => (
+            <TeamCard
+              name={name}
+              role={role}
+              pfp={secondaryPfp}
+              motto={motto}
+              imgLoading={idx < 3 ? "eager" : "lazy"}
+              imgWidth={imgWidth}
+              imgHeight={imgHeight}
+              socialMedia={socialMedia}
+            />
+          ))
+        }
       </div>
-      <div class="row-start-3 md:row-start-2 flex justify-center items-center">
-        <h2
-          class="text-5xl text-center tracking-wide font-extrabold font-effect"
-        >
-          Nuestro equipo
-        </h2>
-      </div>
-    </header>
-    <main class="grid mt-4 gap-4 lg:mb-16 md:grid-cols-2">
-      {
-        TEAM_MEMBERS.map(({ name, role, pfp, motto, imgWidth, imgHeight, socialMedia }, idx) => (
-          <TeamCard
-            title={name}
-            role={role}
-            pfp={pfp}
-            motto={motto}
-            imgLoading={idx < 3 ? "eager" : "lazy"}
-            imgWidth={imgWidth}
-            imgHeight={imgHeight}
-            socialMedia={socialMedia}
-          />
-        ))
-      }
-    </main>
-  </section>
-</InfoLayout>
+    </section>
+  </main>
+  </InfoLayout>

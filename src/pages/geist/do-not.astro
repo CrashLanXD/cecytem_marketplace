@@ -38,7 +38,7 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
         "bg-clip-text text-transparent bg-gradient-to-b",
         "from-neutral-900 via-green-800 to-green-500",
         "dark:from-white dark:to-green-500/90",
-        "animate-bounce mt-14",
+        "animate-jiggle animate-iteration-count-infinite animate-duration-slower mt-14",
       ]}
     >
       Descubre nuestra creatividad y apoya el talento con productos hechos con
@@ -88,7 +88,7 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
                       transition:name={`product-${id}`}
                       src={images[0]}
                       alt={title}
-                      class="aspect-square size-full object-cover rounded-full animate-spin [animation-duration:100s]"
+                      class="aspect-square size-full object-cover rounded-full animate-rotate-360 [animation-duration:100s]"
                       width={width ?? 400}
                       height={height ?? 600}
                     />
@@ -162,9 +162,10 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
         z="16rem"
       >
         {
-          TEAM_MEMBERS.map(({ pfp, imgWidth, imgHeight, name }, idx) => (
-            <div style={`--position: ${idx + 1}`}>
-              <Image src={pfp} width={imgWidth} height={imgHeight} alt={name} />
+          TEAM_MEMBERS.map(({ secondaryPfp, imgWidth, imgHeight, name }, idx) => (
+            <div style={`--position: ${idx + 1}`} class="relative">
+              <Image src={secondaryPfp} width={imgWidth} height={imgHeight} alt={name} />
+              <div class:list={["absolute text-white mix-blend-difference text-2xl -bottom-2 w-full h-6 text-center"]}>{name}</div>
             </div>
           ))
         }
@@ -187,8 +188,8 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
     .card {
       --duration: 0ms !important;
     }
-    .animate-spin,
-    .animate-bounce,
+    .animate-rotate-360,
+    .animate-jiggle,
     .cube,
     .slider {
       animation-play-state: paused !important;

@@ -70,15 +70,17 @@ const product = PRODUCTS[0];
       </div>
       <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
         <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Team Card</h3>
-        <TeamCard
-          title={clxd.name}
-          role={clxd.role}
-          pfp={clxd.pfp}
-          motto={clxd.motto}
-          imgWidth={clxd.imgWidth}
-          imgHeight={clxd.imgHeight}
-          socialMedia={clxd.socialMedia}
-        />
+        <div class="max-w-sm">
+          <TeamCard
+            name={clxd.name}
+            role={clxd.role}
+            pfp={clxd.secondaryPfp}
+            motto={clxd.motto}
+            imgWidth={clxd.imgWidth}
+            imgHeight={clxd.imgHeight}
+            socialMedia={clxd.socialMedia}
+          />
+        </div>
       </div>
       <div class="flex flex-col lg:flex-row gap-x-4 items-center justify-center lg:justify-between">
         <h3 class="text-neutral-800 dark:text-neutral-200 text-2xl min-w-20 h-full">Typography</h3>

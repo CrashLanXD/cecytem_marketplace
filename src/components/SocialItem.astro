@@ -6,14 +6,27 @@ interface Props {
 const { href } = Astro.props;
 ---
 
-<li>
+<li class="relative flex items-center justify-center transition-all">
   <a
     href={href}
     aria-label="enlace a redes sociales"
     target="_blank"
     rel="noopener noreferrer"
-    class="text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+    class="text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-200 p-2.5 transition-colors size-full"
   >
     <slot />
   </a>
 </li>
+
+<style>
+  li {
+    --rotate-x: 0deg;
+    &:hover { &::before { --rotate-x: 180deg; } }
+    &::before {
+      @apply content-[''] absolute size-full bg-gradient-to-bl rounded-md -z-10 transition-transform duration-300;
+      @apply from-neutral-100/50 to-stone-300/50;
+      @apply dark:from-black/50 dark:to-stone-900/40;
+      transform: rotateX(var(--rotate-x, 0deg));
+    }
+  }
+</style>

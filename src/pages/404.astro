@@ -6,7 +6,7 @@ import Typography from "@/components/Typography.astro";
 ---
 
 <Layout title="404 Not Found">
-  <main class="w-full overflow-x-clip">
+  <main class="w-full overflow-x-clip animate-blurred-fade-in">
     <div
       class:list={[
         "min-h-[90dvh] flex flex-col lg:flex-row items-center justify-center",
@@ -24,7 +24,7 @@ import Typography from "@/components/Typography.astro";
         height={270}
       />
       <div class="flex flex-col justify-center gap-y-2 p-3 relative">
-        <Typography as="h2" variant="figtree-title" class="pb-2">
+        <Typography as="h2" variant="figtree-title" class="pb-2 text-4xl lg:text-5xl">
           <span class="text-6xl lg:text-9xl">Error 404</span><br />Parece que
           algo salió mal.
         </Typography>
