@@ -4,13 +4,14 @@ import type { HTMLTag, Polymorphic } from "astro/types";
 type Props<Tag extends HTMLTag> = Polymorphic<{
   as: Tag;
   variant: keyof typeof variantClasses;
+  maxWidth?: string;
 }>;
 
-const { as: Tag, class: className, variant, ...props } = Astro.props;
+const { as: Tag, class: className, variant, maxWidth, ...props } = Astro.props;
 
 const variantClasses: { [key: string]: string } = {
   h1: "",
-  "figtree-title": "text-gradient font-figtree text-balance text-4xl lg:text-5xl max-w-screen-sm",
+  "figtree-title": `text-gradient font-figtree text-balance ${maxWidth ?? "max-w-screen-sm"}`,
 };
 
 const classes = [

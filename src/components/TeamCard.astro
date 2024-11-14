@@ -8,7 +8,7 @@ import SocialItem from "@/components/SocialItem.astro";
 import { Image } from "astro:assets";
 
 interface Props {
-  title: string;
+  name: string;
   role: string;
   pfp: string;
   motto: string;
@@ -21,31 +21,51 @@ interface Props {
     facebook: string;
     instagram: string;
   };
+  className?: string;
 }
 
-const { title, role, pfp, motto, socialMedia, imgWidth, imgHeight, imgLoading } = Astro.props;
+const { name, role, pfp, motto, socialMedia, imgWidth, imgHeight, imgLoading, className } = Astro.props;
 ---
 
 <div
-  class={`items-center bg-neutral-200 rounded-lg shadow sm:flex dark:bg-neutral-800 dark:border-neutral-700 ${title === 'Eduardo Sanchez' ? 'md:col-span-2' : '' }`}
+  class:list={[
+    "bg-white/40 dark:bg-black/40 backdrop-blur-md flex flex-col rounded-3xl relative",
+    "border border-black/15 dark:border-white/15",
+    "items-center overflow-hidden",
+    className
+  ]}
 >
+  <div
+    aria-hidden="true"
+    class:list={[
+      "absolute z-10 left-0 lg:left-1/2 bottom-[-20%]",
+      "h-[358px] w-[516px]",
+      "rotate-45 lg:rotate-[-19deg]",
+      "blur-3xl rounded-full",
+      "opacity-5 lg:opacity-10 dark:opacity-5",
+      "bg-gradient-to-r from-green-500 to-emerald-400",
+      "dark:from-green-400 dark:to-yellow-200",
+      "select-none pointer-events-none touch-none",
+    ]}
+  >
+  </div>
   <Image
-    class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg aspect-square md:max-w-56 min-w-44"
+    class="w-full rounded-lg aspect-square object-cover"
     src={pfp}
-    alt={`${title}`}
+    alt={`${name}`}
     loading={imgLoading}
     width={imgWidth ?? 200}
     height={imgHeight ?? 200}
   />
 
-  <div class="p-5">
+  <div class="px-5 pt-3 pb-7 content-start size-full flex flex-col justify-between">
     <h3
-      class="text-xl font-bold tracking-tight text-neutral-900 dark:text-white"
+      class="text-xl font-bold tracking-tight text-neutral-800 dark:text-neutral-100"
     >
-      {title}
+      {name}
     </h3>
-    <span class="text-neutral-500 dark:text-neutral-400">{role}</span>
-    <p class="mt-3 mb-4 font-light text-neutral-500 dark:text-neutral-400">
+    <span class="text-neutral-500 dark:text-neutral-500">{role}</span>
+    <p class="mt-3 mb-4 font-light text-neutral-600 dark:text-neutral-400">
       {motto}
     </p>
     <ul class="flex space-x-4 sm:mt-0 items-center">
