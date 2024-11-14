@@ -24,6 +24,14 @@ description ??= "";
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <script>
+      document.addEventListener("astro:after-swap", () => {
+        (function() {
+        const theme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        })();
+      });
+    </script>
   </head>
   <body
     class:list={[
@@ -59,7 +67,10 @@ description ??= "";
         src: url("/fonts/InterVariable.woff2") format("woff2");
       }
       :root {
-        color-scheme: light dark;
+        color-scheme: light;
+      }
+      :root:where(.dark, .dark *) {
+        color-scheme: dark;
       }
       html {
         font-family: InterVariable, system-ui, sans-serif;
