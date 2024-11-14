@@ -21,6 +21,14 @@ const description = "";
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <ViewTransitions />
+    <script>
+      document.addEventListener("astro:after-swap", () => {
+        (function() {
+        const theme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.classList.toggle("dark", theme === "dark");
+        })();
+      });
+    </script>
   </head>
   <body class="bg-neutral-100 dark:bg-neutral-950">
     <Header />
@@ -30,7 +38,10 @@ const description = "";
 
 <style is:global>
   :root {
-    color-scheme: light dark;
+    color-scheme: light;
+  }
+  :root:where(.dark, .dark *) {
+    color-scheme: dark;
   }
   html {
     font-family: sans-serif, system-ui;

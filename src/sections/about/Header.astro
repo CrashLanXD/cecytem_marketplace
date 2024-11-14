@@ -7,6 +7,7 @@ import MailIcon from "@/icons/MailIcon.astro";
 
 import PlusIcon from "@/icons/PlusIcon.astro";
 import MenuIcon from "@/icons/MenuIcon.astro";
+import ThemeIcon from "@/components/ThemeIcon.astro";
 
 const links = [
   { href: "/", name: "Inicio", icon: FlagIcon },
@@ -19,12 +20,15 @@ const links = [
 
 <nav
   class="block px-8 py-4 w-full max-w-full bg-transparent text-neutral-900 dark:text-neutral-50"
-  transition:name="about-nav" transition:persist transition:animate="none"
+  transition:name="about-nav"
+  transition:persist
+  transition:animate="none"
 >
-  <div class="container mx-auto flex items-center justify-between">
+  <div class="container mx-auto flex items-center justify-between h-9">
     <p class="block antialiased leading-relaxed uppercase tracking-widest">
       cecytem marketplace
     </p>
+    <ThemeIcon fillIcon={false} className="bg-transparent transition-colors hover:bg-neutral-950/10 hover:dark:bg-neutral-300/10 rounded-md h-full p-2 *:size-full ml-2 mr-auto" />
     <ul
       id="nav-menu"
       class="ml-10 hidden items-center gap-6 lg:flex [&>li]:px-2 [&>li]:py-1 [&>li]:rounded-md"
@@ -96,9 +100,7 @@ const links = [
             class="group text-5xl inline-flex items-center gap-2 py-4 font-medium transition-transform"
           >
             <IconComponent class="size-12 select-none" />
-            <span class="inline-block group-hover:underline">
-              {name}
-            </span>
+            <span class="inline-block group-hover:underline">{name}</span>
           </a>
         </li>
       ))
@@ -181,6 +183,8 @@ const links = [
     const showBtn = $("#showBtn") as HTMLButtonElement;
     const closeBtn = $("#closeBtn") as HTMLButtonElement;
     const dialog = $("#mobileMenu") as HTMLDialogElement;
+
+    if (!showBtn || !closeBtn || !dialog) return;
 
     showBtn.addEventListener("click", () => {
       dialog.showModal();
