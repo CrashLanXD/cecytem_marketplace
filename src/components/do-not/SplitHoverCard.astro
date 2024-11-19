@@ -1,0 +1,112 @@
+---
+interface Props {
+  variant: "multiples" | "steps" | "diagonal";
+  bgImage: string | undefined;
+  quantity: number;
+  className?: string;
+  width?: string;
+  height?: string;
+}
+
+const { variant, quantity, bgImage, className, width, height } = Astro.props as Props;
+
+const stepsZ = (i: number) => i + 1;
+const multiplesZ = (i: number) => (i % 2 === 0 ? 2 : 1);
+---
+
+<div
+  class:list={[
+    variant,
+    "split-hover-card",
+    "relative overflow-hidden",
+    className,
+  ]}
+  style={`--quantity: ${quantity}; --bg-image: url(${bgImage}); --width: ${width ?? "100%"}; --height: ${height};`}
+>
+  {
+    Array.from({ length: quantity }, (_, i) => i + 1).map((i) => (
+      <span
+        class="size-full absolute transition-transform duration-500"
+        style={`--i: ${i}; ${variant === "steps" ? `--duration: ${i * 120}ms` : ""}; --z: ${variant === "steps" ? stepsZ(i) : multiplesZ(i)};`}
+      />
+    ))
+  }
+  <div class="size-full content-center">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .split-hover-card {
+    width: var(--width);
+    height: var(--height);
+    span {
+      z-index: var(--z, 1);
+      transform: translateY(var(--y)) translateX(var(--x));
+      --tw-gradient-stops: #fef08a, #a3e635, #16a34a;
+      background-image: var(--bg-image, radial-gradient(in oklch ellipse at top left, var(--tw-gradient-stops)));
+      background-size: cover;
+    }
+  }
+
+  .split-hover-card.multiples {
+    span {
+      --w: calc(var(--width) / var(--quantity));
+      --o: calc(var(--w) * (var(--i) - 1));
+      clip-path: polygon(
+        var(--x1) var(--y1),
+        var(--x2) var(--y2),
+        var(--x3) var(--y3),
+        var(--x4) var(--y4)
+      );
+      --y1: 0; --y2: 0; --y3: 100%; --y4: 100%;
+      --x1: var(--o); --x2: calc((var(--o) + var(--w)) * 1.01); --x3: var(--x2); --x4: var(--x1);
+    }
+    &:hover {
+      span:nth-child(odd)  { --y: -100%; --x: 0; }
+      span:nth-child(even) { --y: 100%;  --x: 0; }
+    }
+  }
+
+  .split-hover-card.steps {
+    span {
+      --duration: 300ms;
+      transition-delay: var(--delay, 0ms);
+      --w: calc(var(--width) / var(--quantity));
+      --o: calc(var(--w) * (var(--i) - 1));
+      clip-path: polygon(
+        var(--x1) var(--y1),
+        var(--x2) var(--y2),
+        var(--x3) var(--y3),
+        var(--x4) var(--y4)
+      );
+      --y1: 0; --y2: 0; --y3: 100%; --y4: 100%;
+      --x1: var(--o); --x2: calc((var(--o) + var(--w)) * 1.01); --x3: var(--x2); --x4: var(--x1);
+    }
+    &:hover {
+      span {
+        --y: -100%; --x: 0;
+        transition-delay: var(--delay, 0ms);
+      }
+    }
+  }
+
+  .split-hover-card.diagonal {
+    --duration: 500ms;
+    span {
+      --w: var(--width);
+      clip-path: polygon(
+        var(--x1) var(--y1),
+        var(--x2) var(--y2),
+        var(--x3) var(--y3)
+      );
+      --y1: 0; --y2: 0; --y3: 100%;
+    }
+    span:nth-child(1) { --x1: 0; --x2: var(--w); --x3: 0; }
+    span:nth-child(2) { --x1: var(--w); --x2: var(--w); --y2: 100%; --x3: 0; }
+    &:hover {
+      span:nth-child(1) { --y: -100%; --x: -50%; }
+      span:nth-child(2) { --y: 100%;  --x: 50%; }
+    }
+  }
+</style>

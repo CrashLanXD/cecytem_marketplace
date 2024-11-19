@@ -3,13 +3,14 @@ import { Image } from "astro:assets";
 
 import Layout from "@/layouts/InfoLayout.astro";
 import Carousel from "@/components/do-not/Carousel.astro";
+import SplitHoverCard from "@/components/do-not/SplitHoverCard.astro";
 
 import { PRODUCTS } from "@/constants/products";
 import { TEAM_MEMBERS } from "@/constants/team-members";
 ---
 
-<Layout title="geist" description="Geist Design System">
-  <main class="mx-auto container max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+<Layout title="Geist" description="Geist Design System">
+  <main class="mx-auto container w-[100vw] max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
     { /* Disable animations */}
     <div
       class="flex items-center my-2 ps-4 border border-gray-200 rounded dark:border-gray-700"
@@ -79,8 +80,8 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
     >
       {
         PRODUCTS.map(
-          ({ id, title, price, images, width, height, description }) => {
-            return (
+          ({ id, title, price, images, width, height, description }, idx) => {
+            return idx < 9 ? (
               <a id={`${id}`} href={`/store/${id}`} class="card">
                 <div class="inner rounded">
                   <div class="front">
@@ -100,7 +101,15 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
                   </div>
                 </div>
               </a>
-            );
+            ) : idx < 18 && (
+              <SplitHoverCard variant="multiples" quantity={6} bgImage={images[0]} width="100%" className="h-auto aspect-square rounded-lg">
+                <a id={`${id}`} href={`/store/${id}`} class="flex flex-col text-center items-center justify-center p-6 size-full">
+                    <h5 class="text-xl font-bold">{title}</h5>
+                    <p class="text-sm">${price}</p>
+                    <p class="text-sm">{description}</p>
+                  </a>
+              </SplitHoverCard>
+            )
           }
         )
       }
@@ -108,7 +117,7 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
 
     { /* 3D Cube */}
     <section
-      class="py-36 grid place-items-center justify-center items-center w-full"
+      class="py-36 grid place-items-center justify-center items-center w-full max-w-full overflow-x-hidden"
     >
       <div class="container mx-auto">
         <div class="cube">
@@ -153,7 +162,7 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
     </section>
 
     { /* Team Members */}
-    <section class="my-20">
+    <section class="my-20 max-w-full overflow-x-hidden">
       <Carousel
         quantity={TEAM_MEMBERS.length}
         className="h-72 w-56 hover:![animation-play-state:paused]"
@@ -260,7 +269,7 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
     }
 
     > * {
-      @apply content-center absolute size-full text-center;
+      @apply content-center absolute size-full text-center rounded-md;
       transform: rotateY(var(--y, 0deg)) rotateX(var(--x, 0deg))
         translateZ(var(--z));
       backface-visibility: visible;
