@@ -29,37 +29,26 @@ const { className, fillIcon } = Astro.props;
 <script>
   import { $ } from "@/lib/dom-selector";
   document.addEventListener('astro:page-load', () => {
-    const theme = (() => {
-      if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-        return localStorage.getItem("theme");
+    const applyTheme = (theme: string) => {
+      const element = document.documentElement;
+      if (theme === "dark") {
+        element.classList.add("dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        element.classList.remove("dark");
+        window.localStorage.setItem("theme", "light");
       }
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
-      }
-      return "light";
-    })();
-
-    if (theme === "light") {
-      document.documentElement.classList.remove("dark");
-    } else {
-      document.documentElement.classList.add("dark");
     }
 
-    window.localStorage.setItem("theme", theme ?? "");
-
     const handleToggleClick = () => {
-      const element = document.documentElement;
-      if (!(document as any).startViewTransition) {
-        element.classList.toggle("dark");
-      } else {
-        (document as any).startViewTransition(() => element.classList.toggle("dark"));
-      }
-      const isDark = element.classList.contains("dark");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    };
+      console.log("click");
+      const theme = localStorage.getItem("theme");
+      const newTheme = theme === "dark" ? "light" : "dark";
+      if (!(document as any).startViewTransition) applyTheme(newTheme);
+      else (document as any).startViewTransition(() => applyTheme(newTheme));
+    }
 
     const themeToggle = $("#themeToggle");
-    if (!themeToggle) return;
-    themeToggle.onclick = handleToggleClick;
+    if (themeToggle) themeToggle.onclick = handleToggleClick;
   });
 </script>

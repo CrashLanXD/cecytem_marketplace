@@ -1,6 +1,6 @@
 ---
-import CartFlyout from "@/components/CartFlyout.jsx";
-import CartFlyoutToggle from "@/components/CartFlyoutToggle.jsx";
+import CartFlyout from "@/components/store/CartFlyout.jsx";
+import CartFlyoutToggle, { CloseIcon } from "@/components/store/CartFlyoutToggle.jsx";
 import ThemeIcon from "@/components/ThemeIcon.astro";
 ---
 
@@ -48,6 +48,7 @@ import ThemeIcon from "@/components/ThemeIcon.astro";
         client:load
         transition:name="cart-toggle"
         transition:persist
+        closeIcon={false}
       />
     </nav>
   </div>

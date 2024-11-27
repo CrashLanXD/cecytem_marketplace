@@ -101,8 +101,8 @@ import { TEAM_MEMBERS } from "@/constants/team-members";
                   </div>
                 </div>
               </a>
-            ) : idx < 18 && (
-              <SplitHoverCard variant="multiples" quantity={6} bgImage={images[0]} width="100%" className="h-auto aspect-square rounded-lg">
+            ) : idx < 27 && (
+              <SplitHoverCard variant="steps" quantity={5} bgImage={images[0]} width="100%" className="h-auto aspect-square rounded-lg">
                 <a id={`${id}`} href={`/store/${id}`} class="flex flex-col text-center items-center justify-center p-6 size-full">
                     <h5 class="text-xl font-bold">{title}</h5>
                     <p class="text-sm">${price}</p>

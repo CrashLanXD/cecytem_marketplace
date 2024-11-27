@@ -26,8 +26,8 @@ const multiplesZ = (i: number) => (i % 2 === 0 ? 2 : 1);
   {
     Array.from({ length: quantity }, (_, i) => i + 1).map((i) => (
       <span
-        class="size-full absolute transition-transform duration-500"
-        style={`--i: ${i}; ${variant === "steps" ? `--duration: ${i * 120}ms` : ""}; --z: ${variant === "steps" ? stepsZ(i) : multiplesZ(i)};`}
+        class="size-full absolute transition-transform duration-500 select-none pointer-events-none touch-none"
+        style={`--i: ${i}; ${variant === "steps" ? `--delay: ${i * 60}ms` : ""}; --z: ${variant === "steps" ? stepsZ(i) : multiplesZ(i)};`}
       />
     ))
   }

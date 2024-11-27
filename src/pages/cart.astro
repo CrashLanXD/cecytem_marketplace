@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/StoreLayout.astro";
+import Footer from "@/sections/store/Footer.astro";
+import CartComponent from "@/components/store/CartComponent.jsx";
+---
+
+<Layout title="CECYMARKET">
+  <main class="flex flex-col max-w-screen-xl mx-auto px-5 mt-28">
+    <h1 class="text-3xl font-bold w-full">Tu carrito</h1>
+    <CartComponent client:load />
+  </main>
+  <Footer />
+</Layout>

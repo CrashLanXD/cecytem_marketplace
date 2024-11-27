@@ -1,5 +1,5 @@
 import { addCartItem, isCartOpen } from "@/lib/cartStore";
-import styles from "@/components/AddToCartButton.module.css";
+import styles from "@/components/store/AddToCartButton.module.css";
 
 export default function AddToCartForm({ product }) {
   function addToCart(e) {
