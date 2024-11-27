@@ -55,6 +55,16 @@ const description = "";
     margin: 0;
     box-sizing: border-box;
   }
+
+  body:has(#cart-modal[data-open="true"]) {
+    @apply overflow-y-hidden;
+  }
+
+  html {
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

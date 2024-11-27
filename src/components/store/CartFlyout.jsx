@@ -30,14 +30,17 @@ export default function CartFlyout() {
         aria-hidden="true"
         className={`${
           $isCartOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        } absolute inset-0 z-40 min-w-full min-h-full bg-black/10 dark:bg-gray-950/30 transition-opacity duration-500 opacity-0 cursor-pointer`}
+        } absolute inset-0 z-40 min-w-full min-h-full bg-black/40 dark:bg-gray-950/50 transition-opacity duration-500 opacity-0 cursor-pointer`}
       ></div>
       <aside
+        data-open={$isCartOpen}
+        id={"cart-modal"}
+        aria-hidden={!$isCartOpen}
         className={`${
           $isCartOpen
             ? "cart-open !translate-x-0"
             : "translate-x-full pointer-events-none"
-        } z-50 fixed right-0 top-0 flex flex-col items-center justify-start transition-transform duration-500 ease-in-out h-full min-h-screen w-[min(540px,100%)] overflow-y-scroll bg-white dark:bg-neutral-950 md:rounded-l-md text-neutral-900 dark:text-neutral-200 translate-x-[540px] [scrollbar-width:thin]`}
+        } z-50 fixed right-0 top-0 flex flex-col items-center justify-start transition-transform duration-500 ease-in-out h-full min-h-[100dvh] w-[min(540px,100%)] overflow-y-scroll bg-white dark:bg-neutral-950 md:rounded-l-md text-neutral-900 dark:text-neutral-200 translate-x-[540px] [scrollbar-width:thin]`}
       >
         <div className="inline-flex justify-between items-center w-full p-4 border-b border-neutral-200">
           <h2 className="text-2xl font-semibold tracking-tight">Tu carrito</h2>
@@ -47,7 +50,7 @@ export default function CartFlyout() {
           </div>
         </div>
         {Object.keys($cartItems).length ? (
-          <div className="flex flex-col items-center min-w-full justify-center">
+          <div className="flex flex-col items-center min-w-full justify-center"> 
             <ul className="p-4 min-w-full my-2 divide-y divide-neutral-200">
               {Object.keys($cartItems).map((id) => {
                 const product = productLookup[id];
