@@ -1,12 +1,11 @@
-// CartComponent.jsx
-import { useEffect, useState } from "preact/hooks";
-import { useStore } from "@nanostores/preact";
+import { CartIcon } from "@/components/store/CartFlyoutToggle";
 import { cartItems } from "@/lib/cartStore";
 import { PRODUCTS } from "@/constants/products";
-import CartItem from "@/components/store/CartItem.jsx";
-import PayPalPayment from "@/components/store/PayPalPayment.jsx";
-import Checkout from "@/components/store/Checkout.jsx";
-import { CartIcon } from "@/components/store/CartFlyoutToggle.jsx";
+import { useEffect, useState } from "preact/hooks";
+import { useStore } from "@nanostores/preact";
+import CartItem from "@/components/store/CartItem";
+import Checkout from "@/components/store/Checkout";
+import PayPalPayment from "@/components/store/PayPalPayment";
 
 export default function CartComponent() {
   const [productsInCart, setProductsInCart] = useState([]);
@@ -31,14 +30,14 @@ export default function CartComponent() {
     <div class={"flex flex-col lg:flex-row"}>
       {productsInCart.length > 0 ? (
         <>
-          <ul class="divide-y divide-neutral-400 dark:divide-neutral-200 w-full max-w-screen-md">
+          <ul class="divide-y divide-neutral-300 dark:divide-neutral-700 w-full max-w-screen-md pr-4">
             {productsInCart.map((product) => (
               <CartItem key={product.id} product={product} />
             ))}
           </ul>
-          <div class="px-4 py-6 max-w-sm border border-neutral-400 mx-auto w-full h-fit max-h-fit sticky top-24">
+          <div class="px-4 py-6 max-w-sm border border-neutral-300 dark:border-neutral-700 rounded mx-auto w-full h-fit max-h-fit sticky top-20">
             <h2 class="text-xl font-semibold">Resumen de pedido</h2>
-            <hr class={"border-neutral-400 my-4"} />
+            <hr class={"border-neutral-400 dark:border-neutral-700 my-4"} />
             <p class="mb-2 text-sm">
               Impuestos y envío calculados al finalizar la compra.
             </p>

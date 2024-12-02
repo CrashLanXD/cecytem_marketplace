@@ -5,13 +5,15 @@ export default function CartItem({ product }) {
   return (
     <li className={"flex py-6 gap-4 text-lg w-full"}>
       <div className="size-52 flex-shrink-0 overflow-hidden rounded-md">
-        <img
-          className="size-full object-cover object-center"
-          src={product.images[0]}
-          alt={product.title}
-          loading={"eager"}
-          decoding={"async"}
-        />
+        <a href={`/store/${product.id}`} className="block size-full aspect-square">
+          <img
+            className="size-full object-cover object-center"
+            src={product.images[0]}
+            alt={product.title}
+            loading={"eager"}
+            decoding={"async"}
+          />
+        </a>
       </div>
       <div class={"flex flex-col justify-center max-h-fit"}>
         <h3>{product.title}</h3>
