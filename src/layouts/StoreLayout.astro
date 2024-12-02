@@ -42,6 +42,14 @@ const description = "";
 </html>
 
 <style is:global>
+  @font-face {
+    font-family: InterVariable;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/InterVariable.woff2") format("woff2");
+  }
+
   :root {
     color-scheme: light;
   }
@@ -49,7 +57,7 @@ const description = "";
     color-scheme: dark;
   }
   html {
-    font-family: sans-serif, system-ui;
+    font-family: InterVariable, sans-serif, system-ui;
     scroll-behavior: smooth;
     padding: 0;
     margin: 0;

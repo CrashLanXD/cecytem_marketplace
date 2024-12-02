@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 <Layout title={`${product?.title}`}>
   {
     product && (
-      <section class="py-8 mt-16 px-8 md:px-4 max-w-screen-xl mx-auto">
+      <section class="py-8 mt-16 px-8 md:px-4 max-w-screen-xl mx-auto" id="_top">
         <ProductBreadcrumb title={`${product.title}`} id={`#${product.id}`} />
         <div class="mx-auto container grid place-items-center grid-cols-1 gap-x-7 md:grid-cols-2">
           <Gallery product={product} />
