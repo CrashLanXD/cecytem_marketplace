@@ -7,13 +7,11 @@ import AddToCartForm from "@/components/store/AddToCartButton.jsx";
 import { PRODUCTS } from "@/constants/products";
 
 const { id } = Astro.params;
-const idx = id - 1;
-const product = PRODUCTS.at(idx);
+const product = PRODUCTS.find((p) => p.id === Number(id));
+if (!product) return Astro.redirect("/404");
 
 export async function getStaticPaths() {
-  return PRODUCTS.map((product) => ({
-    params: { id: product.id },
-  }));
+  return PRODUCTS.map(({ id }) => ({ params: { id: String(id) } }));
 }
 ---
 
