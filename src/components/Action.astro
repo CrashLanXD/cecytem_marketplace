@@ -8,72 +8,46 @@ const { as: Tag, class: className, ...props } = Astro.props;
 
 <Tag
   class:list={[
-    "flex px-6 my-3 py-1 mx-auto",
+    "action",
+    "flex px-6 py-1 mx-auto my-3",
     "text-xl min-w-fit w-24 h-14",
     "items-center justify-center font-bold",
     "transition-all text-center rounded-2xl",
-    "backdrop-blur-md bg-neutral-200/80 dark:bg-neutral-800/80",
-    "hover:text-2xl",
+    "text-neutral-900 dark:text-neutral-100",
+    "hover:hue-rotate-30 active:brightness-95",
     className,
   ]}
   {...props}
 >
   <span class="inline-block"><slot /></span>
 </Tag>
-{/*
----
-import type { HTMLTag, Polymorphic } from "astro/types";
-
-type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }>;
-
-const { as: Tag, class: className, ...props } = Astro.props;
----
-
-<Tag
-  class:list={[
-    "rounded-2xl p-1 relative w-fit mx-auto action hover:scale-105 active:scale-95 transition-transform",
-    className
-  ]}
-  {...props}
->
-  <div class="blob"></div>
-  <div class="inner"><slot /></div>
-</Tag>
 
 <style>
   .action {
-    background: radial-gradient(circle 80px at 80% -10%, #ffffff, #181b18);
-  }
-  .action::after {
-    @apply content-[''] absolute top-0 right-0 -z-10;
-    width: 65%;
-    height: 60%;
-    border-radius: 120px;
-    box-shadow: 0 0 20px #ffffff38;
-  }
-  .blob {
-    @apply absolute w-16 h-full rounded-2xl bottom-0 left-0;
-    background: radial-gradient(
-      circle 60px at 0% 100%,
-      #84cc16,
-      #4ade80,
-      transparent
-    );
-    box-shadow: -10px 10px 30px #0051ff2d;
-  }
-  .inner {
-    @apply px-6 py-3 rounded-xl z-10 relative;
-    color: #fff;
-    background: radial-gradient(circle 80px at 80% -50%, #777777, #0f1111);
-  }
-  .inner::before {
-    @apply content-[''] size-full left-0 top-0 rounded-xl absolute;
-    background: radial-gradient(
-      circle 60px at 0% 100%,
-      #40ff001a,
-      #00ff2611,
-      transparent
-    );
+    --primary-light: #f1f1f1;
+    --primary: #ededed;
+    --primary-dark: #cbccca;
+    --white: #e3e9d9;
+    --greyLight-2: #d2e9d5;
+    &:where(.dark, .dark *) {
+      --primary-light: #1f1f1f;
+      --primary: #1a1919;
+      --primary-dark: #000000;
+      --white: #111612;
+      --greyLight-2: #09130b;
+    }
+    background: var(--primary);
+    box-shadow:
+      inset 0.2rem 0.2rem 1rem var(--primary-light),
+      inset -0.2rem -0.2rem 1rem var(--primary-dark),
+      0.3rem 0.3rem 0.6rem var(--greyLight-2),
+      -0.2rem -0.2rem 0.5rem var(--white);
+    &:active {
+      box-shadow:
+        inset 0.2rem 0.2rem 1rem var(--primary-dark),
+        inset -0.2rem -0.2rem 1rem var(--primary-light),
+        0.3rem 0.3rem 0.6rem var(--greyLight-2),
+        -0.2rem -0.2rem 0.5rem var(--white);
+    }
   }
 </style>
-*/}
